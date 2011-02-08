@@ -14,7 +14,15 @@ describe Menu do
     Menu.make(:date => menu.date).should_not be_valid
   end
 
-  it "set locked attr to false by default" do
-    Menu.make.should_not be_locked
+  it "not published by default" do
+    Menu.make.should_not be_published
   end
+
+  describe "#publish!" do
+    let(:menu) { Menu.make! }
+    it "set published_at value" do
+      expect { menu.publish! }.to change(menu, :published_at).from(nil)
+    end
+  end
+
 end
