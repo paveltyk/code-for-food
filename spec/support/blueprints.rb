@@ -9,3 +9,7 @@ Dish.blueprint do
   name { "Dish #{sn}" }
   price { 3000 + rand(30)*100 }
 end
+
+DishTag.blueprint do
+  name { "dish-tag-#{sn}" }
+end
