@@ -17,4 +17,17 @@ describe DishTag do
     DishTag.make(:value => 'abc').should_not be_valid
     DishTag.make(:value => 10.6).should_not be_valid 
   end
+
+  describe "many-to-many relation with Dish" do
+    let(:dish) { Dish.make! }
+    let(:tag) { DishTag.make! }
+
+    it "adds new dish to dish list" do
+      expect { tag.dishes << dish }.to change(tag.dishes, :count).from(0).to(1)
+    end
+
+    it "don't add same dish twice" do
+      expect { 2.times { tag.dishes << dish } }.to change(tag.dishes, :count).from(0).to(1)
+    end
+  end
 end

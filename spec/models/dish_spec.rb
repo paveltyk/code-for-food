@@ -21,4 +21,16 @@ describe Dish do
     Dish.make(:menu => nil).should_not be_valid
   end
 
+  describe "many-to-many relation with DishTag" do
+    let(:dish) { Dish.make! }
+    let(:tag) { DishTag.make! }
+
+    it "adds new tag to tag list" do
+      expect { dish.tags << tag }.to change(dish.tags, :count).from(0).to(1)
+    end
+
+    it "don't add same tag twice" do
+      expect { 2.times { dish.tags << tag } }.to change(dish.tags, :count).from(0).to(1)
+    end
+  end
 end
