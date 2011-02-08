@@ -1,9 +1,5 @@
 require 'machinist/active_record'
 
-# Add your blueprints here.
-#
-# e.g.
-#   Post.blueprint do
-#     title { "Post #{sn}" }
-#     body  { "Lorem ipsum..." }
-#   end
+Menu.blueprint do
+  date { sn.to_i.days.from_now.to_date }
+end
