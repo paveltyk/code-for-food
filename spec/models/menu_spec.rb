@@ -5,7 +5,7 @@ describe Menu do
     Menu.make.should be_valid
   end
 
-  it "not be valid if date is blank" do
+  it "not valid if date is blank" do
     Menu.make(:date => nil).should_not be_valid
   end
 
