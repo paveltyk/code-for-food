@@ -19,7 +19,7 @@ describe Menu do
   end
 
   it "should return formatted date" do
-    date = Time.now
+    date = Time.now.to_date
     Menu.make(:date => date).to_s.should eql(date.strftime("%A %d.%m"))
   end
 

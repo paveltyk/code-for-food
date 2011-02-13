@@ -1,6 +1,6 @@
 %h1 Create a new menu
 = form_for @menu do |f|
-  = debug @menu.errors.full_messages
+  = render_errors_for @menu
   %p
     = f.label :date
     = f.text_field :date

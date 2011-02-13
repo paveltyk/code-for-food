@@ -9,12 +9,12 @@ describe MenusController do
   end
 
   it "creates a new menu" do
-    expect { post :create, :menu => Menu.make.attributes }.to change(Menu, :count).from(0).to(1)
+    expect { post :create, :menu => Menu.make.attributes }.to change(Menu, :count).by(1)
   end
 
   it "creates the dishes for menu" do
     post_attrs = Menu.make.attributes.merge :dishes_attributes => {0 => Dish.make(:menu => nil).attributes, 1 => Dish.make(:menu => nil).attributes}
-    expect { post :create, :menu => post_attrs }.to change(Dish, :count).from(0).to(2)
+    expect { post :create, :menu => post_attrs }.to change(Dish, :count).by(2)
   end
 
   it "redirects to \"show\" action" do
