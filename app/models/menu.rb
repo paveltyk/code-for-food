@@ -13,5 +13,9 @@ class Menu < ActiveRecord::Base
     save unless new_record?
     published_at
   end
+
+  def to_s
+    date ? date.to_s(:menu) : 'unknown'
+  end
 end
 

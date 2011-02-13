@@ -18,6 +18,15 @@ describe Menu do
     Menu.make.should_not be_published
   end
 
+  it "should return formatted date" do
+    date = Time.now
+    Menu.make(:date => date).to_s.should eql(date.strftime("%A %d.%m"))
+  end
+
+  it "should return \"unknown\" text if date is nil" do
+     Menu.make(:date => nil).to_s.should eql("unknown")
+  end
+
   describe "#publish!" do
     let(:menu) { Menu.make! }
     it "set published_at value" do
@@ -26,3 +35,4 @@ describe Menu do
   end
 
 end
+
