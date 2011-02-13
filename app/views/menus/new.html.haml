@@ -1,0 +1,22 @@
+%h1 Create a new menu
+= form_for @menu do |f|
+  = debug @menu.errors.full_messages
+  %p
+    = f.label :date
+    = f.text_field :date
+  = f.fields_for :dishes do |dish|
+    %hr
+    %p
+      = dish.label :name
+      = dish.text_field :name
+    %p
+      = dish.label :price
+      = dish.text_field :price
+    %p
+      = dish.label :weihgt
+      = dish.text_field :weight
+    %p
+      = dish.label :description
+      = dish.text_field :description
+  %p= f.submit
+

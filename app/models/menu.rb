@@ -1,7 +1,8 @@
 class Menu < ActiveRecord::Base
-  has_many :dishes, :dependent => :destroy
+  has_many :dishes, :dependent => :destroy, :inverse_of => :menu
   validates_presence_of :date
   validates_uniqueness_of :date
+  accepts_nested_attributes_for :dishes
 
   def published?
     !!published_at
@@ -13,3 +14,4 @@ class Menu < ActiveRecord::Base
     published_at
   end
 end
+

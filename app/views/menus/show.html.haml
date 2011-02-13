@@ -1,0 +1,4 @@
+%h1= "Menu for #{@menu.date}"
+- @menu.dishes.each do |dish|
+  %p= "#{dish.name} - #{dish.price}"
+
