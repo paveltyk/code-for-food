@@ -1,23 +1,28 @@
 %h1 Create a new menu
-= form_for @menu do |f|
+
+= form_for @menu, :html => {:class => 'menu'} do |f|
   = render_errors_for @menu
   %p
     = f.label :date
-    = f.text_field :date
+    = f.date_select :date
+  #bulk_menu_creation
+    = label_tag :bulk, 'Bulk menu creation'
+    = text_area_tag :bulk
   = f.fields_for :dishes do |dish|
     %hr
     %p
       = dish.label :name
-      = dish.text_field :name
-    %p
+      = dish.text_field :name, :class => 'name'
+
       = dish.label :price
-      = dish.text_field :price
-    %p
-      = dish.label :weihgt
-      = dish.text_field :weight
-    %p
+      = dish.text_field :price, :class => 'price'
+
+      = dish.label :weight
+      = dish.text_field :weight, :class => 'weight'
+
       = dish.label :description
-      = dish.text_field :description
+      = dish.text_field :description, :class => 'description'
+
     - unless dish.object.new_record?
       %p
         = dish.check_box :_destroy

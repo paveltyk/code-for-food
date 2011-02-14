@@ -1,0 +1,12 @@
+html {color:#444444;font:93.8% Georgia,Times,"Times New Roman",serif;background-color:#F7F7F7;}
+
+#header {width:960px;margin:0 auto;background:url('/images/border-double.png') repeat-x scroll left bottom transparent;padding-bottom:15px;}
+#meat {width:960px;margin:0 auto;background-color:#fff;padding-top:2px;}
+
+form.menu input[type='text'] {border:none;border-bottom:1px solid #000;margin-right:10px;background-color:#F6F6F6;}
+form.menu input.name {}
+form.menu input.price {width:40px;}
+form.menu input.weight {width:150px;}
+form.menu input.description {}
+form.menu #bulk_menu_creation textarea {border:1px solid #000;height:300px;width:700px;}
+
