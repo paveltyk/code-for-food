@@ -19,6 +19,7 @@ class MenusController < ApplicationController
 
   def edit
     @menu = Menu.find(params[:id])
+    2.times { @menu.dishes.build }
     render :action => :new
   end
 
