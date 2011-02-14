@@ -18,5 +18,9 @@
     %p
       = dish.label :description
       = dish.text_field :description
+    - unless dish.object.new_record?
+      %p
+        = dish.check_box :_destroy
+        = dish.label :_destroy, 'Destroy?'
   %p= f.submit
 

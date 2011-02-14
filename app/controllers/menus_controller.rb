@@ -16,5 +16,20 @@ class MenusController < ApplicationController
       render :action => :new
     end
   end
+
+  def edit
+    @menu = Menu.find(params[:id])
+    render :action => :new
+  end
+
+  def update
+    @menu = Menu.find(params[:id])
+    if @menu.update_attributes(params[:menu])
+      flash[:notice] = 'Menu updated successfully'
+      redirect_to @menu, :notice => 'Menu updated successfully'
+    else
+      render :action => :new
+    end
+  end
 end
 

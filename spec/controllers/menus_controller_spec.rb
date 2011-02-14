@@ -24,6 +24,7 @@ describe MenusController do
 
   it "renders a \"new\" template if menu not valid" do
     post :create
+    assigns[:menu].should_not be_valid
     response.should render_template('new')
   end
 
@@ -33,6 +34,67 @@ describe MenusController do
     get :show, :id => menu.id
     assigns[:menu].should eql(menu)
     response.should render_template('show')
+  end
+
+  it "assigns the menu and renders the \"edit\" page" do
+    menu = Menu.make!
+    get :edit, :id => menu.id
+    response.should render_template('new')
+    assigns[:menu].should eql(menu)
+  end
+
+  describe "#update" do
+    context "with valid menu attrs" do
+      before :each do
+        Menu.destroy_all
+        put :update, :id => Menu.make!.id, :menu => { :date => '1999-10-01' }
+      end
+
+      it "updates the date of the menu" do
+        assigns[:menu].should be_valid
+        assigns[:menu].date.should eql(Time.parse('1999-10-01').to_date)
+      end
+
+      it "redirects to \"show\" action" do
+        response.should be_redirect
+      end
+
+      it "set the success flash message" do
+        flash[:notice].should_not be_blank
+      end
+    end
+
+    context "nested dishes" do
+      it "changes dish name" do
+        dish = Dish.make!
+        put :update, :id => dish.menu.id, :menu => {:dishes_attributes => {0 => {:id => dish.id, :name => 'Awesome stake'}}}
+        assigns[:menu].dishes.first.name.should eql('Awesome stake')
+      end
+
+      it "destroys a dish" do
+        dish = Dish.make!
+        menu = dish.menu
+        put :update, :id => dish.menu.id, :menu => {:dishes_attributes => {0 => {:id => dish.id, :_destroy => 1}}}
+        assigns[:menu].reload.should have(0).dishes
+      end
+
+      it "renders the \"new\" template if any of the dishes is not valid" do
+        dish = Dish.make!
+        put :update, :id => dish.menu.id, :menu => {:dishes_attributes => {0 => {:id => dish.id, :price => 1}}}
+        response.should render_template('new')
+      end
+    end
+
+    context "with invalid menu attrs" do
+      before :each do
+        Menu.destroy_all
+        put :update, :id => Menu.make!.id, :menu => { :date => 'Invalid date' }
+      end
+
+      it "renders the \"new\" template" do
+        response.should render_template('new')
+      end
+    end
   end
 end
 
