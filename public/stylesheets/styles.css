@@ -1,7 +1,16 @@
 html {color:#444444;font:93.8% Georgia,Times,"Times New Roman",serif;background-color:#F7F7F7;}
+.clr {clear:both;height:0;}
 
 #header {width:960px;margin:0 auto;background:url('/images/border-double.png') repeat-x scroll left bottom transparent;padding-bottom:15px;}
 #meat {width:960px;margin:0 auto;background-color:#fff;padding-top:2px;}
+
+ul#menu-calendar {margin-top:10px;}
+ul#menu-calendar li {float:left;}
+ul#menu-calendar li a {display:block;width:50px;border-left:1px dotted;text-align:center;width:72px;font-size:10px;color:#637a6e;text-decoration:none;}
+ul#menu-calendar li a b, ul#menu-calendar li a em {display:block;opacity:.4;margin-bottom:5px;}
+ul#menu-calendar li a:hover b, ul#menu-calendar li a:hover em {opacity:1;}
+ul#menu-calendar li a b {display:block;font-size:32px;}
+ul#menu-calendar li a em {}
 
 form.menu .menu-item {border-bottom:1px dotted #aaa;padding:5px 0;margin:5px 0;}
 form.menu input[type='text'] {border:none;border-bottom:1px solid #000;margin-right:10px;background-color:#F6F6F6;}
