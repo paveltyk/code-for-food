@@ -8,11 +8,13 @@
     = f.date_select :date
 
   #bulk_menu_creation
-    = label_tag :bulk, 'Bulk menu creation'
+    = label_tag :bulk, "Bulk menu creation"
     = text_area_tag :bulk
+    = button_to_function "Parse", "render_menu_items_from_string($('textarea#bulk').val());"
 
-  = f.fields_for :dishes do |dish|
-    = render :partial => "dish", :object => dish
+  #current-menu-items
+    = f.fields_for :dishes do |dish|
+      = render :partial => "dish", :object => dish
 
   #menu-item-for-cloning
     = fields_for 'menu[dishes_attributes][randomizer]', Dish.new do |dish|
