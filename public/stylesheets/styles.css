@@ -6,8 +6,8 @@ html {color:#444444;font:93.8% Georgia,Times,"Times New Roman",serif;background-
 
 ul#menu-calendar {margin-top:10px;}
 ul#menu-calendar li {float:left;}
-ul#menu-calendar li a {display:block;width:50px;border-left:1px dotted;text-align:center;width:72px;font-size:10px;color:#637a6e;text-decoration:none;}
-ul#menu-calendar li a b, ul#menu-calendar li a em {display:block;opacity:.4;margin-bottom:5px;}
+ul#menu-calendar li a {display:block;width:50px;border-left:1px dotted #637a6e;text-align:center;width:72px;font-size:10px;color:#9e1517;text-decoration:none;}
+ul#menu-calendar li a b, ul#menu-calendar li a em {display:block;opacity:.4;margin-bottom:5px;color:#637a6e;}
 ul#menu-calendar li a:hover b, ul#menu-calendar li a:hover em {opacity:1;}
 ul#menu-calendar li a b {display:block;font-size:32px;}
 ul#menu-calendar li a em {}
