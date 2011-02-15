@@ -1,0 +1,18 @@
+.menu-item
+  = dish.label :name
+  = dish.text_field :name, :class => 'name'
+
+  = dish.label :price
+  = dish.text_field :price, :class => 'price'
+
+  = dish.label :weight
+  = dish.text_field :weight, :class => 'weight'
+
+  = dish.label :description
+  = dish.text_field :description, :class => 'description'
+
+  = link_to 'Remove', '#', :class => "remove #{dish.object.new_record? ? 'new' : 'existent'}-record"
+
+  - unless dish.object.new_record?
+    = dish.hidden_field :_destroy, :class => 'mark-for-remove'
+

@@ -2,30 +2,23 @@
 
 = form_for @menu, :html => {:class => 'menu'} do |f|
   = render_errors_for @menu
+
   %p
     = f.label :date
     = f.date_select :date
+
   #bulk_menu_creation
     = label_tag :bulk, 'Bulk menu creation'
     = text_area_tag :bulk
+
   = f.fields_for :dishes do |dish|
-    %hr
-    %p
-      = dish.label :name
-      = dish.text_field :name, :class => 'name'
+    = render :partial => "dish", :object => dish
 
-      = dish.label :price
-      = dish.text_field :price, :class => 'price'
+  #menu-item-for-cloning
+    = fields_for 'menu[dishes_attributes][randomizer]', Dish.new do |dish|
+      = render :partial => "dish", :object => dish
 
-      = dish.label :weight
-      = dish.text_field :weight, :class => 'weight'
+  %p= link_to 'Add menu item', '#', :class => 'add-menu-item'
 
-      = dish.label :description
-      = dish.text_field :description, :class => 'description'
-
-    - unless dish.object.new_record?
-      %p
-        = dish.check_box :_destroy
-        = dish.label :_destroy, 'Destroy?'
   %p= f.submit
 
