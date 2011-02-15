@@ -4,6 +4,7 @@ gem 'rails', '3.0.3'
 gem 'mysql2'
 gem 'pg'
 gem 'haml-rails', '~> 0.3'
+gem 'jquery-rails', '~> 0.2.7'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.5'
@@ -11,3 +12,4 @@ group :development, :test do
   gem 'metric_fu', '~> 2.0'
   gem 'machinist', '~> 2.0.0.beta2'
 end
+
