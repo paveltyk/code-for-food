@@ -3,9 +3,16 @@ require 'spec_helper'
 describe MenusController do
   render_views
 
-  it "renders a new menu page" do
-    get :new
-    response.should render_template('new')
+  describe "#new" do
+    it "renders a \"new\" template" do
+      get :new
+      response.should render_template('new')
+    end
+
+    it "sets a menu date from params" do
+      get :new, :date => '1999-03-05'
+      assigns[:menu].date.should eql(Date.parse('1999-03-05'))
+    end
   end
 
   it "creates a new menu" do

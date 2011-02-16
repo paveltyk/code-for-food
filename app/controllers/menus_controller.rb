@@ -4,7 +4,7 @@ class MenusController < ApplicationController
   end
 
   def new
-    @menu = Menu.new
+    @menu = Menu.new(:date => params[:date])
     2.times { @menu.dishes.build }
   end
 
@@ -19,7 +19,6 @@ class MenusController < ApplicationController
 
   def edit
     @menu = Menu.find(params[:id])
-    2.times { @menu.dishes.build }
     render :action => :new
   end
 

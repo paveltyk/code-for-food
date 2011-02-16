@@ -1,4 +1,6 @@
 class Menu < ActiveRecord::Base
+  attr_accessible :date, :dishes_attributes
+
   has_many :dishes, :dependent => :destroy, :inverse_of => :menu
   validates_presence_of :date
   validates_uniqueness_of :date
