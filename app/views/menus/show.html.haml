@@ -1,5 +1,11 @@
-%h1= "Menu for #{@menu}"
-- @menu.dishes.each do |dish|
-  %p= "#{dish.name} - #{dish.price}"
+%h1= "Menu for <span>#{@menu}</span>".html_safe
+%ul.menu
+  - @menu.dishes.each do |dish|
+    %li
+      = check_box_tag :order, nil, false, :class => 'order-item-select'
+      = "#{dish.name} - <span class=\"price\">#{number_with_delimiter dish.price}</span>".html_safe
+      %span.quantity
+        x&nbsp;
+        = text_field_tag :qtt, 1
 %p= link_to 'Edit menu', edit_menu_path(@menu)
 

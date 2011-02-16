@@ -46,6 +46,24 @@ function add_new_menu_item(attrs){
   $('#current-menu-items').append(html);
 }
 
+function bootstrap_dish_order() {
+  $('ul.menu li').each(function(i,li){
+  li = $(li);
+    if (li.children('input.order-item-select:checked').length > 0) {
+      li.addClass('selected');
+    }
+  });
+  $('ul.menu input[type="checkbox"]').click(function(){
+    checkbox = $(this);
+    li = checkbox.closest('li');
+      if (checkbox.is(':checked')) {
+        li.addClass('selected');
+      } else {
+        li.removeClass('selected');
+      }
+  });
+}
+
 $(function(){
   $('.menu a.remove').live('click', function(){
     remove_menu_item($(this).closest('.menu-item'));
@@ -55,5 +73,6 @@ $(function(){
     add_new_menu_item();
     return false;
   });
+  bootstrap_dish_order();
 });
 

@@ -2,7 +2,9 @@ html {color:#444444;font:93.8% Georgia,Times,"Times New Roman",serif;background-
 .clr {clear:both;height:0;}
 
 #header {width:960px;margin:0 auto;background:url('/images/border-double.png') repeat-x scroll left bottom transparent;padding-bottom:15px;}
-#meat {width:960px;margin:0 auto;background-color:#fff;padding-top:2px;}
+#meat {width:940px;margin:0 auto;background-color:#fff;padding:10px;}
+
+input[type="text"] {border:1px solid #9DB0A6;font-size:0.8em;padding:1px 2px;}
 
 ul#menu-calendar {margin-top:10px;}
 ul#menu-calendar li {float:left;}
@@ -13,6 +15,9 @@ ul#menu-calendar li a:hover b, ul#menu-calendar li a:hover em {opacity:1;}
 ul#menu-calendar li a b {display:block;font-size:32px;}
 ul#menu-calendar li a em {}
 
+h1 {font-size:1.6em;color:#62796D;margin-bottom:10px;font-weight:normal;}
+h1 span {color:#A51618;}
+
 form.menu .menu-item {border-bottom:1px dotted #aaa;padding:5px 0;margin:5px 0;}
 form.menu input[type='text'] {border:none;border-bottom:1px solid #000;margin-right:10px;background-color:#F6F6F6;}
 form.menu input.name {}
@@ -21,4 +26,12 @@ form.menu input.weight {width:80px;text-align:center;}
 form.menu input.description {}
 form.menu #bulk_menu_creation textarea {border:1px solid #000;height:300px;width:700px;}
 form.menu #menu-item-for-cloning {display:none;}
+
+ul.menu {}
+ul.menu li {color:#888;font-size:17px;font-style:italic;line-height:130%;margin:5px 0;}
+ul.menu li.selected {color:#333;}
+ul.menu li.selected span.price {color:#A51618;}
+ul.menu li span.quantity {display:none;}
+ul.menu li span.quantity input[type="text"] {width:20px;font-size:14px;text-align:center;}
+ul.menu li.selected span.quantity {display:inline;}
 
