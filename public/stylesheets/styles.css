@@ -3,6 +3,8 @@ html {color:#444444;font:93.8% Georgia,Times,"Times New Roman",serif;background-
 
 #header {width:960px;margin:0 auto;background:url('/images/border-double.png') repeat-x scroll left bottom transparent;padding-bottom:15px;}
 #meat {width:940px;margin:0 auto;background-color:#fff;padding:10px;}
+#top-bar {background-color:#000;height:50px;overflow:hidden;color:#777;}
+#top-bar a {color:#777;}
 
 input[type="text"] {border:1px solid #9DB0A6;font-size:0.8em;padding:1px 2px;}
 
