@@ -1,7 +1,13 @@
 CodeForFood::Application.routes.draw do
   resources :invitations, :only => [:show, :new, :create]
-
   resources :menus
+
+  match "/login" => "sessions#new", :as => :login, :via => :get
+  match "/login" => "sessions#create", :via => :post
+  match "/logout" => "sessions#destroy", :as => :logout
+
+  root :to => "menus#new"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -15,6 +15,7 @@ DishTag.blueprint do
 end
 
 Invitation.blueprint do
+  sender
   recipient_email { "email.#{sn}@test.com" }
 end
 

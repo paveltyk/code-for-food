@@ -19,6 +19,10 @@ describe Invitation do
     it "not valid if email does not look like an email" do
       Invitation.make(:recipient_email => 'not_valid').should_not be_valid
     end
+
+    it "not valid if sender is blank" do
+      Invitation.make(:sender => nil).should_not be_valid
+    end
   end
 end
 

@@ -4,7 +4,7 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    @invitation = Invitation.new(params[:invitation])
+    @invitation = current_user.sent_invitations.build(params[:invitation])
 
     if @invitation.save
       flash[:notice] = 'Invitation was successfully created.'
