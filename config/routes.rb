@@ -6,6 +6,9 @@ CodeForFood::Application.routes.draw do
   match "/login" => "sessions#create", :via => :post
   match "/logout" => "sessions#destroy", :as => :logout
 
+  match "/register/:invitation_token" => "users#new", :as => :register, :via => :get
+  match "/register" => "users#create", :as => :do_registration, :via => :post
+
   root :to => "menus#new"
 
   # The priority is based upon order of creation:
