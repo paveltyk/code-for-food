@@ -8,7 +8,16 @@ describe InvitationsController do
     @mock_invitation ||= mock_model(Invitation, stubs).as_null_object
   end
 
-  context "with logged in user" do
+  context "when not logged in" do
+    {:new => :get, :create => :post}.each do |action, method|
+      it "redirect when #{method.to_s.upcase} #{action}" do
+        send method, action
+        response.should redirect_to(login_url)
+      end
+    end
+  end
+
+  context "when logged in" do
     let(:current_user) { User.make! }
     before(:each) { controller.stub(:current_user => current_user) }
 
