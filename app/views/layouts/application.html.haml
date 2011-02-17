@@ -9,5 +9,7 @@
     #header
       = render_menu_calendar
       .clr
-    #meat= yield
+    #meat
+      = render_flash_messages
+      = yield
 
