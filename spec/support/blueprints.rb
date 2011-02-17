@@ -18,3 +18,10 @@ Invitation.blueprint do
   recipient_email { "email.#{sn}@test.com" }
 end
 
+
+User.blueprint do
+  email { "email.#{sn}@test.com" }
+  password { "password" }
+  password_confirmation { object.password }
+end
+

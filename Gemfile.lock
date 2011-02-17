@@ -31,6 +31,8 @@ GEM
     activesupport (3.0.3)
     arel (2.0.7)
     arrayfields (4.7.4)
+    authlogic (2.1.6)
+      activesupport
     builder (2.1.2)
     chronic (0.2.3)
       hoe (>= 1.2.1)
@@ -153,6 +155,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  authlogic
   haml-rails (~> 0.3)
   jquery-rails (~> 0.2.7)
   machinist (~> 2.0.0.beta2)
