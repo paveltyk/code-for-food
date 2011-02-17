@@ -1,4 +1,6 @@
 CodeForFood::Application.routes.draw do
+  resources :invitations, :only => [:show, :new, :create]
+
   resources :menus
   # The priority is based upon order of creation:
   # first created -> highest priority.

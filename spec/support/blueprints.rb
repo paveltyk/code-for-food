@@ -13,3 +13,8 @@ end
 DishTag.blueprint do
   name { "dish-tag-#{sn}" }
 end
+
+Invitation.blueprint do
+  recipient_email { "email.#{sn}@test.com" }
+end
+
