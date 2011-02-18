@@ -2,6 +2,7 @@ class Menu < ActiveRecord::Base
   attr_accessible :date, :dishes_attributes
 
   has_many :dishes, :dependent => :destroy, :inverse_of => :menu
+  has_many :orders, :dependent => :destroy, :inverse_of => :menu
   validates_presence_of :date
   validates_uniqueness_of :date
   accepts_nested_attributes_for :dishes, :allow_destroy => true, :reject_if => :all_blank

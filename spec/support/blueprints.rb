@@ -29,5 +29,6 @@ end
 
 Order.blueprint do
   user
+  menu
 end
 

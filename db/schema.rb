@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110218144629) do
+ActiveRecord::Schema.define(:version => 20110218150010) do
 
   create_table "dish_tags", :force => true do |t|
     t.string   "name"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20110218144629) do
     t.integer  "price",      :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "menu_id"
   end
 
   create_table "sessions", :force => true do |t|
