@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe MenusController do
   render_views
+  setup :activate_authlogic
 
-  describe "#new" do
+  describe "GET new" do
     it "renders a \"new\" template" do
       get :new
       response.should render_template('new')
@@ -15,42 +16,59 @@ describe MenusController do
     end
   end
 
-  it "creates a new menu" do
-    expect { post :create, :menu => Menu.make.attributes }.to change(Menu, :count).by(1)
+  describe "POST create" do
+    context "when not logged in" do
+      it "redirects to login page" do
+        post :create, :menu => Menu.make.attributes
+        response.should redirect_to(login_path)
+      end
+    end
+
+    context "when logged in as admin" do
+      before(:each) {UserSession.create(Administrator.make!)}
+
+      it "creates a new menu" do
+        expect { post :create, :menu => Menu.make.attributes }.to change(Menu, :count).by(1)
+      end
+
+      it "creates the dishes for menu" do
+        post_attrs = Menu.make.attributes.merge :dishes_attributes => {0 => Dish.make(:menu => nil).attributes, 1 => Dish.make(:menu => nil).attributes}
+        expect { post :create, :menu => post_attrs }.to change(Dish, :count).by(2)
+      end
+
+      it "redirects to \"show\" action" do
+        post :create, :menu => Menu.make.attributes
+        response.should be_redirect
+      end
+
+      it "renders a \"new\" template if menu not valid" do
+        post :create
+        assigns[:menu].should_not be_valid
+        response.should render_template('new')
+      end
+    end
   end
 
-  it "creates the dishes for menu" do
-    post_attrs = Menu.make.attributes.merge :dishes_attributes => {0 => Dish.make(:menu => nil).attributes, 1 => Dish.make(:menu => nil).attributes}
-    expect { post :create, :menu => post_attrs }.to change(Dish, :count).by(2)
+  describe "GET show" do
+    it "assigns menu and renders a \"show\" template" do
+      menu = Menu.make!
+      2.times { Dish.make! :menu => menu }
+      get :show, :id => menu.id
+      assigns[:menu].should eql(menu)
+      response.should render_template('show')
+    end
   end
 
-  it "redirects to \"show\" action" do
-    post :create, :menu => Menu.make.attributes
-    response.should be_redirect
+  describe "GET edit" do
+    it "assigns the menu and renders the \"edit\" page" do
+      menu = Menu.make!
+      get :edit, :id => menu.id
+      response.should render_template('new')
+      assigns[:menu].should eql(menu)
+    end
   end
 
-  it "renders a \"new\" template if menu not valid" do
-    post :create
-    assigns[:menu].should_not be_valid
-    response.should render_template('new')
-  end
-
-  it "assigns menu and renders a \"show\" template" do
-    menu = Menu.make!
-    2.times { Dish.make! :menu => menu }
-    get :show, :id => menu.id
-    assigns[:menu].should eql(menu)
-    response.should render_template('show')
-  end
-
-  it "assigns the menu and renders the \"edit\" page" do
-    menu = Menu.make!
-    get :edit, :id => menu.id
-    response.should render_template('new')
-    assigns[:menu].should eql(menu)
-  end
-
-  describe "#update" do
+  describe "PUT update" do
     context "with valid menu attrs" do
       before :each do
         Menu.destroy_all

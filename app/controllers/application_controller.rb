@@ -19,7 +19,14 @@ class ApplicationController < ActionController::Base
       store_location
       flash[:notice] = "You must be logged in to access this page"
       redirect_to login_url
-      return false
+    end
+  end
+
+  def require_admin
+    unless current_user && current_user.instance_of?(Administrator)
+      store_location
+      flash[:notice] = "You must be logged in as administrator to access this page"
+      redirect_to login_url
     end
   end
 

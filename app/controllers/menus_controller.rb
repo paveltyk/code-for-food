@@ -1,4 +1,6 @@
 class MenusController < ApplicationController
+  before_filter :require_admin, :only => :create
+
   def show
     @menu = Menu.find(params[:id])
   end
@@ -9,7 +11,7 @@ class MenusController < ApplicationController
   end
 
   def create
-    @menu = Menu.new(params[:menu])
+    @menu = current_user.menus.new(params[:menu])
     if @menu.save
       redirect_to @menu, :notice => 'Menu created successfully'
     else
