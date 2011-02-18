@@ -26,3 +26,8 @@ User.blueprint do
   password_confirmation { object.password }
 end
 
+
+Order.blueprint do
+  user
+end
+
