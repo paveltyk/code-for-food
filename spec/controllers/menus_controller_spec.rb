@@ -50,21 +50,44 @@ describe MenusController do
   end
 
   describe "GET show" do
-    it "assigns menu and renders a \"show\" template" do
-      menu = Menu.make!
-      2.times { Dish.make! :menu => menu }
-      get :show, :id => menu.id
-      assigns[:menu].should eql(menu)
-      response.should render_template('show')
+    context "when not logged in" do
+      it "redirects to login page" do
+        post :create, :menu => Menu.make.attributes
+        response.should redirect_to(login_path)
+      end
+    end
+
+    context "when logged in as admin" do
+      let(:admin) { Administrator.make! }
+      before(:each) { UserSession.create(admin) }
+
+      it "assigns menu and renders a \"show\" template" do
+        menu = Menu.make!(:administrator => admin)
+        2.times { Dish.make! :menu => menu }
+        get :show, :id => menu.id
+        assigns[:menu].should eql(menu)
+        response.should render_template('show')
+      end
     end
   end
 
   describe "GET edit" do
-    it "assigns the menu and renders the \"edit\" page" do
-      menu = Menu.make!
-      get :edit, :id => menu.id
-      response.should render_template('new')
-      assigns[:menu].should eql(menu)
+    context "when not logged in" do
+      it "redirects to login page" do
+        post :create, :menu => Menu.make.attributes
+        response.should redirect_to(login_path)
+      end
+    end
+
+    context "when logged in as admin" do
+      let(:admin) { Administrator.make! }
+      before(:each) { UserSession.create(admin) }
+      it "assigns the menu and renders the \"edit\" page" do
+        menu = Menu.make!(:administrator => admin)
+        get :edit, :id => menu.id
+        response.should render_template('new')
+        assigns[:menu].should eql(menu)
+      end
     end
   end
 

@@ -1,8 +1,8 @@
 class MenusController < ApplicationController
-  before_filter :require_admin, :only => :create
+  before_filter :require_admin, :only => [:show, :edit, :create]
 
   def show
-    @menu = Menu.find(params[:id])
+    @menu = current_user.menus.find(params[:id])
   end
 
   def new
@@ -20,7 +20,7 @@ class MenusController < ApplicationController
   end
 
   def edit
-    @menu = Menu.find(params[:id])
+    @menu = current_user.menus.find(params[:id])
     render :action => :new
   end
 
