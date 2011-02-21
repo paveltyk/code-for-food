@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation, :invitation_token
 
   has_many :orders, :dependent => :destroy, :inverse_of => :user
-  has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => :sender_id
   belongs_to :invitation
 
   with_options :if => 'validate_invitation' do |user|
