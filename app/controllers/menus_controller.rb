@@ -1,12 +1,12 @@
 class MenusController < ApplicationController
-  before_filter :require_admin, :only => [:show, :edit, :create]
+  before_filter :require_admin
 
   def show
     @menu = current_user.menus.find(params[:id])
   end
 
   def new
-    @menu = Menu.new(:date => params[:date])
+    @menu = current_user.menus.new(:date => params[:date])
     2.times { @menu.dishes.build }
   end
 
@@ -25,7 +25,7 @@ class MenusController < ApplicationController
   end
 
   def update
-    @menu = Menu.find(params[:id])
+    @menu = current_user.menus.find(params[:id])
     if @menu.update_attributes(params[:menu])
       flash[:notice] = 'Menu updated successfully'
       redirect_to @menu, :notice => 'Menu updated successfully'
