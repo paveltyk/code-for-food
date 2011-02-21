@@ -17,9 +17,9 @@ describe InvitationsController do
     end
   end
 
-  context "when logged in" do
-    let(:current_user) { User.make! }
-    before(:each) { controller.stub(:current_user => current_user) }
+  context "when logged in as admin" do
+    let(:admin) { Administrator.make! }
+    before(:each) { UserSession.create(admin) }
 
     describe "GET new" do
       it "assigns a new invitation as @invitation" do
@@ -37,21 +37,19 @@ describe InvitationsController do
         end
 
         it "redirects to the created invitation" do
-          current_user.stub_chain(:sent_invitations, :build) { mock_invitation(:save => true) }
-          post :create, :invitation => {}
+          post :create, :invitation => Invitation.make.attributes
           response.should redirect_to(new_invitation_url)
         end
       end
 
       describe "with invalid params" do
         it "assigns a newly created but unsaved invitation as @invitation" do
-          current_user.stub_chain(:sent_invitations, :build).with({'these' => 'params'}) { mock_invitation(:save => false) }
-          post :create, :invitation => {'these' => 'params'}
-          assigns(:invitation).should be(mock_invitation)
+          post :create, :invitation => {}
+          assigns(:invitation).should be_a_new_record
         end
 
         it "re-renders the 'new' template" do
-          current_user.stub_chain(:sent_invitations, :build) { mock_invitation(:save => false) }
+          admin.stub_chain(:sent_invitations, :build) { mock_invitation(:save => false) }
           post :create, :invitation => {}
           response.should render_template("new")
         end

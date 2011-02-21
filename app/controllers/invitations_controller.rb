@@ -1,5 +1,5 @@
 class InvitationsController < ApplicationController
-  before_filter :require_user
+  before_filter :require_admin
 
   def new
     @invitation = Invitation.new

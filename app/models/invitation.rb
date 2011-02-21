@@ -1,5 +1,8 @@
 class Invitation < ActiveRecord::Base
-  belongs_to :sender, :class_name => 'User'
+
+  attr_accessible :recipient_email
+
+  belongs_to :sender, :class_name => 'Administrator'
   has_one :receiver, :class_name => 'User'
 
   before_create :generate_token
