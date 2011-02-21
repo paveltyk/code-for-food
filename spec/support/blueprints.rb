@@ -34,3 +34,9 @@ end
 Administrator.blueprint do
 end
 
+
+OrderItem.blueprint do
+  order
+  dish
+end
+

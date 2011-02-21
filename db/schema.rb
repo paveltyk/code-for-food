@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110218151749) do
+ActiveRecord::Schema.define(:version => 20110221100459) do
 
   create_table "dish_tags", :force => true do |t|
     t.string   "name"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(:version => 20110218151749) do
   end
 
   add_index "menus", ["date"], :name => "index_menus_on_date"
+
+  create_table "order_items", :force => true do |t|
+    t.integer  "order_id"
+    t.integer  "dish_id"
+    t.integer  "quantity",   :default => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
