@@ -31,7 +31,7 @@ describe OrdersController do
 
       it "creates a new order" do
         expect {
-          post :create, :date => menu.date.to_s(:db), :order => { :menu_items_attributes => { "0" => attrs_for_first_dish } }
+          post :create, :date => menu.date.to_s(:db), :order => { :menu_items_attributes => { 0 => attrs_for_first_dish } }
         }.to change(Order, :count).by(1)
       end
 
@@ -51,6 +51,21 @@ describe OrdersController do
           post :create, :date => menu.date.to_s(:db)
           response.should render_template("new")
         end
+      end
+    end
+
+    describe "#update" do
+      let(:attrs_for_first_dish) { { :dish_id => order.menu.dishes.first.id, :quantity => 1, :is_ordered => '1'} }
+      let(:order) do
+        Order.make!(:user => logged_in_user).tap do |order|
+          2.times { order.menu.dishes << Dish.make! }
+        end
+      end
+
+      it "updates order with new data" do
+        expect {
+          put :update, :date => order.menu.date.to_s(:db), :order => { :menu_items_attributes => { 0 => attrs_for_first_dish } }
+        }.to change(order.order_items, :count).by(1)
       end
     end
   end

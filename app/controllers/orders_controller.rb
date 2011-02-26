@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_filter :assign_menu
 
   def new
-    @order = current_user.orders.build :menu => @menu
+    @order = current_user.orders.find_or_initialize_by_menu_id @menu.id
   end
 
   def create
@@ -12,6 +12,17 @@ class OrdersController < ApplicationController
 
     if @order.save
       flash[:notice] = 'Order created succesfully!'
+      redirect_to :action => :new
+    else
+      render :action => :new
+    end
+  end
+
+  def update
+    @order = current_user.orders.find_by_menu_id @menu.id
+
+    if @order.update_attributes(params[:order])
+      flash[:notice] = 'Order updated succesfully!'
       redirect_to :action => :new
     else
       render :action => :new

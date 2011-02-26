@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
   def menu_items
     menu.dishes.map do |dish|
       existent_oi = self.order_items.select{ |oi| oi.dish_id == dish.id }.first
-      existent_oi ? existent_oi : order_items.new(:dish => dish)
+      existent_oi ? existent_oi.tap { |oi| oi.is_ordered = true } : order_items.new(:dish => dish)
     end
   end
 
