@@ -9,6 +9,10 @@ CodeForFood::Application.routes.draw do
   match "/register/:invitation_token" => "users#new", :as => :register, :via => :get
   match "/register" => "users#create", :as => :do_registration, :via => :post
 
+  scope "/:date", :constraints => {:date => /\d{4}-\d{2}-\d{2}/} do
+    resource :order
+  end
+
   root :to => "menus#new"
 
   # The priority is based upon order of creation:
