@@ -1,6 +1,6 @@
-%h1 New order
+%h1= "Order for <span>#{@menu}</span>".html_safe
 %ul.menu
-  = form_for @order, :url => order_path(:date => '2011-12-12') do |f|
+  = form_for @order, :url => order_path(:date => @menu.date.to_s(:db)) do |f|
     = f.fields_for :menu_items do |oi|
       %li
         = oi.hidden_field :dish_id
@@ -10,5 +10,8 @@
         %span.quantity
           x&nbsp;
           = oi.text_field :quantity
-    = submit_tag
+    = submit_tag "Order"
+
+%p= link_to 'Edit menu', edit_menu_path(@menu)
+%p= link_to 'Show menu', @menu
 

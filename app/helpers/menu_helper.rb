@@ -7,7 +7,7 @@ module MenuHelper
     time_range.each do |date|
       link_text = date.strftime("<b>%d</b><em>%B</em>%A").html_safe
       if menu_dates.include?(date)
-        link_path = menu_path(menus.select { |m| m.date == date})
+        link_path = new_order_path(:date => date.to_s(:db))
         link_dom_class =  'active'
       else
         link_path = new_menu_path(:date => date.to_param)
