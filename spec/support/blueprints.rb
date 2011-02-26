@@ -5,6 +5,12 @@ Menu.blueprint do
   date { sn.to_i.days.from_now.to_date }
 end
 
+Menu.blueprint(:with_3_dishes) do
+  administrator
+  date { sn.to_i.days.from_now.to_date }
+  dishes(3)
+end
+
 Dish.blueprint do
   menu
   name { "Dish #{sn}" }
