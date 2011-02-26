@@ -1,4 +1,6 @@
 class OrderItem < ActiveRecord::Base
+  attr_accessor :is_ordered
+
   belongs_to :dish
   belongs_to :order
 
