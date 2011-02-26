@@ -43,6 +43,10 @@ end
 
 OrderItem.blueprint do
   order
-  dish
+  if object.order.present?
+    dish { Dish.make :menu => object.order.menu }
+  else
+    dish
+  end
 end
 
