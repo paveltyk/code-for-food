@@ -67,3 +67,7 @@ ul.order li.total {border-top:1px dashed;margin:15px 0;padding-top:15px;}
 ul.order li.admin-links {border-top:1px dashed;margin-top:20px;padding-top:30px;}
 ul.order li.admin-links a {margin-right:15px;}
 
+form#invitation {}
+form#invitation input[type="text"], form#invitation input[type="submit"] {display:block;margin:15px 0;}
+form#invitation input[type="text"] {font-size:22px;margin-right:10px;padding:4px 5px;vertical-align:bottom;}
+
