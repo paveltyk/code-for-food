@@ -11,6 +11,10 @@ input[type="submit"] {background:#c63929;background:-moz-linear-gradient(top,#ee
 input[type="submit"]:hover {background:#cb0500;background:-moz-linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);background:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #f37873), color-stop(0.5, #db504d), color-stop(0.5, #cb0500), color-stop(1, #a20601));cursor:pointer;}
 input[type="submit"]:active {background:#b30300;background: -moz-linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #d43c28), color-stop(0.5, #ad3224), color-stop(0.5, #9c1500), color-stop(1, #700d00));-moz-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);-webkit-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);}
 
+.notice, .error {margin:7px 0;padding:10px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-font-smoothing:antialiased;}
+.notice {background:#DCF7DD;border-color:#D1EAD2 #BBD2BC #BBD2BC;border-right:1px solid #BBD2BC;border-style:solid;border-width:1px;color:#444;}
+.error {color:#fff;font-weight:bold;background:#a00;}
+
 ul#menu-calendar {margin-top:10px;}
 ul#menu-calendar li {float:left;}
 ul#menu-calendar li a {display:block;width:50px;border-left:1px dotted #637a6e;color:#637a6e;text-align:center;width:72px;font-size:10px;text-decoration:none;}
