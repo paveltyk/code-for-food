@@ -1,13 +1,8 @@
-%h1 Login
+%h1 Вход
 
-= form_for @user_session, :url => login_path do |f|
+= form_for @user_session, :url => login_path, :html => { :id => 'login' } do |f|
   = render_errors_for @user_session
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :password
-    = f.password_field :password
-  .field
-    = f.submit "Login"
+  = f.text_field :email, :placeholder => 'Почта'
+  = f.password_field :password, :placeholder => 'Пароль'
+  = f.submit "Войти"
 

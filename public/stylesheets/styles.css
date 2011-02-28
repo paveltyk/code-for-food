@@ -6,8 +6,14 @@ html {color:#444444;font:93.8% Georgia,Times,"Times New Roman",serif;background-
 #top-bar {background-color:#000;height:50px;overflow:hidden;color:#777;}
 #top-bar a {color:#777;}
 
-input[type="text"] {border:1px solid #9DB0A6;font-size:0.8em;padding:1px 2px;}
-input[type="submit"] {background:#c63929;background:-moz-linear-gradient(top,#ee432e 0%,#c63929 50%,#b51700 50%,#891100 100%);background:-webkit-gradient(linear,0 0,0 100%,color-stop(0,#ee432e),color-stop(0.5,#c63929),color-stop(0.5,#b51700),color-stop(1,#891100));border:1px solid #951100;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;-moz-box-shadow:inset 0px 0px 0px 1px rgba(255,115,100,0.4), 0 1px 3px #333;-webkit-box-shadow:inset 0px 0px 0px 1px rgba(255,115,100,0.4), 0 1px 3px #333;box-shadow:inset 0px 0px 0px 1px rgba(255,115,100,0.4), 0 1px 3px #333;color:#fff;font-size:18px;font-weight:normal;line-height:1;padding:5px 12px 7px;text-align:center;text-shadow:0px -1px 1px rgba(0,0,0,.8);}
+textarea, input[type="text"], input[type="password"] {-webkit-border-radius:4px;-moz-border-radius:4px;-moz-box-shadow:0 1px #eee;-webkit-box-shadow:0 1px #eee;border:1px solid #CCC;color:#222;}
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus {-moz-box-shadow:0 0 8px rgba(99, 122, 110, 0.5);-webkit-box-shadow:0 0 8px rgba(99, 122, 110, 0.5);border-color:rgba(99, 122, 110, 0.9);}
+textarea:hover, input[type="text"]:hover, input[type="password"]:hover {border-color:#999;}
+
+.placeholder {color:#aaa !important;}
+
+/*input[type="text"] {border:1px solid #9DB0A6;font-size:0.8em;padding:1px 2px;}
+*/input[type="submit"] {background:#c63929;background:-moz-linear-gradient(top,#ee432e 0%,#c63929 50%,#b51700 50%,#891100 100%);background:-webkit-gradient(linear,0 0,0 100%,color-stop(0,#ee432e),color-stop(0.5,#c63929),color-stop(0.5,#b51700),color-stop(1,#891100));border:1px solid #951100;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;-moz-box-shadow:inset 0px 0px 0px 1px rgba(255,115,100,0.4), 0 1px 3px #333;-webkit-box-shadow:inset 0px 0px 0px 1px rgba(255,115,100,0.4), 0 1px 3px #333;box-shadow:inset 0px 0px 0px 1px rgba(255,115,100,0.4), 0 1px 3px #333;color:#fff;font-size:18px;font-weight:normal;line-height:1;padding:5px 12px 7px;text-align:center;text-shadow:0px -1px 1px rgba(0,0,0,.8);}
 input[type="submit"]:hover {background:#cb0500;background:-moz-linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);background:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #f37873), color-stop(0.5, #db504d), color-stop(0.5, #cb0500), color-stop(1, #a20601));cursor:pointer;}
 input[type="submit"]:active {background:#b30300;background: -moz-linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #d43c28), color-stop(0.5, #ad3224), color-stop(0.5, #9c1500), color-stop(1, #700d00));-moz-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);-webkit-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);}
 
@@ -26,6 +32,16 @@ ul#menu-calendar li a em {}
 
 h1 {font-size:1.6em;color:#62796D;margin-bottom:10px;font-weight:normal;}
 h1 span {color:#A51618;}
+
+form#login {margin: 0 auto;
+    width: 400px;}
+form#login input[type="text"], form#login input[type="password"] {display: block;
+    font-size: 22px;
+    padding: 4px 10px;
+    width:378px;margin:10px 0;}
+form#login #user_session_email {}
+form#login #user_session_password {}
+form#login #user_session_submit {}
 
 form.menu .menu-item {border-bottom:1px dotted #aaa;padding:5px 0;margin:5px 0;}
 form.menu input[type='text'] {border:none;border-bottom:1px solid #000;margin-right:10px;background-color:#F6F6F6;}
