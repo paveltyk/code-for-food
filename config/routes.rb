@@ -1,6 +1,7 @@
 CodeForFood::Application.routes.draw do
   resources :invitations, :only => [:show, :new, :create]
   resources :menus
+  resources :tags, :as => :dish_tags
 
   match "/login" => "sessions#new", :as => :login, :via => :get
   match "/login" => "sessions#create", :via => :post

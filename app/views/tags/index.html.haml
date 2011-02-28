@@ -1,0 +1,11 @@
+%h1 Все метки
+
+%ul#tag-list
+  - @tags.each do |tag|
+    %li
+      = tag
+      %span.price= "(#{number_with_delimiter tag.value})".html_safe if tag.value != 0
+      %span.description= tag.description
+  %li.links
+    = link_to 'Добавить новую метку', new_dish_tag_path, :class => 'button'
+

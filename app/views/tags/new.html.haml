@@ -1,0 +1,10 @@
+%h1 Создание новой метки
+
+= form_for @tag, :html => { :id => 'tags' } do |f|
+  = render_errors_for @tag
+  = f.text_field :name, :placeholder => 'Название'
+  = f.text_field :value, :placeholder => 'Стоимость'
+  = f.text_field :description, :placeholder => 'Описание'
+  = submit_tag 'Сохранить метку'
+  = link_to 'К списку всех меток', dish_tags_path
+

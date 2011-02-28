@@ -70,3 +70,13 @@ form#registration {}
 form#registration input[type="text"], form#registration input[type="password"] {display:block;margin:15px 0;font-size:22px;padding:4px 5px;}
 form#registration input[type="submit"] {display:block;margin:15px 0;}
 
+form#tags {}
+form#tags input[type="text"] {display:block;margin:15px 0;font-size:22px;padding:4px 5px;}
+form#tags input[type="submit"] {display:block;margin:15px 0;}
+
+ul#tag-list {}
+ul#tag-list li {color:#888;font-size:17px;font-style:italic;line-height:130%;margin:5px 0;}
+ul#tag-list li span.price {color:#A51618;}
+ul#tag-list li span.description{opacity:.3;}
+ul#tag-list li.links {border-top:1px dashed;margin-top:20px;padding-top:30px;}
+
