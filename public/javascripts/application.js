@@ -19,6 +19,7 @@ function render_menu_items_from_string(text) {
       add_new_menu_item(menu_item);
     }
   });
+  $('input[placeholder]').placeholder();
 }
 
 function build_menu_item_from_array(arr) {
@@ -87,8 +88,9 @@ $(function(){
     remove_menu_item($(this).closest('.menu-item'));
     return false;
   });
-  $('.order a.add-menu-item').live('click', function(){
+  $('.menu a.add-menu-item').live('click', function(){
     add_new_menu_item();
+    $('input[placeholder]').placeholder();
     return false;
   });
   bootstrap_dish_order();
