@@ -48,7 +48,7 @@ function add_new_menu_item(attrs){
 
 function calculate_total_price() {
   _total = 0;
-  $('ul.menu input[type="checkbox"]').each(function(index, item){
+  $('ul.order input[type="checkbox"]').each(function(index, item){
     checkbox = $(item);
     li = checkbox.closest('li');
     if (checkbox.is(':checked')) {
@@ -57,18 +57,18 @@ function calculate_total_price() {
       _total += _price * _qtt;
     }
   });
-  $('ul.menu li.total').html('Итого: <span>' + _total + '</span>');
+  $('ul.order li.total').html('Итого: <span>' + _total + '</span>');
   return _total;
 }
 
 function bootstrap_dish_order() {
-  $('ul.menu li').each(function(i,li){
+  $('ul.order li').each(function(i,li){
     li = $(li);
     if (li.children('input.order-item-select:checked').length > 0) {
       li.addClass('selected');
     }
   });
-  $('ul.menu input[type="checkbox"]').click(function(){
+  $('ul.order input[type="checkbox"]').click(function(){
     checkbox = $(this);
     li = checkbox.closest('li');
     if (checkbox.is(':checked')) {
@@ -78,7 +78,7 @@ function bootstrap_dish_order() {
     }
     calculate_total_price();
   });
-  $('ul.menu span.quantity input').keyup(calculate_total_price);
+  $('ul.order span.quantity input').keyup(calculate_total_price);
 }
 
 $(function(){
@@ -87,7 +87,7 @@ $(function(){
     remove_menu_item($(this).closest('.menu-item'));
     return false;
   });
-  $('.menu a.add-menu-item').live('click', function(){
+  $('.order a.add-menu-item').live('click', function(){
     add_new_menu_item();
     return false;
   });

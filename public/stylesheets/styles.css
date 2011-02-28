@@ -52,11 +52,12 @@ form.menu input.description {}
 form.menu #bulk_menu_creation textarea {border:1px solid #000;height:300px;width:700px;}
 form.menu #menu-item-for-cloning {display:none;}
 
-ul.menu {}
-ul.menu li {color:#888;font-size:17px;font-style:italic;line-height:130%;margin:5px 0;}
-ul.menu li.selected {color:#333;}
-ul.menu li.selected span.price, ul.menu li.total span {color:#A51618;}
-ul.menu li span.quantity {display:none;}
-ul.menu li span.quantity input[type="text"] {width:20px;font-size:14px;text-align:center;}
-ul.menu li.selected span.quantity {display:inline;}
+ul.order {}
+ul.order li {color:#888;font-size:17px;font-style:italic;line-height:130%;margin:5px 0;}
+ul.order li.selected {color:#333;}
+ul.order li.selected span.price, ul.order li.total span {color:#A51618;}
+ul.order li span.quantity {display:none;}
+ul.order li span.quantity input[type="text"] {width:20px;font-size:14px;text-align:center;}
+ul.order li.selected span.quantity {display:inline;}
+ul.order li.total {border-top:1px dashed;margin:15px 0;padding-top:15px;}
 

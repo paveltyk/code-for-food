@@ -1,5 +1,5 @@
 %h1= "Order for <span>#{@menu}</span>".html_safe
-%ul.menu
+%ul.order
   = form_for @order, :url => order_path(:date => @menu.date.to_s(:db)) do |f|
     = f.fields_for :menu_items do |oi|
       %li
