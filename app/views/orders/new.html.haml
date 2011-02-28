@@ -10,7 +10,10 @@
         %span.quantity
           x&nbsp;
           = oi.text_field :quantity
-    = submit_tag "Order"
+    %li.total
+      Итого:
+      %span= @order.price
+    %li= submit_tag "Заказать"
 
 %p= link_to 'Edit menu', edit_menu_path(@menu)
 %p= link_to 'Show menu', @menu
