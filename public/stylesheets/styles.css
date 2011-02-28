@@ -34,12 +34,7 @@ ul#menu-calendar li a em {}
 h1 {font-size:1.6em;color:#62796D;margin-bottom:10px;font-weight:normal;}
 h1 span {color:#A51618;}
 
-form#login {margin: 0 auto;
-    width: 400px;}
-form#login input[type="text"], form#login input[type="password"] {display: block;
-    font-size: 22px;
-    padding: 4px 10px;
-    width:378px;margin:10px 0;}
+form#login input[type="text"], form#login input[type="password"] {display:block;font-size:22px;padding:4px 10px;width:378px;margin:10px 0;}
 form#login #user_session_email {}
 form#login #user_session_password {}
 form#login #user_session_submit {}
