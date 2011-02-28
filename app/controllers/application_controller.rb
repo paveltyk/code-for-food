@@ -1,8 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user_session, :current_user
+  helper_method :current_user_session, :current_user, :is_admin?
 
   private
+
+  def is_admin?
+    current_user && current_user.instance_of?(Administrator)
+  end
 
   def current_user_session
     return @current_user_session if defined?(@current_user_session)

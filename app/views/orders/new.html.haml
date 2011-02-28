@@ -14,7 +14,8 @@
       Итого:
       %span= @order.price
     %li= submit_tag "Заказать"
-
-%p= link_to 'Edit menu', edit_menu_path(@menu)
-%p= link_to 'Show menu', @menu
+  - if is_admin?
+    %li.admin-links
+      = link_to 'Редактировать меню', edit_menu_path(@menu), :class => 'button'
+      = link_to 'Показать меню', @menu, :class => 'button'
 
