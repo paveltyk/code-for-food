@@ -5,8 +5,11 @@ a:hover {text-decoration:underline;}
 
 #header {width:960px;margin:0 auto;background:url('/images/border-double.png') repeat-x scroll left bottom transparent;padding-bottom:15px;}
 #meat {width:940px;margin:0 auto;background-color:#fff;padding:10px;}
-#top-bar {background-color:#000;height:50px;overflow:hidden;color:#777;}
-#top-bar a {color:#777;}
+#top-bar {background-color:#000;height:28px;overflow:hidden;color:#777;}
+#top-bar #user-nav {float:right;margin-right:15px;}
+#top-bar #user-nav li {display:inline;}
+#top-bar #user-nav li.separator {margin:0 10px;cursor:default;}
+#top-bar #user-nav a {color:#999;line-height:24px;}
 
 textarea, input[type="text"], input[type="password"] {-webkit-border-radius:4px;-moz-border-radius:4px;-moz-box-shadow:0 1px #eee;-webkit-box-shadow:0 1px #eee;border:1px solid #CCC;color:#222;}
 textarea:focus, input[type="text"]:focus, input[type="password"]:focus {-moz-box-shadow:0 0 8px rgba(99, 122, 110, 0.5);-webkit-box-shadow:0 0 8px rgba(99, 122, 110, 0.5);border-color:rgba(99, 122, 110, 0.9);}
