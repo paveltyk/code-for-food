@@ -41,5 +41,13 @@ describe Dish do
       dish.total_price.should eql(dish.price + 300)
     end
   end
+
+  describe "after price update" do
+    it "recalculates prices for all related orders" do
+      order_item = OrderItem.make!
+      order_item.dish.update_attribute :price, 100_000
+      order_item.order.reload.price.should eql 100_000
+    end
+  end
 end
 
