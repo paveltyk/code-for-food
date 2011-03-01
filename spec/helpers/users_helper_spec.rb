@@ -8,7 +8,7 @@ describe UsersHelper do
       before(:each) { helper.stub :current_user => nil }
 
       it "renders login link" do
-        helper.user_nav.should match(/login/i)
+        helper.user_nav.should match(login_path)
       end
     end
 
@@ -16,7 +16,11 @@ describe UsersHelper do
       before(:each) { helper.stub :current_user => User.make, :is_admin? => false }
 
       it "renders logout link" do
-        helper.user_nav.should match(/logout/i)
+        helper.user_nav.should match(logout_path)
+      end
+
+      it "renders edit profile link" do
+        helper.user_nav.should match(edit_profile_path)
       end
     end
 

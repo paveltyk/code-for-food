@@ -7,6 +7,7 @@ module UsersHelper
         links << link_to('Метки', dish_tags_path)
         links << link_to('Новое приглашение', new_invitation_path)
       end
+      links << link_to('Изменить профиль', edit_profile_path)
       links << link_to('Выйти', logout_path)
     else
       links << link_to('Войти', login_path)
