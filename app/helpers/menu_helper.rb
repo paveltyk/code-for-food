@@ -5,16 +5,23 @@ module MenuHelper
     menus = Menu.where(:date => time_range).all
     menu_dates = menus.map(&:date)
     time_range.each do |date|
-      link_text = date.strftime("<b>%d</b><em>%B</em>%A").html_safe
+      item_text = date.strftime("<b>%d</b><em>%B</em>%A").html_safe
       if menu_dates.include?(date)
         link_path = new_order_path(:date => date.to_s(:db))
-        link_dom_class =  'active'
-      else
+        item_dom_class =  'active'
+      elsif is_admin?
         link_path = new_menu_path(:date => date.to_param)
-        link_dom_class =  'inactive'
+        item_dom_class =  'inactive'
+      else
+        link_path = nil
+        item_dom_class =  'inactive'
       end
-      link_html = link_to link_text, link_path, :class => link_dom_class
-      html << content_tag(:li, link_html)
+      if link_path
+        item_html = link_to item_text, link_path, :class => item_dom_class
+      else
+        item_html = content_tag :p, item_text, :class => item_dom_class
+      end
+      html << content_tag(:li, item_html)
     end
     content_tag(:ul, html.html_safe, :id => 'menu-calendar')
   end
