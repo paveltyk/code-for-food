@@ -45,10 +45,10 @@ form#login #user_session_submit {}
 form.menu .menu-item {border-bottom:1px dotted #aaa;padding:5px 0;margin:5px 0;}
 form.menu input[type='text'] {border:none;border-bottom:1px solid #000;margin-right:10px;background-color:#F6F6F6;color:#333;}
 form.menu input[type='submit'] {display:block;margin:25px 0 15px;}
-form.menu input.name {width:400px;}
+form.menu input.name {width:250px;}
 form.menu input.price {width:50px;text-align:center;}
-form.menu input.weight {width:110px;text-align:center;}
-form.menu input.description {width:255px;}
+form.menu input.weight {width:90px;text-align:center;}
+form.menu input.description {width:200px;}
 form.menu #bulk_menu_creation {position:relative;padding:15px 0;}
 form.menu #bulk_menu_creation textarea {height:300px;width:928px;padding:5px;}
 form.menu #bulk_menu_creation input[type="button"] {position:absolute;right:8px;bottom:25px;}

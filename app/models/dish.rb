@@ -6,5 +6,13 @@ class Dish < ActiveRecord::Base
 
   validates_presence_of :name, :price, :menu
   validates_numericality_of :price, :only_integer => true, :greater_than_or_equal_to => 10
+
+  def tag_ids_for_select
+    self.tag_ids
+  end
+
+  def tag_ids_for_select=(ids)
+    self.tag_ids = ids.split(',')
+  end
 end
 
