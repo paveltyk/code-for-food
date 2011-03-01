@@ -65,6 +65,7 @@ ul.order li.selected span.quantity {display:inline;}
 ul.order li.total {border-top:1px dashed;margin:15px 0;padding-top:15px;}
 ul.order li.admin-links {border-top:1px dashed;margin-top:20px;padding-top:30px;}
 ul.order li.admin-links a {margin-right:15px;}
+ul.order li span.tag {background-color:#EBE8DD;margin:0 5px;padding:3px 5px;font-style:normal;font-weight:normal;font-size:12px;cursor:default;-moz-border-radius:4px;-webkit-border-radius:4px;}
 
 form#invitation {}
 form#invitation input[type="text"], form#invitation input[type="submit"] {display:block;margin:15px 0;}

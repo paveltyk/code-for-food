@@ -10,6 +10,7 @@
         %span.quantity
           x&nbsp;
           = oi.text_field :quantity
+        = render_tags oi.object.dish.tags
     %li.total
       Итого:
       %span= @order.price
