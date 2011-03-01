@@ -9,6 +9,8 @@ CodeForFood::Application.routes.draw do
 
   match "/register/:invitation_token" => "users#new", :as => :register, :via => :get
   match "/register" => "users#create", :as => :do_registration, :via => :post
+  match "/profile/edit" => "users#edit", :as => :edit_profile, :via => :get
+  match "/profile" => "users#update", :as => :profile, :via => :put
 
   scope "/:date", :constraints => {:date => /\d{4}-\d{2}-\d{2}/} do
     resource :order

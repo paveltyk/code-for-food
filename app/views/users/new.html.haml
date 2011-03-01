@@ -2,9 +2,6 @@
 
 = form_for @user, :url => do_registration_path, :html => { :id => 'registration' } do |f|
   = render_errors_for @user
-  = f.hidden_field :invitation_token
-  = f.text_field :email, :placeholder => 'e-Mail'
-  = f.password_field :password, :placeholder => 'Пароль'
-  = f.password_field :password_confirmation, :placeholder => 'Подтверждение пароля'
+  = render :partial => "fields", :locals => { :f => f }
   = f.submit 'Зарегистрироваться'
 
