@@ -94,5 +94,11 @@ $(function(){
     return false;
   });
   bootstrap_dish_order();
+  $('select.jquery-multiselect').multiselect({
+    minWidth:200,
+    header:false,
+    selectedText:'Выбрано меток: #',
+    noneSelectedText:'Нет выбранных меток'
+  });
 });
 

@@ -1,4 +1,4 @@
-html {color:#444444;font:93.8% Georgia,Times,"Times New Roman",serif;background-color:#F7F7F7;}
+html {color:#444444;font:12px Georgia,Times,"Times New Roman",serif;background-color:#F7F7F7;}
 .clr {clear:both;height:0;}
 a {color:#637A6E;text-decoration:none;}
 a:hover {text-decoration:underline;}
@@ -43,7 +43,7 @@ form#login #user_session_password {}
 form#login #user_session_submit {}
 
 form.menu .menu-item {border-bottom:1px dotted #aaa;padding:5px 0;margin:5px 0;}
-form.menu input[type='text'] {border:none;border-bottom:1px solid #000;margin-right:10px;background-color:#F6F6F6;color:#333;}
+form.menu input[type='text'] {padding:2px 4px;margin:0 5px;}
 form.menu input[type='submit'] {display:block;margin:25px 0 15px;}
 form.menu input.name {width:250px;}
 form.menu input.price {width:50px;text-align:center;}
@@ -53,6 +53,7 @@ form.menu #bulk_menu_creation {position:relative;padding:15px 0;}
 form.menu #bulk_menu_creation textarea {height:300px;width:928px;padding:5px;}
 form.menu #bulk_menu_creation input[type="button"] {position:absolute;right:8px;bottom:25px;}
 form.menu #menu-item-for-cloning {display:none;}
+form.menu .menu-item a.remove {display:inline-block;}
 
 ul.order {}
 ul.order li {color:#888;font-size:17px;font-style:italic;line-height:130%;margin:5px 0;}
