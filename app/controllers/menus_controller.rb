@@ -14,22 +14,22 @@ class MenusController < ApplicationController
     @menu = current_user.menus.new(params[:menu])
     if @menu.save
       flash[:notice] = 'Меню создано успешно.'
-      redirect_to new_order_path(@menu.date.to_s :db)
+      redirect_to new_order_path(@menu)
     else
       render :action => :new
     end
   end
 
   def edit
-    @menu = current_user.menus.find(params[:id])
+    @menu = current_user.menus.find_by_date(params[:id])
     render :action => :new
   end
 
   def update
-    @menu = current_user.menus.find(params[:id])
+    @menu = current_user.menus.find_by_date(params[:id])
     if @menu.update_attributes(params[:menu])
       flash[:notice] = 'Меню обновлено успешно.'
-      redirect_to new_order_path(@menu.date.to_s :db)
+      redirect_to new_order_path(@menu)
     else
       render :action => :new
     end

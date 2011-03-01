@@ -21,5 +21,9 @@ class Menu < ActiveRecord::Base
   def to_s
     date ? date.to_s(:menu) : 'unknown'
   end
+
+  def to_param
+    self.date.to_s :db
+  end
 end
 

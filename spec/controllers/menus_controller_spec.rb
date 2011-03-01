@@ -97,7 +97,7 @@ describe MenusController do
 
       it "assigns the menu and renders the \"edit\" page" do
         menu = Menu.make!(:administrator => admin)
-        get :edit, :id => menu.id
+        get :edit, :id => menu.to_param
         response.should render_template('new')
         assigns[:menu].should eql(menu)
       end
@@ -120,7 +120,7 @@ describe MenusController do
 
       context "with valid menu attrs" do
         before :each do
-          put :update, :id => menu.id, :menu => { :date => '1999-10-01' }
+          put :update, :id => menu.to_param, :menu => { :date => '1999-10-01' }
         end
 
         it "updates the date of the menu" do
@@ -139,25 +139,24 @@ describe MenusController do
 
       context "nested dishes" do
         it "changes dish name" do
-          put :update, :id => dish.menu.id, :menu => {:dishes_attributes => {0 => {:id => dish.id, :name => 'Awesome stake'}}}
+          put :update, :id => dish.menu.to_param, :menu => {:dishes_attributes => {0 => {:id => dish.id, :name => 'Awesome stake'}}}
           assigns[:menu].dishes.first.name.should eql('Awesome stake')
         end
 
         it "destroys a dish" do
-          put :update, :id => dish.menu.id, :menu => {:dishes_attributes => {0 => {:id => dish.id, :_destroy => 1}}}
+          put :update, :id => dish.menu.to_param, :menu => {:dishes_attributes => {0 => {:id => dish.id, :_destroy => 1}}}
           assigns[:menu].reload.should have(0).dishes
         end
 
         it "renders the \"new\" template if any of the dishes is not valid" do
-          put :update, :id => dish.menu.id, :menu => {:dishes_attributes => {0 => {:id => dish.id, :price => 1}}}
+          put :update, :id => dish.menu.to_param, :menu => {:dishes_attributes => {0 => {:id => dish.id, :price => 1}}}
           response.should render_template('new')
         end
       end
 
       context "with invalid menu attrs" do
         before :each do
-
-          put :update, :id => menu.id, :menu => { :date => 'Invalid date' }
+          put :update, :id => menu.to_param, :menu => {:dishes_attributes => {0 => {:id => dish.id, :price => -1}}}
         end
 
         it "renders the \"new\" template" do

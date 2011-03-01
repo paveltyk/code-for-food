@@ -34,5 +34,12 @@ describe Menu do
     end
   end
 
+  describe "#to_param" do
+    let(:menu) { Menu.make!}
+    it "return formated date" do
+      menu.to_param.should eql(menu.date.to_s :db)
+    end
+  end
+
 end
 
