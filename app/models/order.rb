@@ -1,4 +1,6 @@
 class Order < ActiveRecord::Base
+  attr_accessible :menu_items_attributes
+
   belongs_to :user
   belongs_to :menu
   has_many :order_items, :dependent => :destroy, :inverse_of => :order, :uniq => true
