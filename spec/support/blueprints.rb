@@ -50,3 +50,9 @@ OrderItem.blueprint do
   end
 end
 
+
+Tagging.blueprint do
+  dish
+  dish_tag
+end
+
