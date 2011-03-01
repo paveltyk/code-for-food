@@ -33,4 +33,13 @@ describe Dish do
       expect { 2.times { dish.tags << tag } }.to change(dish.tags, :count).from(0).to(1)
     end
   end
+
+  describe "#total_price" do
+    let(:dish) { Dish.make! }
+    it "includes tag values" do
+      dish.tags << DishTag.make!(:value => 300)
+      dish.total_price.should eql(dish.price + 300)
+    end
+  end
 end
+

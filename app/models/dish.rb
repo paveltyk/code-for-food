@@ -6,5 +6,9 @@ class Dish < ActiveRecord::Base
 
   validates_presence_of :name, :price, :menu
   validates_numericality_of :price, :only_integer => true, :greater_than_or_equal_to => 10
+
+  def total_price
+    self.price + self.tags.sum(:value)
+  end
 end
 

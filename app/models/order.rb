@@ -23,7 +23,7 @@ class Order < ActiveRecord::Base
   private
 
   def calculate_price
-    self.price = self.order_items.map{ |oi| oi.dish.price * oi.quantity }.sum
+    self.price = self.order_items.map{ |oi| oi.dish.total_price * oi.quantity }.sum
   end
 end
 

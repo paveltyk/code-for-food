@@ -29,7 +29,7 @@ describe Order do
       end
     end
 
-    describe " accepts nested attributes for menu_items" do
+    describe "accepts nested attributes for menu_items" do
       let(:attrs_for_first_dish) { { :dish_id => menu.dishes.first.id, :quantity => 1, :is_ordered => '1'} }
 
       it "builds one order_item" do
@@ -55,6 +55,14 @@ describe Order do
         order.order_items.build :dish => dish, :quantity => 10
         order.valid?
         order.price.should eql(dish.price * 10)
+      end
+
+      it "caclculates tag value as well" do
+        dish = menu.dishes.first
+        dish.tags << DishTag.make!(:value => 700)
+        order.order_items.build :dish => dish
+        order.valid?
+        order.price.should eql(dish.price + 700)
       end
     end
   end
