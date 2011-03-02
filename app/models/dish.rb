@@ -11,12 +11,19 @@ class Dish < ActiveRecord::Base
   before_save :update_total_price, :if => "price_changed?"
 
   def update_total_price
-    self.total_price = price + tags(true).all.sum(&:value)
+    self.total_price = price + tags.all.sum(&:value)
   end
 
   def update_total_price!
     update_total_price
     save
   end
+
+  def tag_ids_with_update_related_orders=(ids)
+    self.tag_ids_without_update_related_orders = ids
+    self.update_total_price
+  end
+
+  alias_method_chain 'tag_ids=', :update_related_orders
 end
 
