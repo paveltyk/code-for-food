@@ -93,6 +93,7 @@ $(function(){
     $('input[placeholder]').placeholder();
     return false;
   });
+  $('textarea#bulk').elastic();
   bootstrap_dish_order();
   $('select.jquery-multiselect').multiselect({
     minWidth:200,
