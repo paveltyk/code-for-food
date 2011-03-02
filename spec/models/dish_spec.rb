@@ -63,7 +63,7 @@ describe Dish do
   end
 
   describe "after price update" do
-    xit "recalculates prices for all related orders" do
+    it "recalculates prices for all related orders" do
       order_item = OrderItem.make!
       order_item.dish.update_attribute :price, 100_000
       order_item.order.reload.price.should eql 100_000

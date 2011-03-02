@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
 
   validates_presence_of :user, :menu
 
-  after_validation :calculate_price
+  before_validation :update_price
 
   def menu_items
     menu.dishes.map do |dish|
@@ -22,10 +22,13 @@ class Order < ActiveRecord::Base
     self.order_items = attributes.map { |attrs| self.order_items.new attrs }
   end
 
-  private
+  def update_price
+    self.price = order_items.map{ |oi| oi.dish.total_price * oi.quantity }.sum
+  end
 
-  def calculate_price
-    self.price = self.order_items.map{ |oi| oi.dish.total_price * oi.quantity }.sum
+  def update_price!
+    update_price
+    save
   end
 end
 

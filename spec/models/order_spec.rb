@@ -44,25 +44,17 @@ describe Order do
     end
 
     describe "price calculation" do
-      it "calculates price as sum of dish prices" do
+      it "calculates price as sum of dish total_prices" do
         menu.dishes.each { |dish| order.order_items.build :dish => dish }
         order.valid?
-        order.price.should eql(menu.dishes.sum(:price))
+        order.price.should eql(menu.dishes.sum(:total_price))
       end
 
       it "uses quantity as multiplier" do
         dish = menu.dishes.first
         order.order_items.build :dish => dish, :quantity => 10
         order.valid?
-        order.price.should eql(dish.price * 10)
-      end
-
-      xit "caclculates tag value as well" do
-        dish = menu.dishes.first
-        dish.tags << DishTag.make!(:value => 700)
-        order.order_items.build :dish => dish
-        order.valid?
-        order.price.should eql(dish.price + 700)
+        order.price.should eql(dish.total_price * 10)
       end
     end
   end
