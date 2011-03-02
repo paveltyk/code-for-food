@@ -36,14 +36,34 @@ describe Dish do
 
   describe "#total_price" do
     let(:dish) { Dish.make! }
+
+    it "set total_price equal to price by default" do
+      dish.total_price.should eql dish.price
+    end
+
     it "includes tag values" do
       dish.tags << DishTag.make!(:value => 300)
-      dish.total_price.should eql(dish.price + 300)
+      dish.reload.total_price.should eql(dish.price + 300)
     end
+
+    it "doesn't use same tag twice" do
+      tag = DishTag.make! :value => 300
+      2.times { dish.tags << tag }
+      dish.reload.total_price.should eql(dish.price + 300)
+    end
+
+    it "recalculates price after tag removed" do
+      tag = DishTag.make! :value => 300
+      dish.tags << tag
+      dish.reload.total_price.should eql(dish.price + 300)
+      puts dish.taggings.find_by_dish_tag_id(tag.id).destroy.inspect
+      dish.reload.total_price.should eql(dish.price)
+    end
+
   end
 
   describe "after price update" do
-    it "recalculates prices for all related orders" do
+    xit "recalculates prices for all related orders" do
       order_item = OrderItem.make!
       order_item.dish.update_attribute :price, 100_000
       order_item.order.reload.price.should eql 100_000
