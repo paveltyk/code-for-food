@@ -45,6 +45,7 @@ function add_new_menu_item(attrs){
     $(html).children('input.description').val(attrs.description);
   }
   $('#current-menu-items').append(html);
+  bootstrap_menu_multiselects();
 }
 
 function calculate_total_price() {
@@ -82,6 +83,15 @@ function bootstrap_dish_order() {
   $('ul.order span.quantity input').keyup(calculate_total_price);
 }
 
+function bootstrap_menu_multiselects() {
+  $('#current-menu-items select.jquery-multiselect').multiselect({
+    minWidth:200,
+    header:false,
+    selectedText:'Выбрано меток: #',
+    noneSelectedText:'Нет выбранных меток'
+  });
+}
+
 $(function(){
   $('input[placeholder], textarea[placeholder]').placeholder();
   $('.menu a.remove').live('click', function(){
@@ -95,11 +105,6 @@ $(function(){
   });
   $('textarea#bulk').elastic();
   bootstrap_dish_order();
-  $('select.jquery-multiselect').multiselect({
-    minWidth:200,
-    header:false,
-    selectedText:'Выбрано меток: #',
-    noneSelectedText:'Нет выбранных меток'
-  });
+  bootstrap_menu_multiselects();
 });
 
