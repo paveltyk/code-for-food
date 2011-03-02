@@ -29,7 +29,6 @@ end
 User.blueprint do
   email { "email.#{sn}@test.com" }
   password { "password" }
-  password_confirmation { object.password }
 end
 
 Order.blueprint do

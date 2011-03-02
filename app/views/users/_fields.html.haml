@@ -2,5 +2,6 @@
 = f.text_field :email, :placeholder => 'e-Mail'
 = f.text_field :name, :placeholder => 'Имя' unless @user.new_record?
 = f.password_field :password, :placeholder => 'Пароль'
-= f.password_field :password_confirmation, :placeholder => 'Подтверждение пароля'
+= check_box_tag 'show-password'
+= label_tag 'show-password', 'Показать пароль'
 

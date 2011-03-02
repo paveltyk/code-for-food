@@ -21,10 +21,6 @@ describe User do
     it "not valid if password is too short" do
       User.make(:password => '123').should_not be_valid
     end
-
-    it "not valid if password confirmation does not match password" do
-      User.make(:password_confirmation => 'bad confirm').should_not be_valid
-    end
   end
 end
 

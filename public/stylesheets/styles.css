@@ -73,7 +73,7 @@ form#invitation input[type="text"], form#invitation input[type="submit"] {displa
 form#invitation input[type="text"] {font-size:22px;margin-right:10px;padding:4px 5px;vertical-align:bottom;}
 
 form#registration {}
-form#registration input[type="text"], form#registration input[type="password"] {display:block;margin:15px 0;font-size:22px;padding:4px 5px;}
+form#registration input[type="text"], form#registration input[type="password"] {width:351px;display:block;margin:15px 0;font-size:22px;padding:4px 5px;}
 form#registration input[type="submit"] {display:block;margin:15px 0;}
 
 form#tags {}

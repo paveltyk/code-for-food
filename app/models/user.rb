@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  acts_as_authentic
+  acts_as_authentic do |config|
+    config.require_password_confirmation = false
+  end
 
   attr_accessor :validate_invitation
   attr_accessible :email, :name, :password, :password_confirmation, :invitation_token

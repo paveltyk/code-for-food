@@ -17,7 +17,7 @@ describe UsersController do
       Hash.new.tap do |attrs|
         user = User.make
         attrs[:email] = user.email
-        attrs[:password] = attrs[:password_confirmation] = user.password
+        attrs[:password] = user.password
         attrs[:invitation_token] = invitation.token
       end
     end
