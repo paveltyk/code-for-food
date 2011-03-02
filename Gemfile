@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.5'
 gem 'mysql2'
 gem 'pg'
 gem 'haml-rails', '~> 0.3'
