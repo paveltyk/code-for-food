@@ -22,5 +22,16 @@ describe User do
       User.make(:password => '123').should_not be_valid
     end
   end
+
+  describe '#to_s' do
+    it 'returns name if present' do
+      User.make(:name => 'User Name').to_s.should eql 'User Name'
+    end
+
+    it 'returns first part of email if name is blank' do
+      user = User.make
+      user.to_s.should eql user.email.split('@').first
+    end
+  end
 end
 

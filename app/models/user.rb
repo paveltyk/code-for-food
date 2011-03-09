@@ -30,5 +30,9 @@ class User < ActiveRecord::Base
     end
     super
   end
+
+  def to_s
+    self.name.present? ? name : (email || '').split('@').first
+  end
 end
 
