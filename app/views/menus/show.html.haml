@@ -13,7 +13,7 @@
     - @orders.each do |order|
       %tr
         %td= order.user
-        %td= order.dishes.map{ |d| "#{d.name} (#{d.total_price})" }.join(', ')
+        %td= order.order_items.map{ |oi| "#{oi.dish.name} (#{oi.dish.total_price}#{"*#{oi.quantity}" if oi.quantity > 1})" }.join(', ')
         %td= number_with_delimiter order.price
 
 = link_to 'Редактировать меню', edit_menu_path(@menu), :class => 'button'
