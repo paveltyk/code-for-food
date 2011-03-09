@@ -13,6 +13,14 @@ describe TagsController do
     it "recognizes and generates #create" do
       { :post => '/tags'}.should route_to(:controller => "tags", :action => "create")
     end
+
+    it "recognizes and generates #edit" do
+      { :get => '/tags/1/edit'}.should route_to(:controller => "tags", :action => "edit", :id => "1")
+    end
+
+    it "recognizes and generates #update" do
+      { :put => '/tags/1'}.should route_to(:controller => "tags", :action => "update", :id => "1")
+    end
   end
 end
 

@@ -19,5 +19,21 @@ class TagsController < ApplicationController
       render :action => :new
     end
   end
+
+  def edit
+    @tag = DishTag.find(params[:id])
+    render :action => :new
+  end
+
+  def update
+    @tag = DishTag.find(params[:id])
+
+    if @tag.update_attributes(params[:dish_tag])
+      flash[:notice] = 'Метка успешно обновлена.'
+      redirect_to :action => :index
+    else
+      render :action => :new
+    end
+  end
 end
 

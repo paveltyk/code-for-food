@@ -81,9 +81,12 @@ form#tags input[type="text"] {display:block;margin:15px 0;font-size:22px;padding
 form#tags input[type="submit"] {display:block;margin:15px 0;}
 
 ul#tag-list {}
+ul#tag-list li a.inactive {opacity:.6}
+ul#tag-list li a {text-decoration:none;}
 ul#tag-list li {color:#888;font-size:17px;font-style:italic;line-height:130%;margin:5px 0;}
 ul#tag-list li span.price {color:#A51618;}
 ul#tag-list li span.description{opacity:.3;}
+ul#tag-list li a:hover span.description{opacity:.65;}
 ul#tag-list li.links {border-top:1px dashed;margin-top:20px;padding-top:30px;}
 
 table.orders {margin-bottom:20px;}

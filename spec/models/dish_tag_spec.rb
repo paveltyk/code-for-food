@@ -37,5 +37,14 @@ describe DishTag do
       dish.name_for_collection_select.should eql "name (100)"
     end
   end
+
+  describe 'named scope operational' do
+    it 'return only operational tags' do
+      DishTag.destroy_all
+      DishTag.make! :operational => false
+      operational_tag = DishTag.make!
+      DishTag.operational.all.should eql [operational_tag]
+    end
+  end
 end
 

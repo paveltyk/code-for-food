@@ -5,6 +5,9 @@
   = f.text_field :name, :placeholder => 'Название'
   = f.text_field :value, :placeholder => 'Стоимость'
   = f.text_field :description, :placeholder => 'Описание'
+  .field
+    = f.check_box :operational
+    = f.label :operational, 'Показывать в списке меток'
   = submit_tag 'Сохранить метку'
   = link_to 'К списку всех меток', dish_tags_path
 
