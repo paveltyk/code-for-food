@@ -2,7 +2,8 @@ class MenusController < ApplicationController
   before_filter :require_admin
 
   def show
-    @menu = current_user.menus.find(params[:id])
+    @menu = current_user.menus.find_by_date(params[:id])
+    @orders = @menu.orders
   end
 
   def new

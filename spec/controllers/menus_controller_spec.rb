@@ -69,6 +69,14 @@ describe MenusController do
       end
     end
 
+    context "when logged in as regular user" do
+      it "redirects to login page" do
+        UserSession.create(User.make!)
+        post :create, :menu => Menu.make.attributes
+        response.should redirect_to(login_path)
+      end
+    end
+
     context "when logged in as admin" do
       let(:admin) { Administrator.make! }
       before(:each) { UserSession.create(admin) }
@@ -76,7 +84,7 @@ describe MenusController do
       it "assigns menu and renders a \"show\" template" do
         menu = Menu.make!(:administrator => admin)
         2.times { Dish.make! :menu => menu }
-        get :show, :id => menu.id
+        get :show, :id => menu.to_param
         assigns[:menu].should eql(menu)
         response.should render_template('show')
       end

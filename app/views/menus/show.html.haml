@@ -1,6 +1,20 @@
-%h1= "Menu for <span>#{@menu}</span>".html_safe
-%ul.menu
-  - @menu.dishes.each do |dish|
-    %li= "#{dish.name} - <span class=\"price\">#{number_with_delimiter dish.price}</span>".html_safe
-%p= link_to 'Edit menu', edit_menu_path(@menu)
+%h1= "Заказы на <span>#{@menu}</span>".html_safe
+%table.orders
+  %thead
+    %tr
+      %th Имя
+      %th Заказ
+      %th Итого
+  %tfoot
+    %tr
+      %td.total-text{:colspan => 2} Итого:
+      %td= number_with_delimiter @orders.sum(:price)
+  %tbody
+    - @orders.each do |order|
+      %tr
+        %td= order.user
+        %td= order.dishes.map{ |d| "#{d.name} (#{d.total_price})" }.join(', ')
+        %td= number_with_delimiter order.price
+
+= link_to 'Редактировать меню', edit_menu_path(@menu), :class => 'button'
 

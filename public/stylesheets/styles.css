@@ -86,3 +86,11 @@ ul#tag-list li span.price {color:#A51618;}
 ul#tag-list li span.description{opacity:.3;}
 ul#tag-list li.links {border-top:1px dashed;margin-top:20px;padding-top:30px;}
 
+table.orders {margin-bottom:20px;}
+table.orders tr {}
+table.orders th, table.orders td {border:1px solid #aaa;padding:5px 7px;}
+table.orders th {}
+table.orders td {}
+table.orders tfoot td {border:none;font-size:14px;font-weight:bold;}
+table.orders tfoot td.total-text {text-align:right;font-weight:normal;}
+
