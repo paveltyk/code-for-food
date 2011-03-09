@@ -4,6 +4,10 @@ describe MenusController do
   render_views
   setup :activate_authlogic
 
+  def mock_menu(stubs = {})
+    @mock_menu ||= mock_model(Menu, stubs).as_null_object
+  end
+
   describe "GET new" do
     context "when not logged in" do
       it "redirects to login page" do
@@ -169,6 +173,42 @@ describe MenusController do
 
         it "renders the \"new\" template" do
           response.should render_template('new')
+        end
+      end
+    end
+  end
+
+  describe 'PUT #lock' do
+    context 'when not logged in' do
+      it 'redirects to login' do
+        put :lock, :id => 1
+        response.should redirect_to(login_path)
+      end
+    end
+
+    context 'when not logged in as regular user' do
+      it 'redirects to login' do
+        UserSession.create User.make!
+        put :lock, :id => 1
+        response.should redirect_to(login_path)
+      end
+    end
+
+    context 'when logged in as admin' do
+      it 'locks the menu' do
+        menu = Menu.make!
+        UserSession.create menu.administrator
+        request.env["HTTP_REFERER"] = 'http://example.com'
+        put :lock, :id => menu.to_param
+        menu.reload.locked.should be_true
+      end
+
+      context 'success story' do
+        before(:each) { controller.stub_chain(:current_user, :menus, :find_by_date).and_return(mock_menu :update_attribute => true) }
+
+        it 'set flash notice' do
+          put :lock, :id => 1
+          flash[:notice].should_not be_blank
         end
       end
     end

@@ -17,4 +17,5 @@
         %td= number_with_delimiter order.price
 
 = link_to 'Редактировать меню', edit_menu_path(@menu), :class => 'button'
+= link_to 'Заблокировать меню', lock_menu_path(@menu), :class => 'button', :method => :put unless @menu.locked?
 

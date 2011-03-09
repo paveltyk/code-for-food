@@ -35,5 +35,17 @@ class MenusController < ApplicationController
       render :action => :new
     end
   end
+
+  def lock
+    @menu = current_user.menus.find_by_date(params[:id])
+
+    if @menu.update_attribute(:locked, true)
+      flash[:notice] = 'Меню заблокировано.'
+    else
+      flash[:error] = 'Не удалось заблокировать меню: ' + @menu.errors.full_messages.join('; ')
+    end
+
+    redirect_to :back
+  end
 end
 
