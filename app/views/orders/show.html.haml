@@ -1,0 +1,17 @@
+%h1= "Заказ на <span>#{@menu}</span>".html_safe
+%ul.order.show
+  - @order.order_items.each do |oi|
+    %li.selected
+      = "#{oi.dish.name} - <span class=\"price\">#{number_with_delimiter oi.dish.total_price}</span>".html_safe
+      %span.quantity
+        x&nbsp;
+        = oi.quantity
+      = render_tags oi.dish.tags
+  %li.total
+    Итого:
+    %span= number_with_delimiter @order.price
+  - if is_admin?
+    %li.admin-links
+      = link_to 'Редактировать меню', edit_menu_path(@menu), :class => 'button'
+      = link_to 'Показать заказы', @menu, :class => 'button'
+

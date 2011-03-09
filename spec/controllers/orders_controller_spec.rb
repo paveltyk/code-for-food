@@ -8,9 +8,24 @@ describe OrdersController do
 
     let(:menu) { Menu.make!(:with_3_dishes) }
     let(:logged_in_user) { User.make! }
+    let(:order) { Order.make! :user => logged_in_user, :menu => menu }
     before(:each) { UserSession.create logged_in_user }
 
-    describe "#new" do
+    describe 'GET #show' do
+      it 'renders "show" template' do
+        order.reload
+        get :show, :date => menu.to_param
+        response.should render_template("show")
+      end
+
+      it 'assigns @order' do
+        order.reload
+        get :show, :date => menu.to_param
+        assigns(:order).should eql order
+      end
+    end
+
+    describe 'GET #new' do
       before(:each) { get :new, :date => menu.date.to_s(:db) }
 
       it "responds with 200" do
@@ -26,7 +41,7 @@ describe OrdersController do
       end
     end
 
-    describe "#create" do
+    describe 'POST #create' do
       let(:attrs_for_first_dish) { { :dish_id => menu.dishes.first.id, :quantity => 1, :is_ordered => '1'} }
 
       it "creates a new order" do
@@ -54,7 +69,7 @@ describe OrdersController do
       end
     end
 
-    describe "#update" do
+    describe 'PUT #update' do
       let(:attrs_for_first_dish) { { :dish_id => order.menu.dishes.first.id, :quantity => 1, :is_ordered => '1'} }
       let(:order) do
         Order.make!(:user => logged_in_user).tap do |order|
@@ -66,6 +81,36 @@ describe OrdersController do
         expect {
           put :update, :date => order.menu.date.to_s(:db), :order => { :menu_items_attributes => { 0 => attrs_for_first_dish } }
         }.to change(order.order_items, :count).by(1)
+      end
+    end
+  end
+
+  context "when not logged in" do
+    describe 'GET #show' do
+      it 'redirects to login' do
+        get :show, :date => '2001-01-01'
+        response.should redirect_to(login_path)
+      end
+    end
+
+    describe 'GET #new' do
+      it 'redirects to login' do
+        get :new, :date => '2001-01-01'
+        response.should redirect_to(login_path)
+      end
+    end
+
+    describe 'POST #create' do
+      it 'redirects to login' do
+        post :create, :date => '2001-01-01'
+        response.should redirect_to(login_path)
+      end
+    end
+
+    describe 'PUT #update' do
+      it 'redirects to login' do
+        put :update, :date => '2001-01-01'
+        response.should redirect_to(login_path)
       end
     end
   end
