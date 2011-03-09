@@ -4,7 +4,7 @@
   = dish.text_field :price, :class => 'price', :placeholder => 'Цена'
   = dish.text_field :weight, :class => 'weight', :placeholder => 'Вес'
   = dish.text_field :description, :class => 'description', :placeholder => 'Описание'
-  = dish.collection_select :tag_ids, DishTag.all, :id, :name, {}, {:multiple => true, :class => 'jquery-multiselect'}
+  = dish.collection_select :tag_ids, DishTag.all, :id, :name_for_collection_select, {}, {:multiple => true, :class => 'jquery-multiselect'}
 
   - unless dish.object.new_record?
     = dish.hidden_field :_destroy, :class => 'mark-for-remove'

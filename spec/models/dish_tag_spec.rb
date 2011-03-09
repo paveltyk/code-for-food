@@ -15,7 +15,7 @@ describe DishTag do
 
   it "not valid if value set to not valid integer value" do
     DishTag.make(:value => 'abc').should_not be_valid
-    DishTag.make(:value => 10.6).should_not be_valid 
+    DishTag.make(:value => 10.6).should_not be_valid
   end
 
   describe "many-to-many relation with Dish" do
@@ -30,4 +30,12 @@ describe DishTag do
       expect { 2.times { tag.dishes << dish } }.to change(tag.dishes, :count).from(0).to(1)
     end
   end
+
+  describe '#name_for_collection_select' do
+    it 'returns name + value' do
+      dish = DishTag.make(:name => 'name', :value => '100')
+      dish.name_for_collection_select.should eql "name (100)"
+    end
+  end
 end
+

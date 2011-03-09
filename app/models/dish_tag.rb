@@ -7,6 +7,10 @@ class DishTag < ActiveRecord::Base
   validates_presence_of :name
   validates_numericality_of :value, :only_integer => true
 
+  def name_for_collection_select
+    "#{name} (#{value})"
+  end
+
   def to_s
     name
   end
