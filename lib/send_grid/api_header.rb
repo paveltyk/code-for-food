@@ -1,5 +1,3 @@
-#require 'json'
-
 class SendGrid::ApiHeader
   def initialize
     @data = {}
