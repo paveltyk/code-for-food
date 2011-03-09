@@ -5,7 +5,7 @@ module MenuHelper
     menus = Menu.where(:date => time_range).all
     menu_dates = menus.map(&:date)
     time_range.each do |date|
-      item_text = date.strftime("<b>%d</b><em>%B</em>%A").html_safe
+      item_text = Russian::strftime(date, "<b>%a</b><em>%B</em>%d").html_safe
       if menu_dates.include?(date)
         link_path = new_order_path(:date => date.to_s(:db))
         item_dom_class =  'active'

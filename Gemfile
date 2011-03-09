@@ -6,6 +6,7 @@ gem 'pg'
 gem 'haml-rails', '~> 0.3'
 gem 'jquery-rails', '~> 0.2.7'
 gem 'authlogic'
+gem 'russian'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.5'
