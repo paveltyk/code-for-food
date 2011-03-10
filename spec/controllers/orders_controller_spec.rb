@@ -98,6 +98,18 @@ describe OrdersController do
         }.to change(order.order_items, :count).by(1)
       end
 
+      context 'fail story' do
+        before(:each) do
+          controller.stub :current_user => logged_in_user
+          logged_in_user.stub_chain(:orders ,:find_by_menu_id).and_return(mock_model(Order, :update_attributes => false).as_null_object)
+        end
+
+        it 'renders "new" template' do
+          put :update, :date => menu.to_param
+          response.should render_template('new')
+        end
+      end
+
       context 'when menu is blocked' do
         it 'redirects with an error flash message' do
           request.env["HTTP_REFERER"] = 'http://back.url'
