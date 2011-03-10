@@ -7,8 +7,13 @@ module MenuHelper
     time_range.each do |date|
       item_text = Russian::strftime(date, "<b>%a</b><em>%B</em>%d").html_safe
       if menu_dates.include?(date)
-        link_path = new_order_path(:date => date.to_s(:db))
-        item_dom_class =  'active'
+        if menus.select{ |m| m.date == date}.first.try(:locked?)
+          link_path = order_path(:date => date.to_param)
+          item_dom_class =  'active'
+        else
+          link_path = new_order_path(:date => date.to_param)
+          item_dom_class =  'active'
+        end
       elsif is_admin?
         link_path = new_menu_path(:date => date.to_param)
         item_dom_class =  'inactive'

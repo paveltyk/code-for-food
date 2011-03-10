@@ -49,6 +49,11 @@ describe MenuHelper do
       it "returns 12 paragraps for the rest dates" do
         helper.render_menu_calendar.scan(/<li><p.*?>.*?<\/p><\/li>/).should have(12).items
       end
+
+      it "returns a link to show if menu is locked" do
+        @menu.update_attribute :locked, true
+        helper.render_menu_calendar.scan(/href="#{order_path @menu}"/).should have(1).item
+      end
     end
 
     context "when loggedin as administrator" do
