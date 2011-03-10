@@ -93,7 +93,8 @@ table.orders {margin-bottom:20px;}
 table.orders tr {}
 table.orders th, table.orders td {border:1px solid #aaa;padding:5px 7px;}
 table.orders th {}
-table.orders td {}
-table.orders tfoot td {border:none;font-size:14px;font-weight:bold;}
-table.orders tfoot td.total-text {text-align:right;font-weight:normal;}
+table.orders td.price {white-space:nowrap;}
+table.orders tfoot td {border:none;font-size:14px;}
+table.orders tfoot td.total-text {text-align:right;}
+table.orders tfoot td.price {font-weight:bold;}
 

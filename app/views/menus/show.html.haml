@@ -8,13 +8,13 @@
   %tfoot
     %tr
       %td.total-text{:colspan => 2} Итого:
-      %td= number_with_delimiter @orders.sum(:price)
+      %td.price= number_with_delimiter @orders.sum(:price)
   %tbody
     - @orders.each do |order|
       %tr
         %td= order.user
         %td= order.order_items.map{ |oi| "#{oi.dish.name} (#{oi.dish.total_price}#{"*#{oi.quantity}" if oi.quantity > 1})" }.join(', ')
-        %td= number_with_delimiter order.price
+        %td.price= number_with_delimiter order.price
 
 = link_to 'Редактировать меню', edit_menu_path(@menu), :class => 'button'
 = link_to 'Заблокировать меню', lock_menu_path(@menu), :class => 'button', :method => :put unless @menu.locked?
