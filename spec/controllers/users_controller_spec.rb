@@ -80,6 +80,18 @@ describe UsersController do
         put :update, :user => {:name => 'New name'}
         user.reload.name.should eql('New name')
       end
+
+      context 'fail strory' do
+        before(:each) do
+          controller.stub :current_user => user
+          user.stub :update_attributes => false
+        end
+
+        it 'renders "new" template' do
+          put :update
+          response.should render_template('edit')
+        end
+      end
     end
   end
 end

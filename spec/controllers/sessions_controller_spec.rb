@@ -24,5 +24,21 @@ describe SessionsController do
       response.should render_template('new')
     end
   end
+
+  describe 'GET #destroy' do
+    let(:user) { User.make! }
+    before(:each) { UserSession.create user }
+
+    it 'redirects' do
+      get :destroy
+      response.should be_redirect
+    end
+
+    it 'logs out' do
+      controller.session['user_credentials'].should_not be_nil
+      get :destroy
+      controller.session['user_credentials'].should be_nil
+    end
+  end
 end
 
