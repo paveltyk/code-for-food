@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110309181314) do
+ActiveRecord::Schema.define(:version => 20110310130748) do
 
   create_table "dish_tags", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(:version => 20110309181314) do
     t.integer  "total_price", :default => 0
   end
 
+  add_index "dishes", ["menu_id"], :name => "index_dishes_on_menu_id"
+
   create_table "invitations", :force => true do |t|
     t.integer  "sender_id"
     t.string   "recipient_email"
@@ -40,6 +42,8 @@ ActiveRecord::Schema.define(:version => 20110309181314) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "invitations", ["sender_id"], :name => "index_invitations_on_sender_id"
 
   create_table "menus", :force => true do |t|
     t.date     "date"
@@ -50,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20110309181314) do
     t.boolean  "locked"
   end
 
+  add_index "menus", ["administrator_id"], :name => "index_menus_on_administrator_id"
   add_index "menus", ["date"], :name => "index_menus_on_date"
 
   create_table "order_items", :force => true do |t|
@@ -60,6 +65,9 @@ ActiveRecord::Schema.define(:version => 20110309181314) do
     t.datetime "updated_at"
   end
 
+  add_index "order_items", ["dish_id"], :name => "index_order_items_on_dish_id"
+  add_index "order_items", ["order_id"], :name => "index_order_items_on_order_id"
+
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
     t.integer  "price",      :default => 0
@@ -67,6 +75,9 @@ ActiveRecord::Schema.define(:version => 20110309181314) do
     t.datetime "updated_at"
     t.integer  "menu_id"
   end
+
+  add_index "orders", ["menu_id"], :name => "index_orders_on_menu_id"
+  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -83,6 +94,9 @@ ActiveRecord::Schema.define(:version => 20110309181314) do
     t.integer "dish_id"
   end
 
+  add_index "taggings", ["dish_id"], :name => "index_taggings_on_dish_id"
+  add_index "taggings", ["dish_tag_id"], :name => "index_taggings_on_dish_tag_id"
+
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "name"
@@ -94,5 +108,7 @@ ActiveRecord::Schema.define(:version => 20110309181314) do
     t.integer  "invitation_id"
     t.string   "type"
   end
+
+  add_index "users", ["invitation_id"], :name => "index_users_on_invitation_id"
 
 end
