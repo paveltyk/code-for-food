@@ -19,7 +19,7 @@ class Menu < ActiveRecord::Base
   end
 
   def to_s
-    date ? date.to_s(:menu) : 'unknown'
+    date ? Russian::strftime(date, Date::DATE_FORMATS[:menu]) : 'unknown'
   end
 
   def to_param
