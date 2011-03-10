@@ -1,6 +1,6 @@
 = f.hidden_field :invitation_token
 = f.text_field :email, :placeholder => 'e-Mail'
-= f.text_field :name, :placeholder => 'Имя' unless @user.new_record?
+= f.text_field :name, :placeholder => 'Имя' unless f.object.new_record?
 = f.password_field :password, :placeholder => 'Пароль'
 = check_box_tag 'show-password'
 = label_tag 'show-password', 'Показать пароль'
