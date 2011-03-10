@@ -1,5 +1,6 @@
 class OrderItem < ActiveRecord::Base
   attr_accessor :is_ordered
+  alias_attribute :qtt, :quantity
 
   belongs_to :dish
   belongs_to :order
