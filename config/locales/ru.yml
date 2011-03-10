@@ -78,6 +78,11 @@ ru:
         price: "Цена"
       menu:
         date: "Дата"
+      dish_tag:
+        name: "Название"
+        value: "Стоимость"
+        description: "Описание"
+
       # Например,
       #   user:
       #     name: "Имя"
