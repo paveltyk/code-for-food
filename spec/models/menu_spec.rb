@@ -20,7 +20,7 @@ describe Menu do
 
   it "should return formatted date" do
     date = Time.now.to_date
-    Menu.make(:date => date).to_s.should eql(date.strftime("%A %d.%m"))
+    Menu.make(:date => date).to_s.should eql(Russian::strftime(date, "%A %d.%m"))
   end
 
   it "should return \"unknown\" text if date is nil" do
