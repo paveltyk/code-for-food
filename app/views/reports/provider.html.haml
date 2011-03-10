@@ -1,0 +1,20 @@
+%h1= "<span>#{@menu}</span> :: Заказанные блюда".html_safe
+%table.orders
+  %thead
+    %tr
+      %th Название
+      %th Кол-во
+      %th Стоимость
+      %th Итого
+  %tfoot
+    %tr
+      %td.total-text{:colspan => 3} Итого:
+      %td.price= number_with_delimiter @report.total_price
+  %tbody
+    - @report.items.each do |item|
+      %tr
+        %td= item.name
+        %td= item.qtt
+        %td= item.dish_total_price
+        %td.price= number_with_delimiter item.total_price
+

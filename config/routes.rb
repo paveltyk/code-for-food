@@ -3,6 +3,7 @@ CodeForFood::Application.routes.draw do
   resources :menus do
     member do
       put :lock
+      match "/reports/provider" => "reports#provider", :as => :provider_report_for, :via => :get
     end
   end
   resources :tags, :as => :dish_tags
