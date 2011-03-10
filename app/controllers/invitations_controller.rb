@@ -9,7 +9,7 @@ class InvitationsController < ApplicationController
     @invitation = current_user.sent_invitations.build(params[:invitation])
 
     if @invitation.save
-      flash[:notice] = 'Invitation was successfully created.'
+      flash[:notice] = 'Приглашение #{@invotation.recipient_email} успешно отправлено.'
       redirect_to :action => :new
     else
       render :action => :new
