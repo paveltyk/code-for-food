@@ -195,20 +195,34 @@ describe MenusController do
     end
 
     context 'when logged in as admin' do
-      it 'locks the menu' do
-        menu = Menu.make!
-        UserSession.create menu.administrator
+      let(:menu) { Menu.make! }
+      let(:admin) { menu.administrator }
+
+      before(:each) do
+        controller.stub :current_user => admin
         request.env["HTTP_REFERER"] = 'http://example.com'
+      end
+
+      it 'locks the menu' do
         put :lock, :id => menu.to_param
         menu.reload.locked.should be_true
       end
 
       context 'success story' do
-        before(:each) { controller.stub_chain(:current_user, :menus, :find_by_date).and_return(mock_menu :update_attribute => true) }
+        before(:each) { admin.stub_chain(:menus, :find_by_date).and_return(mock_menu :update_attribute => true) }
 
         it 'set flash notice' do
           put :lock, :id => 1
           flash[:notice].should_not be_blank
+        end
+      end
+
+      context 'fail story' do
+        before(:each) { admin.stub_chain(:menus, :find_by_date).and_return(mock_menu :update_attribute => false) }
+
+        it 'set flash error' do
+          put :lock, :id => 1
+          flash[:error].should_not be_blank
         end
       end
     end

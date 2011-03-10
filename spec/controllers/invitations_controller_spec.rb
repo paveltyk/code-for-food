@@ -49,7 +49,7 @@ describe InvitationsController do
         end
 
         it "re-renders the 'new' template" do
-          admin.stub_chain(:sent_invitations, :build) { mock_invitation(:save => false) }
+          admin.stub_chain(:sent_invitations, :build).and_return(mock_invitation :save => false)
           post :create, :invitation => {}
           response.should render_template("new")
         end

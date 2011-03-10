@@ -24,7 +24,6 @@ class Dish < ActiveRecord::Base
     self.tag_ids_without_update_related_orders = ids
     self.update_total_price if ids_before_assigment != ids.map(&:to_i).sort
   end
-
   alias_method_chain 'tag_ids=', :update_related_orders
 end
 

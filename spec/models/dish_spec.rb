@@ -56,7 +56,16 @@ describe Dish do
       tag = DishTag.make! :value => 300
       dish.tags << tag
       dish.reload.total_price.should eql(dish.price + 300)
-      puts dish.taggings.find_by_dish_tag_id(tag.id).destroy.inspect
+      dish.taggings.find_by_dish_tag_id(tag.id).destroy
+      dish.reload.total_price.should eql(dish.price)
+    end
+
+    it 'recalculates price after tag removed via :tag_ids method' do
+      tag = DishTag.make! :value => 300
+      dish.tags << tag
+      dish.reload.total_price.should eql(dish.price + 300)
+      dish.tag_ids = []
+      dish.save
       dish.reload.total_price.should eql(dish.price)
     end
 
