@@ -1,8 +1,8 @@
 class MenusController < ApplicationController
   before_filter :require_admin
+  before_filter :assign_menu, :only => [:show, :edit, :update, :lock]
 
   def show
-    @menu = current_user.menus.find_by_date(params[:id])
     @orders = @menu.orders
   end
 
@@ -22,12 +22,10 @@ class MenusController < ApplicationController
   end
 
   def edit
-    @menu = current_user.menus.find_by_date(params[:id])
     render :action => :new
   end
 
   def update
-    @menu = current_user.menus.find_by_date(params[:id])
     if @menu.update_attributes(params[:menu])
       flash[:notice] = 'Меню обновлено успешно.'
       redirect_to new_order_path(@menu)
@@ -37,8 +35,6 @@ class MenusController < ApplicationController
   end
 
   def lock
-    @menu = current_user.menus.find_by_date(params[:id])
-
     if @menu.update_attribute(:locked, true)
       flash[:notice] = 'Меню заблокировано.'
     else
@@ -46,6 +42,12 @@ class MenusController < ApplicationController
     end
 
     redirect_to :back
+  end
+
+  private
+
+  def assign_menu
+    @menu = current_user.menus.find_by_date(params[:id])
   end
 end
 
