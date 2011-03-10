@@ -72,6 +72,16 @@ describe OrdersController do
           response.should render_template("new")
         end
       end
+
+      context 'when menu is blocked' do
+        it 'redirects with an error flash message' do
+          request.env["HTTP_REFERER"] = 'http://back.url'
+          menu.update_attribute :locked, true
+          post :create, :date => menu.to_param
+          response.should redirect_to('http://back.url')
+          flash[:error].should_not be_blank
+        end
+      end
     end
 
     describe 'PUT #update' do
@@ -86,6 +96,16 @@ describe OrdersController do
         expect {
           put :update, :date => order.menu.date.to_s(:db), :order => { :menu_items_attributes => { 0 => attrs_for_first_dish } }
         }.to change(order.order_items, :count).by(1)
+      end
+
+      context 'when menu is blocked' do
+        it 'redirects with an error flash message' do
+          request.env["HTTP_REFERER"] = 'http://back.url'
+          order.menu.update_attribute :locked, true
+          post :create, :date => order.menu.to_param
+          response.should redirect_to('http://back.url')
+          flash[:error].should_not be_blank
+        end
       end
     end
   end
