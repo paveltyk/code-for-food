@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_filter :assign_menu
 
   def show
-    @order = current_user.orders.find_by_menu_id @menu.id
+    @order = current_user.orders.find_or_initialize_by_menu_id @menu.id
   end
 
   def new

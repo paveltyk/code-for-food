@@ -23,6 +23,11 @@ describe OrdersController do
         get :show, :date => menu.to_param
         assigns(:order).should eql order
       end
+
+      it 'assigns new order if no order found for that date' do
+        get :show, :date => menu.to_param
+        assigns(:order).should be_a_new_record
+      end
     end
 
     describe 'GET #new' do
