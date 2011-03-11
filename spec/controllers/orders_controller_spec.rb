@@ -28,6 +28,12 @@ describe OrdersController do
         get :show, :date => menu.to_param
         assigns(:order).should be_a_new_record
       end
+
+      it 'renders "no_menu" if menu not found' do
+        Menu.stub :find_by_date => nil
+        get :show, :date => '2011-11-11'
+        response.should render_template('no_menu')
+      end
     end
 
     describe 'GET #new' do
@@ -55,6 +61,12 @@ describe OrdersController do
           flash[:error].should_not be_blank
         end
       end
+
+      it 'renders "no_menu" if menu not found' do
+        Menu.stub :find_by_date => nil
+        get :new, :date => '2011-11-11'
+        response.should render_template('no_menu')
+      end
     end
 
     describe 'POST #create' do
@@ -66,11 +78,17 @@ describe OrdersController do
         }.to change(Order, :count).by(1)
       end
 
+      it 'renders "no_menu" if menu not found' do
+        Menu.stub :find_by_date => nil
+        post :create, :date => '2011-11-11'
+        response.should render_template('no_menu')
+      end
+
       context "with valid order" do
         before(:each) { controller.stub_chain(:current_user, :orders, :new).and_return(mock_model(Order, :save => true).as_null_object) }
 
         it "redirects to action :new" do
-          post :create, :date => menu.date.to_s(:db), :order => {}
+          post :create, :date => menu.date.to_s(:db)
           response.should redirect_to(:action => :new)
         end
       end
@@ -106,6 +124,12 @@ describe OrdersController do
         expect {
           put :update, :date => order.menu.date.to_s(:db), :order => { :menu_items_attributes => { 0 => attrs_for_first_dish } }
         }.to change(order.order_items, :count).by(1)
+      end
+
+      it 'renders "no_menu" if menu not found' do
+        Menu.stub :find_by_date => nil
+        put :update, :date => '2011-11-11'
+        response.should render_template('no_menu')
       end
 
       context 'fail story' do

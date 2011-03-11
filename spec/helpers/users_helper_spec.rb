@@ -35,8 +35,8 @@ describe UsersHelper do
         helper.user_nav.should match(dish_tags_path)
       end
 
-      it "renders invitations link" do
-        helper.user_nav.should match(new_invitation_path)
+      it "renders users managment link" do
+        helper.user_nav.should match(admin_users_path)
       end
     end
   end

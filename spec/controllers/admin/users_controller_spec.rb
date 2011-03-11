@@ -38,6 +38,7 @@ describe Admin::UsersController do
 
     it 'assigns @orders' do
       mock_user.stub_chain(:orders, :joins, :includes, :order).and_return([])
+      mock_user.stub_chain(:orders, :total).and_return(0)
       User.stub :find => mock_user
       get :show, :id => '1'
       assigns(:orders).should eql []

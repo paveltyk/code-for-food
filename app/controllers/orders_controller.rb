@@ -39,6 +39,7 @@ class OrdersController < ApplicationController
   def assign_menu
     params[:date] = Time.now.to_date.to_s(:db) if params[:date] == 'today'
     @menu = Menu.find_by_date params[:date]
+    render :action => :no_menu unless @menu
   end
 
   def protect_locked_menu
