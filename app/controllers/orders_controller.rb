@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
     @order.menu = @menu
 
     if @order.save
-      flash[:notice] = 'Order created succesfully!'
+      flash[:notice] = 'Ваш заказ принят.'
       redirect_to :action => :new
     else
       render :action => :new
@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
     @order = current_user.orders.find_by_menu_id @menu.id
 
     if @order.update_attributes(params[:order])
-      flash[:notice] = 'Order updated succesfully!'
+      flash[:notice] = 'Ваш заказ обновлен.'
       redirect_to :action => :new
     else
       render :action => :new
