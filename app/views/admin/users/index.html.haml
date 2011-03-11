@@ -1,18 +1,14 @@
-.box
-  .box-head
-    %h2 Список пользователей
-  %table.defaults
-    %thead
+%h1 Список пользователей
+%table.defaults
+  %thead
+    %tr
+      %th Имя
+      %th e-Mail
+  %tbody
+    - @users.each do |user|
       %tr
-        %th Имя
-        %th e-Mail
-    %tbody
-      - @users.each do |user|
-        %tr
-          %td= link_to user, [:admin, user]
-          %td= user.email
-
-  .box-footer
-    .left= link_to 'Добавить отзыв', '#', :class => 'button'
-    .clr
+        %td= link_to user, [:admin, user]
+        %td= user.email
+%hr
+= link_to 'Пригласить пользователя', new_invitation_path, :class => 'button'
 

@@ -3,9 +3,9 @@ module UsersHelper
     links = []
     if current_user
       if is_admin?
+        links << link_to('Пользователи', admin_users_path)
         links << link_to('Новое меню', new_menu_path)
         links << link_to('Метки', dish_tags_path)
-        links << link_to('Новое приглашение', new_invitation_path)
       end
       links << link_to('Изменить профиль', edit_profile_path)
       links << link_to('Выйти', logout_path)

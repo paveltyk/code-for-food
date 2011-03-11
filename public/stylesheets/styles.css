@@ -26,6 +26,8 @@ input[type="submit"]:active, input[type="button"]:active, .button:active {backgr
 .notice {border-color:#fcd3a1;background:#fbf8ee url(/images/jquery-ui/ui-bg_glass_55_fbf8ee_1x400.png) 50% 50% repeat-x;color:#444444;}
 .error {border-color:#cc0000;background:#f3d8d8 url(/images/jquery-ui/ui-bg_diagonals-thick_75_f3d8d8_40x40.png) 50% 50% repeat;color:#2e2e2e;}
 
+hr {display:block;border:none;height:0;width:100%;border-top:1px dashed #888;margin:20px 0;}
+
 ul#menu-calendar {margin-top:10px;}
 ul#menu-calendar li {float:left;}
 ul#menu-calendar li a, ul#menu-calendar li p {display:block;width:50px;border-left:1px dotted #637a6e;color:#637a6e;text-align:center;width:75px;font-size:16px;text-decoration:none;}
