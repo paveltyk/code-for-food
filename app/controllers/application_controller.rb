@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   def require_user
     unless current_user
       store_location
-      flash[:notice] = "You must be logged in to access this page"
+      flash[:notice] = "Вам необходимо войти в систему."
       redirect_to login_url
     end
   end
@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   def require_admin
     unless current_user && current_user.instance_of?(Administrator)
       store_location
-      flash[:notice] = "You must be logged in as administrator to access this page"
+      flash[:notice] = "Вам необходимо войти в систему как администратор."
       redirect_to login_url
     end
   end
