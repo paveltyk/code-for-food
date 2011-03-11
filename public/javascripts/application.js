@@ -97,7 +97,10 @@ $(function(){
   $('input[placeholder], textarea[placeholder]').placeholder();
 
   $('.menu a.remove').live('click', function(){
-    remove_menu_item($(this).closest('.menu-item'));
+    if (confirm('Вы уверены?')) {
+      remove_menu_item($(this).closest('.menu-item'));
+    }
+
     return false;
   });
   $('.menu a.add-menu-item').live('click', function(){

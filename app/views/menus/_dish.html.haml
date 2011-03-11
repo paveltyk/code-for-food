@@ -1,5 +1,5 @@
 .menu-item{:class => dish.object.new_record? ? 'new-record' : nil}
-  = link_to '', '#', :class => "ui-icon ui-icon-circle-close remove", :confirm => 'Вы уверены?'
+  = link_to '', '#', :class => "ui-icon ui-icon-circle-close remove"
   = dish.text_field :name, :class => 'name', :placeholder => 'Название'
   = dish.text_field :price, :class => 'price', :placeholder => 'Цена'
   = dish.text_field :weight, :class => 'weight', :placeholder => 'Вес'
