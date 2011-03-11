@@ -9,7 +9,7 @@
     %tbody
       - @users.each do |user|
         %tr
-          %td= user
+          %td= link_to user, [:admin, user]
           %td= user.email
 
   .box-footer

@@ -6,6 +6,10 @@ describe Admin::UsersController do
   let(:admin) { Administrator.make! }
   before(:each) { UserSession.create admin }
 
+  def mock_user(stubs={})
+    @mock_user ||= mock_model(User, stubs).as_null_object
+  end
+
   describe 'GET #index' do
     it 'renders "index" template' do
       get :index
@@ -15,6 +19,28 @@ describe Admin::UsersController do
     it 'assigns @users' do
       get :index
       assigns(:users).should_not be_nil
+    end
+  end
+
+  describe 'GET #show' do
+    let(:user) { User.make! }
+
+    it 'renders "show" template' do
+      get :show, :id => user.to_param
+      response.should render_template('show')
+    end
+
+    it 'assigns @user' do
+      User.stub :find => mock_user
+      get :show, :id => '1'
+      assigns(:user).should eql mock_user
+    end
+
+    it 'assigns @orders' do
+      mock_user.stub_chain(:orders, :joins, :includes, :order).and_return([])
+      User.stub :find => mock_user
+      get :show, :id => '1'
+      assigns(:orders).should eql []
     end
   end
 end

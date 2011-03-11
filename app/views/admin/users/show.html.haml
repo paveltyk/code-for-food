@@ -1,0 +1,12 @@
+.box
+  .box-head
+    %h2= @user
+  %table.defaults
+    - @orders.each do |order|
+      %tr
+        %td= order.menu
+        %td= order.price
+
+  .buttons
+    = link_to 'К списку пользователей', admin_users_path, :class => 'button'
+
