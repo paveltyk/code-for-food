@@ -36,9 +36,15 @@ describe InvitationsController do
           }.to change(Invitation, :count).by(1)
         end
 
-        it "redirects to the created invitation" do
+        it "redirects to the :new action" do
           post :create, :invitation => Invitation.make.attributes
           response.should redirect_to(new_invitation_url)
+        end
+
+        it "sets flash notice with an recipients email" do
+          invitation = Invitation.make
+          post :create, :invitation => invitation.attributes
+          flash[:notice].should match invitation.recipient_email
         end
       end
 
