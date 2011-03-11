@@ -8,6 +8,7 @@ CodeForFood::Application.routes.draw do
   end
   resources :tags, :as => :dish_tags
   namespace :admin do
+    root :to => "users#index"
     resources :users
   end
 
