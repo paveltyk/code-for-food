@@ -30,5 +30,16 @@ module MenuHelper
     end
     content_tag(:ul, html.html_safe, :id => 'menu-calendar')
   end
+
+  def render_menu_management_links(menu = nil)
+    menu ||= @menu
+    return unless menu
+    links = []
+    links << link_to('Редактировать меню', edit_menu_path(menu), :class => 'button')
+    links << link_to('Отчет по заказам', menu, :class => 'button')
+    links << link_to('Отчет по позициям', provider_report_for_menu_path(menu), :class => 'button')
+    links << link_to('Заблокировать меню', lock_menu_path(menu), :class => 'button', :method => :put) unless menu.locked?
+    links.join(' ').html_safe
+  end
 end
 

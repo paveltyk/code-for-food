@@ -16,7 +16,3 @@
         %td= order.order_items.map{ |oi| "#{oi.dish.name} (#{oi.dish.total_price}#{"*#{oi.quantity}" if oi.quantity > 1})" }.join(', ')
         %td.price= number_with_delimiter order.price
 
-= link_to 'Редактировать меню', edit_menu_path(@menu), :class => 'button'
-= link_to 'Заблокировать меню', lock_menu_path(@menu), :class => 'button', :method => :put unless @menu.locked?
-= link_to 'Отчет по позициям', provider_report_for_menu_path(@menu), :class => 'button'
-

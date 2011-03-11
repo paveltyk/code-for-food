@@ -12,6 +12,5 @@
     %span= number_with_delimiter @order.price
   - if is_admin?
     %li.admin-links
-      = link_to 'Редактировать меню', edit_menu_path(@menu), :class => 'button'
-      = link_to 'Показать заказы', @menu, :class => 'button'
+      = render_menu_management_links
 

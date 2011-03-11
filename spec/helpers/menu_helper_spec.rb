@@ -80,5 +80,17 @@ describe MenuHelper do
       end
     end
   end
+
+  describe '#render_menu_management_links' do
+    let(:menu) { Menu.make! }
+
+    it 'returns html_safe string' do
+      helper.render_menu_management_links(menu).should be_html_safe
+    end
+
+    it 'has 4 links' do
+      helper.render_menu_management_links(menu).scan(/<a/).should have(4).items
+    end
+  end
 end
 
