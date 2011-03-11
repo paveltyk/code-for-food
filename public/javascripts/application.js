@@ -85,7 +85,7 @@ function bootstrap_dish_order() {
 
 function bootstrap_menu_multiselects() {
   $('#current-menu-items select.jquery-multiselect').multiselect({
-    minWidth:200,
+    minWidth:270,
     header:false,
     selectedText:'Выбрано меток: #',
     noneSelectedText:'Нет выбранных меток'
