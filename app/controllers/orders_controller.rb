@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :require_user
   before_filter :assign_menu
-  before_filter :protect_locked_menu, :only => [:create, :update]
+  before_filter :protect_locked_menu, :only => [:new, :create, :update]
 
   def show
     @order = current_user.orders.find_or_initialize_by_menu_id @menu.id
@@ -37,11 +37,12 @@ class OrdersController < ApplicationController
   private
 
   def assign_menu
+    params[:date] = Time.now.to_date.to_s(:db) if params[:date] == 'today'
     @menu = Menu.find_by_date params[:date]
   end
 
   def protect_locked_menu
-    flash[:error] = 'Извините, но меню уже заблокировано.' and redirect_to(:back) if @menu.locked?
+    flash[:error] = 'Извините, но меню уже заблокировано.' and redirect_to(:action => :show) if @menu.locked?
   end
 end
 

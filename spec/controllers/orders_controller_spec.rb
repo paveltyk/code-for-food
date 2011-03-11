@@ -31,18 +31,29 @@ describe OrdersController do
     end
 
     describe 'GET #new' do
-      before(:each) { get :new, :date => menu.date.to_s(:db) }
+      context 'when menu not blocked' do
+        before(:each) { get :new, :date => menu.to_param }
 
-      it "responds with 200" do
-        response.should be_success
+        it "responds with 200" do
+          response.should be_success
+        end
+
+        it "assigns menu" do
+          assigns(:menu).should eql(menu)
+        end
+
+        it "assigns order" do
+          assigns(:order).should be_an_instance_of(Order)
+        end
       end
 
-      it "assigns menu" do
-        assigns(:menu).should eql(menu)
-      end
-
-      it "assigns order" do
-        assigns(:order).should be_an_instance_of(Order)
+      context 'when menu is blocked' do
+        it 'redirects with an error flash message' do
+          order.menu.update_attribute :locked, true
+          get :new, :date => order.menu.to_param
+          response.should redirect_to(:action => :show)
+          flash[:error].should_not be_blank
+        end
       end
     end
 
@@ -75,10 +86,9 @@ describe OrdersController do
 
       context 'when menu is blocked' do
         it 'redirects with an error flash message' do
-          request.env["HTTP_REFERER"] = 'http://back.url'
           menu.update_attribute :locked, true
           post :create, :date => menu.to_param
-          response.should redirect_to('http://back.url')
+          response.should redirect_to(:action => :show)
           flash[:error].should_not be_blank
         end
       end
@@ -112,10 +122,9 @@ describe OrdersController do
 
       context 'when menu is blocked' do
         it 'redirects with an error flash message' do
-          request.env["HTTP_REFERER"] = 'http://back.url'
           order.menu.update_attribute :locked, true
           post :create, :date => order.menu.to_param
-          response.should redirect_to('http://back.url')
+          response.should redirect_to(:action => :show)
           flash[:error].should_not be_blank
         end
       end

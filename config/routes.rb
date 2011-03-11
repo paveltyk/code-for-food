@@ -25,7 +25,7 @@ CodeForFood::Application.routes.draw do
     resource :order
   end
 
-  root :to => "menus#new"
+  root :to => "orders#new", :date => "today"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

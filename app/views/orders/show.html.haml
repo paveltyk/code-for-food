@@ -10,6 +10,11 @@
   %li.total
     Итого:
     %span= number_with_delimiter @order.price
+  - unless @menu.locked?
+    %li
+      %hr
+      = link_to 'Изменить заказ', new_order_path(@menu), :class => 'button'
+
   - if is_admin?
     %li.admin-links
       = render_menu_management_links
