@@ -33,5 +33,16 @@ describe User do
       user.to_s.should eql user.email.split('@').first
     end
   end
+
+  describe 'orders relation' do
+    let(:user) { User.make! }
+    describe '#total' do
+      it 'return sum of all order prices' do
+        Order.destroy_all
+        2.times { OrderItem.make! :order => Order.make(:user => user) }
+        user.orders.total.should eql Order.sum(:price)
+      end
+    end
+  end
 end
 

@@ -1,6 +1,6 @@
 .box
   .box-head
-    %h2= @user
+    %h2= "#{@user} | Сумма всех заказов: #{number_with_delimiter @user.orders.total}"
   %table.defaults
     - @orders.each do |order|
       %tr
