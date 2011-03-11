@@ -1,0 +1,13 @@
+%h1 Список пользователей
+
+%table
+  %thead
+    %tr
+      %th Имя
+      %th e-Mail
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user
+        %td= user.email
+
