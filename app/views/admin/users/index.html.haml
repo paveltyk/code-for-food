@@ -1,13 +1,18 @@
-%h1 Список пользователей
-
-%table
-  %thead
-    %tr
-      %th Имя
-      %th e-Mail
-  %tbody
-    - @users.each do |user|
+.box
+  .box-head
+    %h2 Список пользователей
+  %table.defaults
+    %thead
       %tr
-        %td= user
-        %td= user.email
+        %th Имя
+        %th e-Mail
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user
+          %td= user.email
+
+  .box-footer
+    .left= link_to 'Добавить отзыв', '#', :class => 'button'
+    .clr
 
