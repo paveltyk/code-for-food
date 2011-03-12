@@ -12,8 +12,13 @@ module SendGrid
       @send_grid_header ||= SendGrid::ApiHeader.new
     end
 
+    def send_grid_stub_for_recipient_email
+      smtp_domain = self.class.smtp_settings[:domain]
+      self.class.smtp_settings[:user_name] || "group-delivery@#{smtp_domain}"
+    end
+
     def mail_with_send_grid(headers={}, &block)
-      headers[:to] ||= self.class.smtp_settings[:user_name]
+      headers[:to] ||= send_grid_stub_for_recipient_email
       headers['X-SMTPAPI'] = send_grid_header.to_json
       mail_without_send_grid(headers, &block)
     end
