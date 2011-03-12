@@ -29,7 +29,7 @@ input[type="submit"]:active, input[type="button"]:active, .button:active {backgr
 hr {display:block;border:none;height:0;width:100%;border-top:1px dashed #888;margin:20px 0;}
 
 ul#menu-calendar {margin-top:10px;}
-ul#menu-calendar li {float:left;color:#637a6e;}
+ul#menu-calendar li {float:left;color:#637a6e;position:relative;}
 ul#menu-calendar li a, ul#menu-calendar li p {display:block;width:50px;border-left:1px dotted #637a6e;text-align:center;width:75px;font-size:16px;text-decoration:none;}
 ul#menu-calendar li.active, ul#menu-calendar li.active a {color:#9e1517;}
 ul#menu-calendar li a b, ul#menu-calendar li a em, ul#menu-calendar li p b, ul#menu-calendar li p em {display:block;opacity:.4;margin-bottom:5px;color:#637a6e;}
@@ -37,6 +37,12 @@ ul#menu-calendar li a:hover b, ul#menu-calendar li a:hover em {opacity:1;}
 ul#menu-calendar li a b, ul#menu-calendar li p b {display:block;font-size:22px;}
 ul#menu-calendar li p {cursor:default;}
 ul#menu-calendar li a em, ul#menu-calendar li p em {font-size:10px;}
+ul#menu-calendar li span.icon {display:none;position:absolute;width:16px;height:16px;background-image:url(/images/jquery-ui/ui-icons_cc0000_256x240.png);}
+ul#menu-calendar li.published span.icon, ul#menu-calendar li.locked span.icon, ul#menu-calendar li.today span.icon {top:-5px;right:2px;}
+ul#menu-calendar li.published span.icon.m1 {display:block;background-position:-64px -144px;}
+ul#menu-calendar li.locked span.icon.m1 {display:block;background-position:-80px -144px;}
+ul#menu-calendar li.today span.icon.m2 {display:block;background-position:-112px -144px;left:2px;}
+
 
 h1 {font-size:1.6em;color:#62796D;margin-bottom:10px;font-weight:normal;}
 h1 span {color:#A51618;}

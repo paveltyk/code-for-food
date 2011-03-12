@@ -11,10 +11,12 @@ module MenuHelper
           path = order_path(:date => item.date.to_param)
           dom_classes << 'active'
         end
+        dom_classes << item.status if is_admin?
       else
         path = new_menu_path(:date => item.date.to_param) if is_admin?
       end
 
+      dom_classes << 'today' if item.date == Time.now.to_date
       inner_html = path ? link_to(item.to_html, path) : content_tag(:p, item.to_html)
       dom_class = dom_classes.blank? ? nil : dom_classes.join(' ')
       content_tag(:li, inner_html, :class => dom_class)

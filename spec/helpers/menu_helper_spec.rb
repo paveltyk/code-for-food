@@ -16,11 +16,11 @@ describe MenuHelper do
 
       it "returns one active menu item if menu published" do
         @menu.publish!
-        helper.render_menu_calendar.scan(/class="active"/).should have(1).item
+        helper.render_menu_calendar.scan(/class="[^"]*active[^"]*"/).should have(1).item
       end
 
       it "returns zero active menu item if menu not published" do
-        helper.render_menu_calendar.scan(/class="active"/).should have(0).item
+        helper.render_menu_calendar.scan(/class="[^"]*active[^"]*"/).should have(0).item
       end
 
       it "returns only zero link for order" do
@@ -47,7 +47,7 @@ describe MenuHelper do
         before(:each) { @menu.publish! }
 
         it "returns one active menu item" do
-          helper.render_menu_calendar.scan(/class="active"/).should have(1).item
+          helper.render_menu_calendar.scan(/class="[^"]*active[^"]*"/).should have(1).item
         end
 
         it "returns only one link for order" do
@@ -61,7 +61,7 @@ describe MenuHelper do
 
       context 'with unpublished menu' do
         it "returns zero active menu items" do
-          helper.render_menu_calendar.scan(/class="active"/).should have(0).item
+          helper.render_menu_calendar.scan(/class="[^"]*active[^"]*"/).should have(0).item
         end
 
         it "returns 13 paragraps for the rest dates" do
@@ -82,7 +82,7 @@ describe MenuHelper do
       end
 
       it "returns one active menu item" do
-        helper.render_menu_calendar.scan(/class="active"/).should have(1).item
+        helper.render_menu_calendar.scan(/class="[^"]*active[^"]*"/).should have(1).item
       end
 
       it "returns only one link for new order" do

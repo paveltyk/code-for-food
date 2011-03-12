@@ -24,8 +24,18 @@ class MenuHelper::MenuCalendar
       menu.present?
     end
 
+    def status
+      if menu.locked?
+        'locked'
+      elsif menu.published?
+        'published'
+      else
+        ''
+      end
+    end
+
     def to_html
-      Russian::strftime(@date, "<b>%a</b><em>%B</em>%d").html_safe
+      Russian::strftime(@date, "<b>%a<span class=\"icon m1\"></span><span class=\"icon m2\"></span></b><em>%B</em>%d").html_safe
     end
   end
 end
