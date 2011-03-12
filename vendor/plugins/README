@@ -1,0 +1,3 @@
+SendGrid plugin that extends ActionMailer::Base functionality.
+More docs are comming :)
+
