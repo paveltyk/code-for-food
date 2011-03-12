@@ -8,12 +8,22 @@ class Mailer < ActionMailer::Base
 
   def menu_published(menu)
     @menu = menu
-    hdr = SendGrid::ApiHeader.new
-    hdr.add_recipients User.all.map(&:email)
-    headers['X-SMTPAPI'] = hdr.to_json
-    mail :to => 'group-delivery@code-for-food.info',
-         :from => 'no-reply@code-for-food.info',
+    add_recipients User.all.map(&:email)
+    mail :from => 'no-reply@code-for-food.info',
          :subject => "Опубликовано меню на \"#{@menu}\""
   end
+
+  delegate :add_recipients, :substitute, :uniq_args, :category, :add_filter_setting, :to => :send_grid_header
+
+  def send_grid_header
+    @send_grid_header ||= SendGrid::ApiHeader.new
+  end
+
+  def mail_with_send_grid(headers={}, &block)
+    headers[:to] ||= self.class.smtp_settings[:user_name]
+    headers['X-SMTPAPI'] = send_grid_header.to_json
+    mail_without_send_grid(headers, &block)
+  end
+  alias_method_chain :mail, :send_grid
 end
 
