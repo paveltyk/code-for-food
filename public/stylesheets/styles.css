@@ -42,6 +42,7 @@ ul#menu-calendar li.published span.icon, ul#menu-calendar li.locked span.icon, u
 ul#menu-calendar li.published span.icon.m1 {display:block;background-position:-64px -144px;}
 ul#menu-calendar li.locked span.icon.m1 {display:block;background-position:-80px -144px;}
 ul#menu-calendar li.today span.icon.m2 {display:block;background-position:-112px -144px;left:2px;}
+ul#menu-calendar li.ordered span.icon.m3 {display:block;background-position:-48px -112px;left:2px;top:10px;}
 
 
 h1 {font-size:1.6em;color:#62796D;margin-bottom:10px;font-weight:normal;}

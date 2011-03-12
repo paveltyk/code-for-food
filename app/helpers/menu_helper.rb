@@ -11,6 +11,9 @@ module MenuHelper
           path = order_path(:date => item.date.to_param)
           dom_classes << 'active'
         end
+        if item.menu.published? && current_user && current_user.orders.any?{|o| o.menu_id == item.menu.id}
+          dom_classes << "ordered"
+        end
         dom_classes << item.status if is_admin?
       else
         path = new_menu_path(:date => item.date.to_param) if is_admin?
