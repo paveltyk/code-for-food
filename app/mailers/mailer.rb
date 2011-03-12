@@ -8,7 +8,9 @@ class Mailer < ActionMailer::Base
 
   def menu_published(menu)
     @menu = menu
-    add_recipients User.all.map(&:email)
+    @users = User.all
+    add_recipients @users.map(&:email)
+    substitute '{user_name}', @users.map(&:to_s)
     mail :from => 'no-reply@code-for-food.info',
          :subject => "Опубликовано меню на \"#{@menu}\""
   end
