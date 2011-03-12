@@ -8,6 +8,9 @@ class Mailer < ActionMailer::Base
 
   def menu_published(menu)
     @menu = menu
+    hdr = SendGrid::ApiHeader.new
+    hdr.add_recipients User.all.map(&:email)
+    headers['X-SMTPAPI'] = hdr.to_json
     mail :to => 'group-delivery@code-for-food.info',
          :from => 'no-reply@code-for-food.info',
          :subject => "Опубликовано меню на \"#{@menu}\""

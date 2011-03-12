@@ -5,7 +5,7 @@ class SendGrid::ApiHeader
 
   def add_recipients(recipients)
     @data[:to] ||= []
-    @data[:to] += recipients.kind_of?(Array) ? recipients : [recipients]
+    @data[:to] |= Array.wrap(recipients)
   end
 
   def substitute(var, val)
