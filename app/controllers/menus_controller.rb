@@ -15,7 +15,7 @@ class MenusController < ApplicationController
     @menu = current_user.menus.new(params[:menu])
     if @menu.save
       flash[:notice] = 'Меню создано успешно.'
-      redirect_to new_order_path(@menu)
+      redirect_to order_path(@menu)
     else
       render :action => :new
     end
@@ -28,7 +28,7 @@ class MenusController < ApplicationController
   def update
     if @menu.update_attributes(params[:menu])
       flash[:notice] = 'Меню обновлено успешно.'
-      redirect_to new_order_path(@menu)
+      redirect_to order_path(@menu)
     else
       render :action => :new
     end

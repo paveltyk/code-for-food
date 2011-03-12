@@ -11,7 +11,7 @@ module MenuHelper
           link_path = order_path(:date => date.to_param)
           item_dom_class =  'active'
         else
-          link_path = new_order_path(:date => date.to_param)
+          link_path = order_path(:date => date.to_param)
           item_dom_class =  'active'
         end
       elsif is_admin?

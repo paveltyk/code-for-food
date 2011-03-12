@@ -12,10 +12,17 @@ describe OrdersController do
     before(:each) { UserSession.create logged_in_user }
 
     describe 'GET #show' do
-      it 'renders "show" template' do
+      it 'renders "show" template if menu is locked' do
+        menu.update_attribute :locked, true
         order.reload
         get :show, :date => menu.to_param
         response.should render_template("show")
+      end
+
+      it 'renders "new" template if menu is not locked' do
+        order.reload
+        get :show, :date => menu.to_param
+        response.should render_template("new")
       end
 
       it 'assigns @order' do
@@ -32,39 +39,6 @@ describe OrdersController do
       it 'renders "no_menu" if menu not found' do
         Menu.stub :find_by_date => nil
         get :show, :date => '2011-11-11'
-        response.should render_template('no_menu')
-      end
-    end
-
-    describe 'GET #new' do
-      context 'when menu not blocked' do
-        before(:each) { get :new, :date => menu.to_param }
-
-        it "responds with 200" do
-          response.should be_success
-        end
-
-        it "assigns menu" do
-          assigns(:menu).should eql(menu)
-        end
-
-        it "assigns order" do
-          assigns(:order).should be_an_instance_of(Order)
-        end
-      end
-
-      context 'when menu is blocked' do
-        it 'redirects with an error flash message' do
-          order.menu.update_attribute :locked, true
-          get :new, :date => order.menu.to_param
-          response.should redirect_to(:action => :show)
-          flash[:error].should_not be_blank
-        end
-      end
-
-      it 'renders "no_menu" if menu not found' do
-        Menu.stub :find_by_date => nil
-        get :new, :date => '2011-11-11'
         response.should render_template('no_menu')
       end
     end
@@ -87,9 +61,9 @@ describe OrdersController do
       context "with valid order" do
         before(:each) { controller.stub_chain(:current_user, :orders, :new).and_return(mock_model(Order, :save => true).as_null_object) }
 
-        it "redirects to action :new" do
+        it "redirects to action :show" do
           post :create, :date => menu.date.to_s(:db)
-          response.should redirect_to(:action => :new)
+          response.should redirect_to(:action => :show)
         end
       end
 
@@ -159,13 +133,6 @@ describe OrdersController do
     describe 'GET #show' do
       it 'redirects to login' do
         get :show, :date => '2001-01-01'
-        response.should redirect_to(login_path)
-      end
-    end
-
-    describe 'GET #new' do
-      it 'redirects to login' do
-        get :new, :date => '2001-01-01'
         response.should redirect_to(login_path)
       end
     end

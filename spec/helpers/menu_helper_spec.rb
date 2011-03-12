@@ -18,8 +18,8 @@ describe MenuHelper do
         helper.render_menu_calendar.scan(/class="active"/).should have(1).item
       end
 
-      it "returns only one link for new order" do
-        helper.render_menu_calendar.scan(new_order_path @menu).should have(1).item
+      it "returns only one link for order" do
+        helper.render_menu_calendar.scan(order_path @menu).should have(1).item
       end
 
       it "returns 12 paragraps for the rest dates" do
@@ -42,8 +42,8 @@ describe MenuHelper do
         helper.render_menu_calendar.scan(/class="active"/).should have(1).item
       end
 
-      it "returns only one link for new order" do
-        helper.render_menu_calendar.scan(new_order_path @menu).should have(1).item
+      it "returns only one link for order" do
+        helper.render_menu_calendar.scan(order_path @menu).should have(1).item
       end
 
       it "returns 12 paragraps for the rest dates" do
@@ -72,7 +72,7 @@ describe MenuHelper do
       end
 
       it "returns only one link for new order" do
-        helper.render_menu_calendar.scan(new_order_path @menu).should have(1).item
+        helper.render_menu_calendar.scan(order_path @menu).should have(1).item
       end
 
       it "returns 12 links to create new menu" do

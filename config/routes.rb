@@ -23,7 +23,7 @@ CodeForFood::Application.routes.draw do
   match "/profile" => "users#update", :as => :profile, :via => :put
 
   scope "/:date", :constraints => {:date => /\d{4}-\d{2}-\d{2}/} do
-    resource :order
+    resource :order, :only => [:show, :create, :update]
   end
 
   root :to => "orders#show", :date => "today"

@@ -26,8 +26,8 @@ describe Mailer do
       mail.from.should eq ['no-reply@code-for-food.info']
     end
 
-    it 'renders the menu link in the body' do
-      mail.body.encoded.should match new_order_url(menu)
+    it 'renders the menu order link in the body' do
+      mail.body.encoded.should match order_url(menu)
     end
   end
 

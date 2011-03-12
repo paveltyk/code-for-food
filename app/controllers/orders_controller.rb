@@ -1,14 +1,11 @@
 class OrdersController < ApplicationController
   before_filter :require_user
   before_filter :assign_menu
-  before_filter :protect_locked_menu, :only => [:new, :create, :update]
+  before_filter :protect_locked_menu, :only => [:create, :update]
 
   def show
     @order = current_user.orders.find_or_initialize_by_menu_id @menu.id
-  end
-
-  def new
-    @order = current_user.orders.find_or_initialize_by_menu_id @menu.id
+    render :action => :new unless @menu.locked?
   end
 
   def create
@@ -17,7 +14,7 @@ class OrdersController < ApplicationController
 
     if @order.save
       flash[:notice] = 'Ваш заказ принят.'
-      redirect_to :action => :new
+      redirect_to :action => :show
     else
       render :action => :new
     end
@@ -28,7 +25,7 @@ class OrdersController < ApplicationController
 
     if @order.update_attributes(params[:order])
       flash[:notice] = 'Ваш заказ обновлен.'
-      redirect_to :action => :new
+      redirect_to :action => :show
     else
       render :action => :new
     end
