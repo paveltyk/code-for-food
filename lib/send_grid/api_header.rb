@@ -10,7 +10,7 @@ class SendGrid::ApiHeader
 
   def substitute(var, val)
     @data[:sub] ||= {}
-    @data[:sub][var] = val.instance_of?(Array) ? val : [val]
+    @data[:sub][var] = Array.wrap(val)
   end
 
   def uniq_args(val)
