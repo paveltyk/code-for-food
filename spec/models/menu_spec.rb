@@ -34,6 +34,15 @@ describe Menu do
     end
   end
 
+  describe 'published scope' do
+    it 'returns only published menus' do
+      Menu.destroy_all
+      Menu.make!
+      published_menu = Menu.make!.tap(&:publish!)
+      Menu.published.all.should eql [published_menu]
+    end
+  end
+
   describe "#to_param" do
     let(:menu) { Menu.make!}
     it "return formated date" do

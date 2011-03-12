@@ -8,6 +8,8 @@ class Menu < ActiveRecord::Base
   validates_uniqueness_of :date
   accepts_nested_attributes_for :dishes, :allow_destroy => true, :reject_if => :all_blank
 
+  scope :published, where("published_at IS NOT NULL")
+
   def published?
     !!published_at
   end
