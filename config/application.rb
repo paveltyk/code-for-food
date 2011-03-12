@@ -19,7 +19,9 @@ module CodeForFood
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
-    config.active_record.observers = :invitation_observer, :tagging_observer, :dish_tag_observer, :dish_observer, :order_item_observer
+    config.active_record.observers =
+      :invitation_observer, :tagging_observer, :dish_tag_observer,
+      :dish_observer, :order_item_observer, :menu_observer
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -30,7 +32,8 @@ module CodeForFood
     # config.i18n.default_locale = :de
 
     # JavaScript files you want as :defaults (application.js is always included).
-    config.action_view.javascript_expansions[:defaults] = %w(jquery.min rails jquery.placeholder jquery-ui.min jquery.multiselect jquery.elastic jquery.showpassword)
+    config.action_view.javascript_expansions[:defaults] =
+      %w(jquery.min rails jquery.placeholder jquery-ui.min jquery.multiselect jquery.elastic jquery.showpassword)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
