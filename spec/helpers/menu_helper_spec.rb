@@ -11,19 +11,19 @@ describe MenuHelper do
       end
 
       it "returns 13 menu items" do
-        helper.render_menu_calendar.scan(/<li>.*?<\/li>/).should have(13).items
+        helper.render_menu_calendar.scan(/<li[^>]*>.*?<\/li>/).should have(13).items
       end
 
       it "returns one active menu item" do
         helper.render_menu_calendar.scan(/class="active"/).should have(1).item
       end
 
-      it "returns only one link for order" do
-        helper.render_menu_calendar.scan(order_path @menu).should have(1).item
+      it "returns only zero link for order" do
+        helper.render_menu_calendar.should_not match order_path(@menu)
       end
 
-      it "returns 12 paragraps for the rest dates" do
-        helper.render_menu_calendar.scan(/<li><p.*?>.*?<\/p><\/li>/).should have(12).items
+      it "returns 13 paragraps for the rest dates" do
+        helper.render_menu_calendar.scan(/<li[^>]*><p.*?>.*?<\/p><\/li>/).should have(13).items
       end
     end
 
@@ -35,7 +35,7 @@ describe MenuHelper do
       end
 
       it "returns 13 menu items" do
-        helper.render_menu_calendar.scan(/<li>.*?<\/li>/).should have(13).items
+        helper.render_menu_calendar.scan(/<li[^>]*>.*?<\/li>/).should have(13).items
       end
 
       it "returns one active menu item" do
@@ -47,7 +47,7 @@ describe MenuHelper do
       end
 
       it "returns 12 paragraps for the rest dates" do
-        helper.render_menu_calendar.scan(/<li><p.*?>.*?<\/p><\/li>/).should have(12).items
+        helper.render_menu_calendar.scan(/<li[^>]*><p.*?>.*?<\/p><\/li>/).should have(12).items
       end
 
       it "returns a link to show if menu is locked" do
@@ -64,7 +64,7 @@ describe MenuHelper do
       end
 
       it "returns 13 menu items" do
-        helper.render_menu_calendar.scan(/<li>.*?<\/li>/).should have(13).items
+        helper.render_menu_calendar.scan(/<li[^>]*>.*?<\/li>/).should have(13).items
       end
 
       it "returns one active menu item" do
@@ -76,7 +76,7 @@ describe MenuHelper do
       end
 
       it "returns 12 links to create new menu" do
-        helper.render_menu_calendar.scan(/<li><a.*?class=".*?inactive.*?".*?>.*?<\/a><\/li>/).should have(12).items
+        helper.render_menu_calendar.scan(new_menu_path).should have(12).items
       end
     end
   end

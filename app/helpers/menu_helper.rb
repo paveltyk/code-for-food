@@ -1,34 +1,22 @@
 module MenuHelper
   def render_menu_calendar
-    html = ''
-    time_range = 3.days.ago.to_date..-9.days.ago.to_date
-    menus = Menu.where(:date => time_range).all
-    menu_dates = menus.map(&:date)
-    time_range.each do |date|
-      item_text = Russian::strftime(date, "<b>%a</b><em>%B</em>%d").html_safe
-      if menu_dates.include?(date)
-        if menus.select{ |m| m.date == date}.first.try(:locked?)
-          link_path = order_path(:date => date.to_param)
-          item_dom_class =  'active'
-        else
-          link_path = order_path(:date => date.to_param)
-          item_dom_class =  'active'
-        end
-      elsif is_admin?
-        link_path = new_menu_path(:date => date.to_param)
-        item_dom_class =  'inactive'
+    menu_calendar = MenuCalendar.new :dates => 3.days.ago.to_date..9.days.since.to_date
+
+    html_items = menu_calendar.items.map do |item|
+      path = nil
+
+      if item.has_menu?
+        path = order_path(:date => item.date.to_param) if current_user
       else
-        link_path = nil
-        item_dom_class =  'inactive'
+        path = new_menu_path(:date => item.date.to_param) if is_admin?
       end
-      if link_path
-        item_html = link_to item_text, link_path, :class => item_dom_class
-      else
-        item_html = content_tag :p, item_text, :class => item_dom_class
-      end
-      html << content_tag(:li, item_html)
+
+      inner_html = path ? link_to(item.to_html, path) : content_tag(:p, item.to_html)
+      dom_class = item.has_menu? ? 'active' : 'inactive'
+      content_tag(:li, inner_html, :class => dom_class)
     end
-    content_tag(:ul, html.html_safe, :id => 'menu-calendar')
+
+    return content_tag(:ul, html_items.join.html_safe, :id => 'menu-calendar')
   end
 
   def render_menu_management_links(menu = nil)
