@@ -14,8 +14,13 @@ describe MenuHelper do
         helper.render_menu_calendar.scan(/<li[^>]*>.*?<\/li>/).should have(13).items
       end
 
-      it "returns one active menu item" do
+      it "returns one active menu item if menu published" do
+        @menu.publish!
         helper.render_menu_calendar.scan(/class="active"/).should have(1).item
+      end
+
+      it "returns zero active menu item if menu not published" do
+        helper.render_menu_calendar.scan(/class="active"/).should have(0).item
       end
 
       it "returns only zero link for order" do
@@ -38,21 +43,30 @@ describe MenuHelper do
         helper.render_menu_calendar.scan(/<li[^>]*>.*?<\/li>/).should have(13).items
       end
 
-      it "returns one active menu item" do
-        helper.render_menu_calendar.scan(/class="active"/).should have(1).item
+      context 'with published menu' do
+        before(:each) { @menu.publish! }
+
+        it "returns one active menu item" do
+          helper.render_menu_calendar.scan(/class="active"/).should have(1).item
+        end
+
+        it "returns only one link for order" do
+          helper.render_menu_calendar.scan(order_path @menu).should have(1).item
+        end
+
+        it "returns 12 paragraps for the rest dates" do
+          helper.render_menu_calendar.scan(/<li[^>]*><p.*?>.*?<\/p><\/li>/).should have(12).items
+        end
       end
 
-      it "returns only one link for order" do
-        helper.render_menu_calendar.scan(order_path @menu).should have(1).item
-      end
+      context 'with unpublished menu' do
+        it "returns zero active menu items" do
+          helper.render_menu_calendar.scan(/class="active"/).should have(0).item
+        end
 
-      it "returns 12 paragraps for the rest dates" do
-        helper.render_menu_calendar.scan(/<li[^>]*><p.*?>.*?<\/p><\/li>/).should have(12).items
-      end
-
-      it "returns a link to show if menu is locked" do
-        @menu.update_attribute :locked, true
-        helper.render_menu_calendar.scan(/href="#{order_path @menu}"/).should have(1).item
+        it "returns 13 paragraps for the rest dates" do
+          helper.render_menu_calendar.scan(/<li[^>]*><p.*?>.*?<\/p><\/li>/).should have(13).items
+        end
       end
     end
 

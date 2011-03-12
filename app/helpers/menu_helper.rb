@@ -4,15 +4,19 @@ module MenuHelper
 
     html_items = menu_calendar.items.map do |item|
       path = nil
+      dom_classes = []
 
       if item.has_menu?
-        path = order_path(:date => item.date.to_param) if current_user
+        if item.menu.published? || is_admin?
+          path = order_path(:date => item.date.to_param)
+          dom_classes << 'active'
+        end
       else
         path = new_menu_path(:date => item.date.to_param) if is_admin?
       end
 
       inner_html = path ? link_to(item.to_html, path) : content_tag(:p, item.to_html)
-      dom_class = item.has_menu? ? 'active' : 'inactive'
+      dom_class = dom_classes.blank? ? nil : dom_classes.join(' ')
       content_tag(:li, inner_html, :class => dom_class)
     end
 
