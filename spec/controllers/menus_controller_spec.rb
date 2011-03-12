@@ -186,7 +186,7 @@ describe MenusController do
       end
     end
 
-    context 'when not logged in as regular user' do
+    context 'when logged in as regular user' do
       it 'redirects to login' do
         UserSession.create User.make!
         put :lock, :id => 1
@@ -215,6 +215,11 @@ describe MenusController do
           put :lock, :id => 1
           flash[:notice].should_not be_blank
         end
+
+        it 'redirects back' do
+          put :lock, :id => 1
+          response.should redirect_to(:back)
+        end
       end
 
       context 'fail story' do
@@ -223,6 +228,77 @@ describe MenusController do
         it 'set flash error' do
           put :lock, :id => 1
           flash[:error].should_not be_blank
+        end
+
+        it 'redirects back' do
+          put :lock, :id => 1
+          response.should redirect_to(:back)
+        end
+      end
+    end
+  end
+
+  describe 'PUT #publish' do
+    context 'when not logged in' do
+      it 'redirects to login' do
+        put :publish, :id => 1
+        response.should redirect_to(login_path)
+      end
+    end
+
+    context 'when logged in as regular user' do
+      it 'redirects to login' do
+        UserSession.create User.make!
+        put :publish, :id => 1
+        response.should redirect_to(login_path)
+      end
+    end
+
+    context 'when logged in as admin' do
+      let(:menu) { Menu.make! }
+      let(:admin) { menu.administrator }
+
+      before(:each) do
+        controller.stub :current_user => admin
+        request.env["HTTP_REFERER"] = 'http://example.com'
+      end
+
+      it 'publishes the menu' do
+        put :publish, :id => menu.to_param
+        menu.reload.should be_published
+      end
+
+      it 'sends an email' do
+        expect {
+          put :publish, :id => menu.to_param
+        }.to change(ActionMailer::Base.deliveries, :count).by(1)
+      end
+
+      context 'success story' do
+        before(:each) { admin.stub_chain(:menus, :find_by_date).and_return(mock_menu :publish! => true) }
+
+        it 'set flash notice' do
+          put :publish, :id => 1
+          flash[:notice].should_not be_blank
+        end
+
+        it 'redirects back' do
+          put :publish, :id => 1
+          response.should redirect_to(:back)
+        end
+      end
+
+      context 'fail story' do
+        before(:each) { admin.stub_chain(:menus, :find_by_date).and_return(mock_menu :publish! => false) }
+
+        it 'set flash error' do
+          put :publish, :id => 1
+          flash[:error].should_not be_blank
+        end
+
+       it 'redirects back' do
+          put :publish, :id => 1
+          response.should redirect_to(:back)
         end
       end
     end

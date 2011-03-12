@@ -25,6 +25,10 @@ describe MenusController do
     it "recognizes and generates #lock" do
       { :put => "/menus/2010-11-23/lock" }.should route_to(:controller => "menus", :action => "lock", :id => "2010-11-23")
     end
+
+    it "recognizes and generates #publish" do
+      { :put => "/menus/2010-11-23/publish" }.should route_to(:controller => "menus", :action => "publish", :id => "2010-11-23")
+    end
   end
 end
 

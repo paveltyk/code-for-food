@@ -1,6 +1,6 @@
 class MenusController < ApplicationController
   before_filter :require_admin
-  before_filter :assign_menu, :only => [:show, :edit, :update, :lock]
+  before_filter :assign_menu, :only => [:show, :edit, :update, :lock, :publish]
 
   def show
     @orders = @menu.orders
@@ -39,6 +39,16 @@ class MenusController < ApplicationController
       flash[:notice] = 'Меню заблокировано.'
     else
       flash[:error] = 'Не удалось заблокировать меню: ' + @menu.errors.full_messages.join('; ')
+    end
+
+    redirect_to :back
+  end
+
+  def publish
+    if @menu.publish!
+      flash[:notice] = 'Меню опубликовано успешно.'
+    else
+      flash[:error] = 'Не удалось опубликовать меню: ' + @menu.errors.full_messages.join('; ')
     end
 
     redirect_to :back

@@ -38,7 +38,11 @@ module MenuHelper
     links << link_to('Редактировать меню', edit_menu_path(menu), :class => 'button')
     links << link_to('Отчет по заказам', menu, :class => 'button')
     links << link_to('Отчет по позициям', provider_report_for_menu_path(menu), :class => 'button')
-    links << link_to('Заблокировать меню', lock_menu_path(menu), :class => 'button', :method => :put) unless menu.locked?
+    if menu.published?
+      links << link_to('Заблокировать меню', lock_menu_path(menu), :class => 'button', :method => :put) unless menu.locked?
+    else
+      links << link_to('Опубликовать меню', publish_menu_path(menu), :class => 'button', :method => :put)
+    end
     links.join(' ').html_safe
   end
 end

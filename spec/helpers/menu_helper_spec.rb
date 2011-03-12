@@ -83,13 +83,52 @@ describe MenuHelper do
 
   describe '#render_menu_management_links' do
     let(:menu) { Menu.make! }
+    let(:helper_str) { helper.render_menu_management_links(menu) }
 
     it 'returns html_safe string' do
-      helper.render_menu_management_links(menu).should be_html_safe
+      helper_str.should be_html_safe
     end
 
-    it 'has 4 links' do
-      helper.render_menu_management_links(menu).scan(/<a/).should have(4).items
+    it 'has edit menu link' do
+      helper_str.should match edit_menu_path(menu)
+    end
+
+    it 'has menu orders report link' do
+      helper_str.should match menu_path(menu)
+    end
+
+    it 'has menu provider report link' do
+      helper_str.should match provider_report_for_menu_path(menu)
+    end
+
+    context 'when menu locked' do
+      before(:each) { menu.update_attribute :locked, true }
+
+      it 'does not have lock menu link' do
+        helper_str.should_not match lock_menu_path(menu)
+      end
+    end
+
+    context 'when menu not published' do
+      it 'does not have lock menu link' do
+        helper_str.should_not match lock_menu_path(menu)
+      end
+
+      it 'has publish menu link' do
+        helper_str.should match publish_menu_path(menu)
+      end
+    end
+
+    context 'when menu published' do
+      before(:each) { menu.publish! }
+
+      it 'has lock menu link' do
+        helper_str.should match lock_menu_path(menu)
+      end
+
+      it 'does not have publish menu link' do
+        helper_str.should_not match publish_menu_path(menu)
+      end
     end
   end
 end

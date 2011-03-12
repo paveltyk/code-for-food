@@ -16,8 +16,7 @@ class Menu < ActiveRecord::Base
 
   def publish!
     self.published_at = Time.now
-    save unless new_record?
-    published_at
+    new_record? ? published_at : save
   end
 
   def to_s
