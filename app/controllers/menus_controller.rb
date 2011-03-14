@@ -26,6 +26,10 @@ class MenusController < ApplicationController
   end
 
   def update
+    if params[:menu][:dishes_attributes]
+      params[:menu][:dishes_attributes].each_value { |d| d[:tag_ids] ||= [] }
+    end
+
     if @menu.update_attributes(params[:menu])
       flash[:notice] = 'Меню обновлено успешно.'
       redirect_to order_path(@menu)
