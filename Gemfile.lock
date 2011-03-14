@@ -97,6 +97,7 @@ GEM
       fastthread (>= 1.0.1)
       gem_plugin (>= 0.2.3)
     mysql2 (0.2.6)
+    nokogiri (1.4.4)
     pg (0.10.1)
     polyglot (0.3.1)
     rack (1.2.1)
@@ -159,6 +160,10 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
+    webrat (0.7.1)
+      nokogiri (>= 1.2.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5.3)
 
 PLATFORMS
   ruby
@@ -176,3 +181,4 @@ DEPENDENCIES
   rcov (~> 0.9)
   rspec-rails (~> 2.5)
   russian
+  webrat
