@@ -6,7 +6,7 @@ class OrderItem < ActiveRecord::Base
   belongs_to :order
 
   validates_presence_of :dish, :order
-  validates_numericality_of :quantity, :only_integer => true, :greater_than => 0
+  validates_numericality_of :quantity, :only_integer => true, :greater_than => 0, :less_than => 100
   validate :dish_belongs_to_menu, :if => "order.try(:menu) && dish.try(:menu)"
 
   private

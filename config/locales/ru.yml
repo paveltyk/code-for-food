@@ -83,6 +83,8 @@ ru:
         name: "Название"
         value: "Стоимость"
         description: "Описание"
+      order_item:
+        quantity: "Количество"
 
       # Например,
       #   user:

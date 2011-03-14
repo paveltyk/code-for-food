@@ -27,6 +27,13 @@ describe OrderItem do
       end
     end
 
+    it "not valid if quantity is greater than 99" do
+      OrderItem.make(:quantity => 100).tap do |oi|
+        oi.should_not be_valid
+        oi.should have_at_least(1).error_on(:quantity)
+      end
+    end
+
     it "not valid if quantity is not integer" do
       OrderItem.make(:quantity => 1.5).tap do |oi|
         oi.should_not be_valid
