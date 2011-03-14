@@ -127,6 +127,35 @@ describe OrdersController do
         end
       end
     end
+
+    describe 'DELETE #destroy' do
+      before(:each) {request.env['HTTP_REFERER'] = 'http://example.com'}
+
+      it 'destroys an order' do
+        order
+        expect {
+          delete :destroy, :date => order.menu.to_param
+        }.to change(Order, :count).by(-1)
+      end
+
+      it 'redirects back' do
+        delete :destroy, :date => order.menu.to_param
+        response.should redirect_to(:back)
+      end
+
+      it 'sets a flash notice' do
+        delete :destroy, :date => order.menu.to_param
+        flash[:notice].should_not be_blank
+      end
+
+      it 'does not destroy an order if it is locked' do
+        menu.update_attribute :locked, true
+        order
+        expect {
+            delete :destroy, :date => order.menu.to_param
+          }.to_not change(Order, :count)
+      end
+    end
   end
 
   context "when not logged in" do
@@ -147,6 +176,13 @@ describe OrdersController do
     describe 'PUT #update' do
       it 'redirects to login' do
         put :update, :date => '2001-01-01'
+        response.should redirect_to(login_path)
+      end
+    end
+
+    describe 'DELETE #destroy' do
+      it 'redirects to login' do
+        put :destroy, :date => '2001-01-01'
         response.should redirect_to(login_path)
       end
     end

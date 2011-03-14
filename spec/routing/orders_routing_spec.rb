@@ -17,6 +17,10 @@ describe OrdersController do
     it "recognizes and generates #show as root path" do
       { :get => "/" }.should route_to(:controller => "orders", :action => "show", :date => "today")
     end
+
+    it "recognizes and generates #destroy" do
+      { :delete => "2010-11-23/order" }.should route_to(:controller => "orders", :action => "destroy", :date => "2010-11-23")
+    end
   end
 end
 

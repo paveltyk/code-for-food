@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :require_user
   before_filter :assign_menu
-  before_filter :protect_locked_menu, :only => [:create, :update]
+  before_filter :protect_locked_menu, :only => [:create, :update, :destroy]
 
   def show
     @order = current_user.orders.find_or_initialize_by_menu_id @menu.id
@@ -29,6 +29,13 @@ class OrdersController < ApplicationController
     else
       render :action => :new
     end
+  end
+
+  def destroy
+    @order = current_user.orders.find_by_menu_id @menu.id
+    @order.destroy
+    flash[:notice] = "Заказ на \"#{@menu}\" отменен успешно."
+    redirect_to :back
   end
 
   private

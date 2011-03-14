@@ -15,7 +15,9 @@
     %li.total
       Итого:
       %span= @order.price
-    %li= submit_tag "Заказать"
+    %li
+      = submit_tag "Заказать"
+      = link_to "Отменить заказ", order_path(:date => @menu.date.to_s(:db)), :class => 'button', :method => :delete unless @order.new_record?
   - if is_admin?
     %li.admin-links
       = render_menu_management_links
