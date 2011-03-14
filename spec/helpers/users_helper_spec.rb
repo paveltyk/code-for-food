@@ -27,10 +27,6 @@ describe UsersHelper do
     context "when logged in as Administrator" do
       before(:each) { helper.stub :current_user => Administrator.make, :is_admin? => true }
 
-      it "renders new menu link" do
-        helper.user_nav.should match(new_menu_path)
-      end
-
       it "renders tags link" do
         helper.user_nav.should match(dish_tags_path)
       end
