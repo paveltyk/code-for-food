@@ -1,6 +1,7 @@
 %h1=raw "Заказ на \"<span>#{@menu}</span>\""
 %ul.order
   = form_for @order, :url => order_path(:date => @menu.date.to_s(:db)) do |f|
+    = render_errors_for @order
     = f.fields_for :menu_items do |oi|
       %li
         = oi.hidden_field :dish_id

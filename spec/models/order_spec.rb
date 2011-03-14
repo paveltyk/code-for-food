@@ -2,16 +2,27 @@ require 'spec_helper'
 
 describe Order do
   describe "validation" do
+    let(:order) { Order.make }
     it "valid" do
-      Order.make.should be_valid
+      order.should be_valid
     end
 
     it "not valid if user is blank" do
-      Order.make(:user => nil).should_not be_valid
+      order.user = nil
+      order.should_not be_valid
+      order.should have_at_least(1).error_on(:user)
     end
 
     it "not valid if menu is blank" do
-      Order.make(:menu => nil).should_not be_valid
+      order.menu = nil
+      order.should_not be_valid
+      order.should have_at_least(1).error_on(:menu)
+    end
+
+    it "not valid if there is no order items" do
+      order.order_items = []
+      order.should_not be_valid
+      order.should have_at_least(1).error_on(:base)
     end
   end
 

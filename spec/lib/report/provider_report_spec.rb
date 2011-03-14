@@ -9,11 +9,11 @@ describe Report::ProviderReport do
     before(:each) { 2.times { OrderItem.make! :dish => dish, :order => order } }
 
     it 'do not add same item twice' do
-      Report::ProviderReport.new(menu).items.should have(1).element
+      Report::ProviderReport.new(menu).items.should have(2).elements
     end
 
     it 'summarize quantities for the same items' do
-      Report::ProviderReport.new(menu).items.first.qtt.should eql 2
+      Report::ProviderReport.new(menu).items.last.qtt.should eql 2
     end
   end
 end

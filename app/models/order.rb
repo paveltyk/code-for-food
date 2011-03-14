@@ -7,6 +7,7 @@ class Order < ActiveRecord::Base
   has_many :dishes, :through => :order_items, :uniq => true
 
   validates_presence_of :user, :menu
+  validate :validate_order_items_quantity
 
   before_validation :update_price
 
@@ -29,6 +30,12 @@ class Order < ActiveRecord::Base
   def update_price!
     update_price
     save
+  end
+
+  private
+
+  def validate_order_items_quantity
+    errors.add :base, 'Заказ не может быть пустым' if order_items.blank?
   end
 end
 

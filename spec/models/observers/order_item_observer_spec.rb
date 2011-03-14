@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe OrderItemObserver do
   before(:each) { OrderItemObserver.instance }
-  let(:order_item) { OrderItem.make! }
+  let(:order_item) { Order.make!.order_items.first }
 
   it "updates order price after order item removed" do
     order = order_item.order.tap(&:update_price!)

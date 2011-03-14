@@ -34,6 +34,7 @@ end
 Order.blueprint do
   user
   menu
+  order_items { [OrderItem.make :order => object] }
 end
 
 Administrator.blueprint do

@@ -87,17 +87,17 @@ describe OrdersController do
     end
 
     describe 'PUT #update' do
-      let(:attrs_for_first_dish) { { :dish_id => order.menu.dishes.first.id, :quantity => 1, :is_ordered => '1'} }
+      let(:attrs_for_first_dish) { { :dish_id => order.menu.dishes.last.id, :quantity => 1, :is_ordered => '1'} }
       let(:order) do
         Order.make!(:user => logged_in_user).tap do |order|
-          2.times { order.menu.dishes << Dish.make! }
+          order.menu.dishes << Dish.make!
         end
       end
 
       it "updates order with new data" do
         expect {
-          put :update, :date => order.menu.date.to_s(:db), :order => { :menu_items_attributes => { 0 => attrs_for_first_dish } }
-        }.to change(order.order_items, :count).by(1)
+          put :update, :date => order.menu.to_param, :order => { :menu_items_attributes => { 0 => attrs_for_first_dish } }
+        }.to change(OrderItem, :count).by(1)
       end
 
       it 'renders "no_menu" if menu not found' do
