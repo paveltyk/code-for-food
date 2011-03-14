@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   end
 
   attr_accessor :validate_invitation
-  attr_accessible :email, :name, :password, :password_confirmation, :invitation_token
+  attr_accessible :email, :name, :password, :password_confirmation, :invitation_token, :receive_notifications
 
   has_many :orders, :dependent => :destroy, :inverse_of => :user do
     def total

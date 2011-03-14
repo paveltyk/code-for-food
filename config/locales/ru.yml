@@ -73,6 +73,7 @@ ru:
     attributes:
       user:
         email: "e-Mail"
+        receive_notifications: "Получать уведомления"
       dish:
         name: "Название"
         price: "Цена"
