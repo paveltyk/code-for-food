@@ -8,7 +8,7 @@ class Mailer < ActionMailer::Base
 
   def menu_published(menu)
     @menu = menu
-    @users = User.all
+    @users = User.where(:receive_notifications => true).all
     add_recipients @users.map(&:email)
     substitute '{user_name}', @users.map(&:to_s)
     mail :from => 'no-reply@code-for-food.info',

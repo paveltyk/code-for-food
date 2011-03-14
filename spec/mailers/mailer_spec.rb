@@ -17,6 +17,7 @@ describe Mailer do
   end
 
   describe '#menu_published' do
+    before(:each) { User.destroy_all }
     let(:menu) { Menu.make! }
     let(:mail) { Mailer.menu_published(menu) }
 
@@ -28,6 +29,22 @@ describe Mailer do
 
     it 'renders the menu order link in the body' do
       mail.body.encoded.should match order_url(menu)
+    end
+
+    context 'send grid' do
+      it 'assigns multiple recipients' do
+        User.make!
+        mail # to create Administrator and menu
+        emails = User.all.map(&:email)
+        emails.size.should > 1
+        mail.to_s.should include(emails.inspect)
+      end
+
+      it 'does not include unsubscribed recipients' do
+        user = User.make! :receive_notifications => false
+        mail
+        mail.to_s.should_not include(user.email)
+      end
     end
   end
 
