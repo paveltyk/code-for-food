@@ -42,7 +42,8 @@ class OrdersController < ApplicationController
 
   def assign_menu
     params[:date] = Time.now.to_date.to_s(:db) if params[:date] == 'today'
-    @menu = Menu.find_by_date params[:date]
+    scope = is_admin? ? Menu : Menu.published
+    @menu = scope.find_by_date params[:date]
     render :action => :no_menu unless @menu
   end
 
