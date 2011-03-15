@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :require_user
   before_filter :assign_menu
+  before_filter :protect_unpublished_menu, :only => [:show, :create]
   before_filter :protect_locked_menu, :only => [:create, :update, :destroy]
 
   def show
@@ -42,9 +43,13 @@ class OrdersController < ApplicationController
 
   def assign_menu
     params[:date] = Time.now.to_date.to_s(:db) if params[:date] == 'today'
-    scope = is_admin? ? Menu : Menu.published
-    @menu = scope.find_by_date params[:date]
+    @menu = Menu.find_by_date params[:date]
     render :action => :no_menu unless @menu
+  end
+
+  def protect_unpublished_menu
+    return if is_admin?
+    render :action => :no_menu unless @menu.published?
   end
 
   def protect_locked_menu

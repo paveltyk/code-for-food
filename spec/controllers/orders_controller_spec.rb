@@ -58,7 +58,7 @@ describe OrdersController do
       end
 
       it 'renders "no_menu" if menu not found' do
-        Menu.stub_chain(:published, :find_by_date).and_return(nil)
+        Menu.stub :find_by_date => nil
         get :show, :date => '2011-11-11'
         response.should render_template('no_menu')
       end
@@ -126,7 +126,6 @@ describe OrdersController do
           Dish.make! :menu => order.menu
         end
       end
-      before(:each) { menu.publish! }
 
       it "updates order with new data" do
         expect {
@@ -136,15 +135,14 @@ describe OrdersController do
 
       it 'redirects with an error flash message if menu is blocked' do
         order.menu.update_attribute :locked, true
-        order.menu.publish!
-        post :create, :date => order.menu.to_param
+        put :update, :date => order.menu.to_param
         response.should redirect_to(:action => :show)
         flash[:error].should_not be_blank
       end
 
       context 'fail story' do
         before(:each) do
-          Menu.stub_chain(:published, :find_by_date).and_return(order.menu)
+          Menu.stub :find_by_date => order.menu
           user.stub_chain(:orders ,:find_by_menu_id).and_return(mock_order :update_attributes => false)
           user.stub_chain(:orders ,:any?).and_return(false)
         end
@@ -156,17 +154,14 @@ describe OrdersController do
       end
 
       it 'renders "no_menu" if menu not found' do
-        Menu.stub_chain(:published, :find_by_date).and_return(nil)
+        Menu.stub :find_by_date => nil
         put :update, :date => '2011-11-11'
         response.should render_template('no_menu')
       end
     end
 
     describe 'DELETE #destroy' do
-      before(:each) do
-        request.env['HTTP_REFERER'] = 'http://example.com'
-        menu.publish!
-      end
+      before(:each) { request.env['HTTP_REFERER'] = 'http://example.com' }
 
       it 'destroys an order' do
         order
