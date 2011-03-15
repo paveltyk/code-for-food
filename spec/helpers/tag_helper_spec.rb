@@ -6,12 +6,8 @@ describe TagHelper do
       helper.render_tags([DishTag.make, DishTag.make]).scan(/<\/span>/).should have(2).items
     end
 
-    it "renders price with sign (minus)" do
-      helper.render_tags([DishTag.make :value => -100, :name => 'Hello']).should match(/Hello -100/i)
-    end
-
-    it "renders price with sign (plus)" do
-      helper.render_tags([DishTag.make :value => 100, :name => 'Hello']).should match(/Hello \+100/i)
+    it "renders tag name" do
+      helper.render_tags([DishTag.make :name => 'Hello']).should match(/Hello/i)
     end
   end
 end
