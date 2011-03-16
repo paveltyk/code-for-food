@@ -55,3 +55,8 @@ Tagging.blueprint do
   dish_tag
 end
 
+PaymentTransaction.blueprint do
+  user
+  value { 999_000 - rand(1_998_000) } #-999_000 .. 999_000
+end
+
