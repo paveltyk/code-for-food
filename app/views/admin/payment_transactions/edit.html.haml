@@ -1,0 +1,6 @@
+%h1= "Изменении транзакции пользователя #{@user} (#{@payment_transaction})"
+
+= render 'form'
+%hr
+= link_to 'К списку всех транзакций', admin_user_payment_transactions_path, :class => 'button'
+

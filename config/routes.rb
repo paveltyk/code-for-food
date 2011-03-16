@@ -1,4 +1,5 @@
 CodeForFood::Application.routes.draw do
+
   resources :invitations, :only => [:show, :new, :create]
   resources :menus do
     member do
@@ -8,9 +9,12 @@ CodeForFood::Application.routes.draw do
     end
   end
   resources :tags, :as => :dish_tags
+
   namespace :admin do
     root :to => "users#index"
-    resources :users
+    resources :users do
+      resources :payment_transactions, :except => :show
+    end
   end
 
   match "/login" => "sessions#new", :as => :login, :via => :get

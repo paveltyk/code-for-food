@@ -1,0 +1,6 @@
+= form_for [:admin, @user, @payment_transaction], :html => {:id => 'transaction'} do |f|
+  = render_errors_for @payment_transaction
+  = f.text_field :value, :placeholder => 'Платеж'
+  = f.text_area :description, :placeholder => 'Описание'
+  = f.submit 'Сохранить'
+

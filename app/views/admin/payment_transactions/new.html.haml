@@ -1,0 +1,6 @@
+%h1= "Новая транзакция для пользователя #{@user}"
+
+= render 'form'
+%hr
+= link_to 'К списку всех транзакций', admin_user_payment_transactions_path, :class => 'button'
+

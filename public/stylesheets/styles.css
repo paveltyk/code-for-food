@@ -92,6 +92,11 @@ form#tags {}
 form#tags input[type="text"] {display:block;margin:15px 0;font-size:22px;padding:4px 5px;}
 form#tags input[type="submit"] {display:block;margin:15px 0;}
 
+form#transaction {}
+form#transaction input[type="text"], form#transaction textarea {display:block;margin:15px 0;font-size:22px;padding:4px 5px;width:300px;}
+form#transaction textarea {height:150px;}
+form#transaction input[type="submit"] {display:block;margin:15px 0;}
+
 ul#tag-list {}
 ul#tag-list li a.inactive {opacity:.6}
 ul#tag-list li a {text-decoration:none;}

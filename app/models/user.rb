@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
     end
   end
   belongs_to :invitation
+  has_many :payment_transactions, :inverse_of => :user, :dependent => :destroy
 
   with_options :if => 'validate_invitation' do |user|
     user.validates_presence_of :invitation, :message => 'is required'
