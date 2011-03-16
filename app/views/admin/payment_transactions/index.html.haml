@@ -1,4 +1,6 @@
-%h1= "Транзакции пользователя #{@user}"
+%h1
+  = "Транзакции пользователя #{@user}"
+  = raw "(итого <span>#{number_with_delimiter @user.payment_transactions.total}</span>)"
 
 %table.defaults
   %thead
@@ -11,13 +13,13 @@
     - @payment_transactions.each do |transaction|
       %tr
         %td= transaction
-        %td= transaction.value
+        %td= number_with_delimiter transaction.value
         %td= transaction.description
         %td
           = link_to 'Изменить', edit_admin_user_payment_transaction_path(@user, transaction)
           = link_to 'Удалить', [:admin, @user, transaction], :confirm => 'Вы уверены?', :method => :delete
-
-%br
-
+%hr
 = link_to 'Добавить транзакцию', new_admin_user_payment_transaction_path(@user), :class => 'button'
+= link_to 'Показать заказы', admin_user_path(@user), :class => 'button'
+= link_to 'К списку пользователей', admin_users_path, :class => 'button'
 

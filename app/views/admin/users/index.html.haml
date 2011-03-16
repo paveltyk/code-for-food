@@ -1,16 +1,20 @@
 %h1 Список пользователей
-%table.defaults
+%table.user-list.defaults
   %thead
     %tr
       %th Имя
       %th e-Mail
+      %th Сумма заказов
+      %th Внесено в кассу
       %th Баланс
   %tbody
     - @users.each do |user|
-      %tr
-        %td= link_to user, [:admin, user]
+      %tr{:class => ('debtor' if user.balance < 0)}
+        %td= user
         %td= user.email
-        %td= link_to balance_calculation(user), admin_user_payment_transactions_path(user)
+        %td= link_to number_with_delimiter(user.orders.total), [:admin, user]
+        %td= link_to number_with_delimiter(user.payment_transactions.total), admin_user_payment_transactions_path(user)
+        %td.balance= number_with_delimiter user.balance
 %hr
 = link_to 'Пригласить пользователя', new_invitation_path, :class => 'button'
 
