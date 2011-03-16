@@ -12,11 +12,19 @@ class User < ActiveRecord::Base
     end
   end
   belongs_to :invitation
-  has_many :payment_transactions, :inverse_of => :user, :dependent => :destroy
+  has_many :payment_transactions, :inverse_of => :user, :dependent => :destroy do
+    def total
+      sum(:value)
+    end
+  end
 
   with_options :if => 'validate_invitation' do |user|
     user.validates_presence_of :invitation, :message => 'is required'
     user.validates_uniqueness_of :invitation_id, :if => 'invitation.present?'
+  end
+
+  def balance
+    orders.total - payment_transactions.total
   end
 
   def invitation_token

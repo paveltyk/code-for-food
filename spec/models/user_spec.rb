@@ -44,5 +44,28 @@ describe User do
       end
     end
   end
+
+  describe 'payment_transactions relation' do
+    let(:user) { User.make! }
+    describe '#total' do
+      it 'returns sum for all payment transactions' do
+        2.times { user.payment_transactions.create! :value => 100 }
+        user.payment_transactions.total.should eq 200
+      end
+
+      it 'returns zero if there is no transactions' do
+        user.payment_transactions.total.should eq 0
+      end
+    end
+  end
+
+  describe '#balance' do
+    let(:user) { User.make! }
+    it 'returns #orders.total - #payment_transactions.total' do
+      order = Order.make! :user => user
+      transaction = PaymentTransaction.make! :user => user
+      user.balance.should eql(order.price - transaction.value)
+    end
+  end
 end
 
