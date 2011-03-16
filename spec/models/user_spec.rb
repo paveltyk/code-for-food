@@ -61,10 +61,10 @@ describe User do
 
   describe '#balance' do
     let(:user) { User.make! }
-    it 'returns #orders.total - #payment_transactions.total' do
+    it 'returns #payment_transactions.total - #orders.total' do
       order = Order.make! :user => user
       transaction = PaymentTransaction.make! :user => user
-      user.balance.should eql(order.price - transaction.value)
+      user.balance.should eql(transaction.value - order.price)
     end
   end
 end

@@ -4,11 +4,13 @@
     %tr
       %th Имя
       %th e-Mail
+      %th Баланс
   %tbody
     - @users.each do |user|
       %tr
         %td= link_to user, [:admin, user]
         %td= user.email
+        %td= link_to balance_calculation(user), admin_user_payment_transactions_path(user)
 %hr
 = link_to 'Пригласить пользователя', new_invitation_path, :class => 'button'
 

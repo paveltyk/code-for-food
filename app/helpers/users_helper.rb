@@ -13,5 +13,9 @@ module UsersHelper
     end
     content_tag :ul, links.map { |link| content_tag :li, link }.join(content_tag :li, '|', :class => 'separator').html_safe, :id => 'user-nav'
   end
+
+  def balance_calculation(user)
+    "#{number_with_delimiter user.balance} (#{user.payment_transactions.total} - #{user.orders.total})"
+  end
 end
 

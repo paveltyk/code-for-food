@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def balance
-    orders.total - payment_transactions.total
+    payment_transactions.total - orders.total
   end
 
   def invitation_token
