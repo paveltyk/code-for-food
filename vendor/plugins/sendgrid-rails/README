@@ -1,6 +1,0 @@
-SendGrid plugin that extends ActionMailer::Base functionality.
-AM extended with :add_recipients, :substitute, :uniq_args, :category, and :add_filter_setting methods.
-For more information please refer to: http://sendgrid.com/documentation/map#api
-
-In future this plugin for Rails 3 might become a gem.
-

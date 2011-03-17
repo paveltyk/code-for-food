@@ -37,7 +37,7 @@ describe Mailer do
         mail # to create Administrator and menu
         emails = User.all.map(&:email)
         emails.size.should > 1
-        mail.to_s.should include(emails.inspect)
+        mail.to_s.should include(emails.to_json)
       end
 
       it 'does not include unsubscribed recipients' do
