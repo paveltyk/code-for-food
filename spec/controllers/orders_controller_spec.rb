@@ -57,10 +57,18 @@ describe OrdersController do
         end
       end
 
-      it 'renders "no_menu" if menu not found' do
-        Menu.stub :find_by_date => nil
-        get :show, :date => '2011-11-11'
-        response.should render_template('no_menu')
+      context 'when menu not found' do
+        before(:each) { Menu.stub :find_by_date => nil }
+
+        it 'renders "no_menu" if menu not found' do
+          get :show, :date => '2011-11-11'
+          response.should render_template('no_menu')
+        end
+
+        it 'renders "no_menu" with correct date' do
+          get :show, :date => '2011-12-22'
+          response.body.should include('22.12')
+        end
       end
     end
 

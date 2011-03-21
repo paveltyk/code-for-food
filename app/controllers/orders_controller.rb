@@ -42,8 +42,9 @@ class OrdersController < ApplicationController
   private
 
   def assign_menu
-    params[:date] = Time.now.to_date.to_s(:db) if params[:date] == 'today'
-    @menu = Menu.find_by_date params[:date]
+    @date = params[:date]
+    @date = @date == 'today' ? Date.today : Date.parse(@date)
+    @menu = Menu.find_by_date @date
     render :action => :no_menu unless @menu
   end
 
