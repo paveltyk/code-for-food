@@ -7,7 +7,7 @@
         = oi.hidden_field :dish_id
         = render_errors_for oi.object
         = oi.check_box :is_ordered, :class => 'order-item-select'
-        = oi.label :is_ordered, "#{oi.object.dish.name} - <span class=\"price\">#{number_with_delimiter oi.object.dish.total_price}</span>".html_safe
+        = label_for_menu_item oi
         %span.quantity
           x&nbsp;
           = oi.text_field :quantity

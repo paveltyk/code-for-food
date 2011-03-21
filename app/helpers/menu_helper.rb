@@ -42,5 +42,13 @@ module MenuHelper
     end
     links.join(' ').html_safe
   end
+
+  def label_for_menu_item(item_renderer)
+    dish = item_renderer.object.dish
+    price_element = content_tag(:span, number_with_delimiter(dish.total_price), :class => 'price')
+    text = "#{h dish.name} - #{price_element}".html_safe
+    title = [dish.description, dish.weight].delete_if{ |t| t.blank? }.join(' ')
+    item_renderer.label :is_ordered, text, :title => title
+  end
 end
 
