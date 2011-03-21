@@ -5,6 +5,5 @@
   = f.label :receive_notifications
   = f.text_field :name, :placeholder => 'Имя'
 = f.password_field :password, :placeholder => 'Пароль'
-= check_box_tag 'show-password'
-= label_tag 'show-password', 'Показать пароль'
+= f.password_field :password_confirmation, :placeholder => 'Подтверждение пароля'
 

@@ -93,9 +93,7 @@ function bootstrap_menu_multiselects() {
 }
 
 $(function(){
-  $('#user_password').showPassword('#show-password');
   $('input[placeholder], textarea[placeholder]').placeholder();
-
   $('.menu a.remove').live('click', function(){
     if (confirm('Вы уверены?')) {
       remove_menu_item($(this).closest('.menu-item'));
