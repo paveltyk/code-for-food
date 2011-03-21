@@ -2,6 +2,7 @@ module UsersHelper
   def user_nav
     links = []
     if current_user
+      links << current_user.email
       if is_admin?
         links << link_to('Пользователи', admin_users_path)
         links << link_to('Метки', dish_tags_path)
