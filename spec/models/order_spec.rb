@@ -52,6 +52,12 @@ describe Order do
         order.menu_items_attributes = { "0" => attrs_for_first_dish.merge(:is_ordered => '0') }
         order.order_items.should have(0).item
       end
+
+      it "not fails if ordered menu_item quantity is nil" do
+        order.menu_items_attributes = { "0" => attrs_for_first_dish.merge(:is_ordered => '1', :quantity => nil) }
+        order.order_items.should have(1).item
+        expect { order.save! }.to raise_error(ActiveRecord::RecordInvalid)
+      end
     end
 
     describe "price calculation" do

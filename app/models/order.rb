@@ -24,7 +24,7 @@ class Order < ActiveRecord::Base
   end
 
   def update_price
-    self.price = order_items.map{ |oi| oi.dish.total_price * oi.quantity }.sum
+    self.price = order_items.map{ |oi| oi.dish.total_price * (oi.quantity || 0) }.sum
   end
 
   def update_price!
