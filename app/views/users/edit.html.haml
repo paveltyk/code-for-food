@@ -3,5 +3,5 @@
 = form_for @user, :url => profile_path, :html => { :id => 'registration' } do |f|
   = render_errors_for @user
   = render :partial => "users/fields", :locals => { :f => f }
-  = f.submit 'Сохранить'
+  .field= f.submit 'Сохранить'
 

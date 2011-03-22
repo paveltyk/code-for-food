@@ -1,9 +1,10 @@
 = f.hidden_field :invitation_token
-= f.text_field :email, :placeholder => 'e-Mail'
+.field= f.text_field :email, :placeholder => 'e-Mail'
 - unless f.object.new_record?
-  = f.check_box :receive_notifications
-  = f.label :receive_notifications
-  = f.text_field :name, :placeholder => 'Имя'
-= f.password_field :password, :placeholder => 'Пароль'
-= f.password_field :password_confirmation, :placeholder => 'Подтверждение пароля'
+  .field
+    = f.check_box :receive_notifications
+    = f.label :receive_notifications
+  .field= f.text_field :name, :placeholder => 'Имя'
+.field= f.password_field :password, :placeholder => 'Пароль'
+.field= f.password_field :password_confirmation, :placeholder => 'Подтверждение пароля'
 

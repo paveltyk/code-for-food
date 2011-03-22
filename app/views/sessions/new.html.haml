@@ -2,7 +2,7 @@
 
 = form_for @user_session, :url => login_path, :html => { :id => 'login' } do |f|
   = render_errors_for @user_session
-  = f.text_field :email, :placeholder => 'Почта'
-  = f.password_field :password, :placeholder => 'Пароль'
-  = f.submit "Войти"
+  .field= f.text_field :email, :placeholder => 'Почта'
+  .field= f.password_field :password, :placeholder => 'Пароль', :id => nil
+  .field= f.submit "Войти"
 
