@@ -58,6 +58,13 @@ describe Order do
         order.order_items.should have(1).item
         expect { order.save! }.to raise_error(ActiveRecord::RecordInvalid)
       end
+
+      it "not fails if ordered menu_item dish id does not exist" do
+        order.menu_items_attributes = { "0" => attrs_for_first_dish.merge(:is_ordered => '1', :quantity => nil, :dish_id => 0) }
+        order.order_items.should have(1).item
+        expect { order.valid? }.to_not raise_error
+        order.price.should eql(0)
+      end
     end
 
     describe "price calculation" do
