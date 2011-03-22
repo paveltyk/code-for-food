@@ -10,7 +10,9 @@
     = render :partial => 'layouts/google_analytics' if Rails.env.production?
   %body
     #top-bar
-      #beta *beta
+      #beta
+        *beta
+        = " | #{Rails.env}" unless Rails.env.production?
       = user_nav
     #header
       = render_menu_calendar
