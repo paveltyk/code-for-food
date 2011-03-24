@@ -122,3 +122,6 @@ table.orders tfoot td {border:none;font-size:14px;}
 table.orders tfoot td.total-text {text-align:right;}
 table.orders tfoot td.price {font-weight:bold;}
 
+form.feedback {}
+form.feedback textarea {font-size:22px;padding:4px 10px;width:650px;margin:10px 0;height:300px;}
+

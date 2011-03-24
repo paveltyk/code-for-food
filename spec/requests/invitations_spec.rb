@@ -9,7 +9,7 @@ describe "Invitations" do
 
     it "sends an email" do
       expect {
-        get resend_invitation_path(invitation)
+        put resend_invitation_path(invitation)
       }.to change(ActionMailer::Base.deliveries, :count).by(1)
     end
   end

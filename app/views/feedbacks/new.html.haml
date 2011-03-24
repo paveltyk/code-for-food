@@ -1,0 +1,7 @@
+%h1 Оставьте Ваше предложение
+
+= form_for @feedback, :html => {:class => 'feedback'} do |f|
+  = render_errors_for @feedback
+  .field= f.text_area :body, :placeholder => 'Сообщение'
+  = submit_tag 'Отправить'
+

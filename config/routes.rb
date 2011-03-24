@@ -14,6 +14,7 @@ CodeForFood::Application.routes.draw do
     end
   end
   resources :tags, :as => :dish_tags
+  resources :feedbacks, :only => [:new, :create]
 
   namespace :admin do
     root :to => "users#index"

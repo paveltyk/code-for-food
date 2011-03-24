@@ -85,6 +85,8 @@ ru:
         description: "Описание"
       order_item:
         quantity: "Количество"
+      feedback:
+        body: 'Сообщение'
 
       # Например,
       #   user:
