@@ -51,6 +51,7 @@ ul#menu-calendar li.ordered span.icon.m2 {display:block;background-position:-48p
 
 h1 {font-size:1.6em;color:#62796D;margin-bottom:10px;font-weight:normal;}
 h1 span {color:#A51618;}
+h2 {font-size:1.4em;color:#62796D;margin-bottom:10px;font-weight:normal;}
 
 form#login input[type="text"], form#login input[type="password"] {display:block;font-size:22px;padding:4px 10px;width:378px;margin:10px 0;}
 form#login #user_session_email {}
