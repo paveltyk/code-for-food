@@ -1,0 +1,22 @@
+%h1=raw "Редактирование заказа пользователя #{h @order.user} на \"<span>#{@order.menu}</span>\""
+
+%ul.order
+  = form_for [:admin, @order] do |f|
+    = render_errors_for @order
+    = f.fields_for :menu_items do |oi|
+      %li
+        = oi.hidden_field :dish_id
+        = render_errors_for oi.object
+        = oi.check_box :is_ordered, :class => 'order-item-select'
+        = label_for_menu_item oi
+        %span.quantity
+          x&nbsp;
+          = oi.text_field :quantity
+        = render_tags oi.object.dish.tags
+    %li.total
+      Итого:
+      %span= @order.price
+    %li
+      = submit_tag "Сохранить"
+      = link_to 'Назад', [:admin, @order], :class => 'button'
+

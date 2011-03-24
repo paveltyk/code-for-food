@@ -9,7 +9,7 @@
       %th Сумма
   - @orders.each do |order|
     %tr
-      %td= order.menu
+      %td= link_to order.menu, [:admin, order]
       %td= number_with_delimiter order.price
 
 %hr

@@ -1,0 +1,17 @@
+%h1=raw "Заказ пользователя #{h @order.user} на \"<span>#{@order.menu}</span>\""
+- @menu = @order.menu
+%ul.order.show
+  - @order.order_items.each do |oi|
+    %li.selected
+      = "#{oi.dish.name} - <span class=\"price\">#{number_with_delimiter oi.dish.total_price}</span>".html_safe
+      %span.quantity
+        x&nbsp;
+        = oi.quantity
+      = render_tags oi.dish.tags
+  %li.total
+    Итого:
+    %span= number_with_delimiter @order.price
+  %li.admin-links
+    = link_to 'Редактировать заказ', edit_admin_order_path(@order), :class => 'button'
+    = link_to 'Показать заказы пользователя', [:admin, @order.user], :class => 'button'
+

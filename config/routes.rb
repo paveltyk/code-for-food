@@ -21,6 +21,7 @@ CodeForFood::Application.routes.draw do
     resources :users do
       resources :payment_transactions, :except => :show
     end
+    resources :orders
   end
 
   match "/login" => "sessions#new", :as => :login, :via => :get
