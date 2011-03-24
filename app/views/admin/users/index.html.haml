@@ -9,7 +9,7 @@
       %th Баланс
   %tbody
     - @users.each do |user|
-      %tr{:class => ('debtor' if user.balance < 0)}
+      %tr{:class => ('red' if user.balance < 0)}
         %td= user
         %td= user.email
         %td= link_to number_with_delimiter(user.orders.total), [:admin, user]

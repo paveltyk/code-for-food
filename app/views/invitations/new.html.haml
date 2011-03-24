@@ -15,7 +15,7 @@
       %th Состояние
   %tbody
     - @invitations.each do |invitation|
-      %tr
+      %tr{:class => ('red' unless invitation.discharged?)}
         %td= invitation.recipient_email
         %td= invitation_status_link(invitation)
 
