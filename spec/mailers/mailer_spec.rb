@@ -21,7 +21,7 @@ describe Mailer do
     let(:menu) { Menu.make! }
     let(:mail) { Mailer.menu_published(menu) }
 
-    it 'render the headers' do
+    it 'renders the headers' do
       mail.subject.should match menu.to_s
       mail.to.should eq ['group-delivery@code-for-food.info']
       mail.from.should eq ['no-reply@code-for-food.info']
@@ -45,6 +45,22 @@ describe Mailer do
         mail
         mail.to_s.should_not include(user.email)
       end
+    end
+  end
+
+  describe '#feedback' do
+    let(:feedback) { Feedback.make }
+    let(:mail) { Mailer.feedback(feedback) }
+
+    it 'renders the headers' do
+      mail.subject.should =~ /feedback/i
+      mail.to.should eq ['paveltyk@code-for-food.info']
+      mail.from.should eq [feedback.sender.email]
+    end
+
+    it 'renders the message in the body' do
+      feedback.body = 'Hello, Man!'
+      mail.body.encoded.should =~ /Hello, Man!/i
     end
   end
 

@@ -1,4 +1,6 @@
 require 'machinist/active_record'
+require 'machinist/machinable'
+Feedback.send :extend, Machinist::Machinable
 
 Menu.blueprint do
   administrator
@@ -59,5 +61,10 @@ end
 PaymentTransaction.blueprint do
   user
   value { 999_000 - rand(1_998_000) } #-999_000 .. 999_000
+end
+
+Feedback.blueprint do
+  sender { User.make }
+  body { "This is a feedback #{sn}" }
 end
 

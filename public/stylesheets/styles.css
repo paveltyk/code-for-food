@@ -53,6 +53,11 @@ h1 {font-size:1.6em;color:#62796D;margin-bottom:10px;font-weight:normal;}
 h1 span {color:#A51618;}
 h2 {font-size:1.4em;color:#62796D;margin-bottom:10px;font-weight:normal;}
 
+#left-static-bar {position:absolute;left:0;top:200px;}
+#left-static-bar a {}
+#left-static-bar a.feedback {background:transparent url(/images/feedback_badge.png) 0 right;display:block;width:33px;height:124px;overflow:hidden;opacity:.15;}
+#left-static-bar a.feedback:hover {opacity:.6;}
+
 form#login input[type="text"], form#login input[type="password"] {display:block;font-size:22px;padding:4px 10px;width:378px;margin:10px 0;}
 form#login #user_session_email {}
 form#login #user_session_password {}
