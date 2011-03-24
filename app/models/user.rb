@@ -4,12 +4,14 @@ class User < ActiveRecord::Base
   attr_accessor :validate_invitation
   attr_accessible :email, :name, :password, :password_confirmation, :invitation_token, :receive_notifications
 
+  belongs_to :invitation, :dependent => :destroy
+
   has_many :orders, :dependent => :destroy, :inverse_of => :user do
     def total
       sum(:price)
     end
   end
-  belongs_to :invitation
+
   has_many :payment_transactions, :inverse_of => :user, :dependent => :destroy do
     def total
       sum(:value)
