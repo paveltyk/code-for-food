@@ -17,9 +17,5 @@
     - @invitations.each do |invitation|
       %tr
         %td= invitation.recipient_email
-        %td
-          - if invitation.discharged?
-            =raw "Активировано (#{link_to invitation.receiver, [:admin, invitation.receiver]})"
-          - else
-            =raw "Ожидание (#{link_to 'переслать', resend_invitation_path(invitation), :method => :put})"
+        %td= invitation_status_link(invitation)
 
