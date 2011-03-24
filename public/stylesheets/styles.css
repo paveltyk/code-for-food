@@ -125,3 +125,5 @@ table.orders tfoot td.price {font-weight:bold;}
 form.feedback {}
 form.feedback textarea {font-size:22px;padding:4px 10px;width:650px;margin:10px 0;height:300px;}
 
+li.admin-links a.block-menu {float:right;}
+
