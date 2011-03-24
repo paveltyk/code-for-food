@@ -21,5 +21,5 @@
           - if invitation.discharged?
             =raw "Активировано (#{link_to invitation.receiver, [:admin, invitation.receiver]})"
           - else
-            =raw "Неактивировано (#{link_to 'переслать', '#'})"
+            =raw "Ожидание (#{link_to 'переслать', resend_invitation_path(invitation), :method => :put})"
 

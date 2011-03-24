@@ -1,6 +1,11 @@
 CodeForFood::Application.routes.draw do
 
-  resources :invitations, :only => [:show, :new, :create]
+  resources :invitations, :only => [:show, :new, :create] do
+    member do
+      put :resend
+    end
+  end
+
   resources :menus do
     member do
       put :lock

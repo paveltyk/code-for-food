@@ -18,6 +18,16 @@ class InvitationsController < ApplicationController
     end
   end
 
+  def resend
+    @invitation = Invitation.find(params[:id])
+    if Mailer.invitation(@invitation).deliver
+      flash[:notice] = "Приглашение #{@invitation.recipient_email} успешно отправлено."
+    else
+      flash[:error] = "Не удалось отправить приглашение #{@invitation.recipient_email}."
+    end
+    redirect_to :action => :new
+  end
+
   def load_sent_invitations
     @invitations = Invitation.includes(:receiver).all
   end

@@ -15,6 +15,11 @@ describe InvitationsController do
         response.should redirect_to(login_url)
       end
     end
+
+    it "redirect when PUT resend" do
+      put :resend, :id => '1'
+      response.should redirect_to(login_url)
+    end
   end
 
   context "when logged in as admin" do
@@ -64,6 +69,42 @@ describe InvitationsController do
           admin.stub_chain(:sent_invitations, :build).and_return(mock_invitation :save => false)
           post :create, :invitation => {}
           response.should render_template("new")
+        end
+      end
+    end
+
+    describe "PUT #resend" do
+      describe "success story" do
+        before(:each) do
+          Invitation.stub(:find) { mock_invitation }
+          Mailer.stub_chain(:invitation, :deliver).and_return(true)
+          Mailer.should_receive(:invitation).with(mock_invitation)
+          put :resend, :id => '1'
+        end
+
+        it "sets flash notice" do
+          flash[:notice].should_not be_blank
+        end
+
+        it "redirects to action :new" do
+          response.should redirect_to :action => :new
+        end
+      end
+
+      describe "fail story" do
+        before(:each) do
+          Invitation.stub(:find) { mock_invitation }
+          Mailer.stub_chain(:invitation, :deliver).and_return(false)
+          Mailer.should_receive(:invitation).with(mock_invitation)
+          put :resend, :id => '1'
+        end
+
+        it "sets flash error" do
+          flash[:error].should_not be_blank
+        end
+
+        it "redirects to action :new" do
+          response.should redirect_to :action => :new
         end
       end
     end
