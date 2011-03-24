@@ -26,6 +26,12 @@ describe InvitationsController do
         get :new
         assigns(:invitation).should be_an_instance_of(Invitation)
       end
+
+      it "assigns a sent invitations as @invitations" do
+        Invitation.stub_chain(:includes, :all) { [] }
+        get :new
+        assigns(:invitations).should eq []
+      end
     end
 
     describe "POST create" do

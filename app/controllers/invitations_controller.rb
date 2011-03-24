@@ -3,6 +3,7 @@ class InvitationsController < ApplicationController
 
   def new
     @invitation = Invitation.new
+    load_sent_invitations
   end
 
   def create
@@ -12,8 +13,14 @@ class InvitationsController < ApplicationController
       flash[:notice] = "Приглашение #{@invitation.recipient_email} успешно отправлено."
       redirect_to :action => :new
     else
+      load_sent_invitations
       render :action => :new
     end
   end
+
+  def load_sent_invitations
+    @invitations = Invitation.includes(:receiver).all
+  end
+
 end
 

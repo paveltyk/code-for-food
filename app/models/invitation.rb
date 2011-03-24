@@ -10,6 +10,12 @@ class Invitation < ActiveRecord::Base
   validates_uniqueness_of :recipient_email, :if => 'recipient_email.present?'
   validates_format_of :recipient_email, :with => Authlogic::Regex.email, :message => "must be a valid email", :if => 'recipient_email.present?'
 
+  default_scope order('created_at DESC')
+
+  def discharged?
+    receiver.present?
+  end
+
   private
 
   def generate_token

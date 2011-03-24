@@ -4,4 +4,22 @@
   = render_errors_for @invitation
   = f.text_field :recipient_email, :placeholder => 'e-Mail получателя'
   = f.submit 'Выслать приглашение'
+%hr
+
+%h2 Отправленные приглашения
+
+%table.defaults
+  %thead
+    %tr
+      %th e-Mail
+      %th Состояние
+  %tbody
+    - @invitations.each do |invitation|
+      %tr
+        %td= invitation.recipient_email
+        %td
+          - if invitation.discharged?
+            =raw "Активировано (#{link_to invitation.receiver, [:admin, invitation.receiver]})"
+          - else
+            =raw "Неактивировано (#{link_to 'переслать', '#'})"
 
