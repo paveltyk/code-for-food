@@ -5,7 +5,7 @@ module UsersHelper
       links << current_user.email
       if is_admin?
         links << link_to('Пользователи', admin_users_path)
-        links << link_to('Метки', dish_tags_path)
+        links << link_to('Метки', admin_dish_tags_path)
       end
       links << link_to('Изменить профиль', edit_profile_path)
       links << link_to('Выйти', logout_path)

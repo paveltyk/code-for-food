@@ -1,6 +1,4 @@
-class TagsController < ApplicationController
-  before_filter :require_admin
-
+class Admin::TagsController < Admin::BaseController
   def index
     @tags = DishTag.all
   end

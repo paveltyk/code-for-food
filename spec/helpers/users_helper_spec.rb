@@ -28,7 +28,7 @@ describe UsersHelper do
       before(:each) { helper.stub :current_user => Administrator.make, :is_admin? => true }
 
       it "renders tags link" do
-        helper.user_nav.should match(dish_tags_path)
+        helper.user_nav.should match(admin_dish_tags_path)
       end
 
       it "renders users managment link" do

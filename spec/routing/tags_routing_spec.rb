@@ -1,25 +1,25 @@
 require 'spec_helper'
 
-describe TagsController do
+describe Admin::TagsController do
   describe "routing" do
     it "recognizes and generates #index" do
-    { :get => '/tags'}.should route_to(:controller => "tags", :action => "index")
+    { :get => '/admin/tags'}.should route_to(:controller => "admin/tags", :action => "index")
     end
 
     it "recognizes and generates #new" do
-      { :get => '/tags/new'}.should route_to(:controller => "tags", :action => "new")
+      { :get => '/admin/tags/new'}.should route_to(:controller => "admin/tags", :action => "new")
     end
 
     it "recognizes and generates #create" do
-      { :post => '/tags'}.should route_to(:controller => "tags", :action => "create")
+      { :post => '/admin/tags'}.should route_to(:controller => "admin/tags", :action => "create")
     end
 
     it "recognizes and generates #edit" do
-      { :get => '/tags/1/edit'}.should route_to(:controller => "tags", :action => "edit", :id => "1")
+      { :get => '/admin/tags/1/edit'}.should route_to(:controller => "admin/tags", :action => "edit", :id => "1")
     end
 
     it "recognizes and generates #update" do
-      { :put => '/tags/1'}.should route_to(:controller => "tags", :action => "update", :id => "1")
+      { :put => '/admin/tags/1'}.should route_to(:controller => "admin/tags", :action => "update", :id => "1")
     end
   end
 end

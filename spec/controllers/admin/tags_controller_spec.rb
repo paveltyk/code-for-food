@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TagsController do
+describe Admin::TagsController do
   render_views
   setup :activate_authlogic
 
