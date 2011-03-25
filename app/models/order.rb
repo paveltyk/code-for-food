@@ -15,7 +15,7 @@ class Order < ActiveRecord::Base
     menu.dishes.map do |dish|
       existent_oi = self.order_items.select{ |oi| oi.dish_id == dish.id }.first
       existent_oi ? existent_oi.tap { |oi| oi.is_ordered = true } : order_items.new(:dish => dish)
-    end.sort { |a,b| b.dish.price <=> a.dish.price }
+    end.sort { |a,b| (a.dish.grade || '') <=> (b.dish.grade || '') }
   end
 
   def menu_items_attributes=(attributes)

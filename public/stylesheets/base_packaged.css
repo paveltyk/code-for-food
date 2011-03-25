@@ -431,8 +431,9 @@ form#login #user_session_email {}
 form#login #user_session_password {}
 form#login #user_session_submit {}
 form.menu .menu-item {border-bottom:1px dotted #aaa;padding:5px 0;margin:5px 0;}
-form.menu input[type='text'] {padding:2px 4px;margin:0 5px;}
+form.menu input[type='text'] {padding:2px 4px;margin:0 1px;}
 form.menu input[type='submit'] {display:block;margin:25px 0 15px;}
+form.menu input.grade {width:18px;text-align:center;}
 form.menu input.name {width:250px;}
 form.menu input.price {width:50px;text-align:center;}
 form.menu input.weight {width:90px;text-align:center;}
@@ -443,7 +444,7 @@ form.menu #bulk_menu_creation input[type="button"] {position:absolute;right:8px;
 form.menu #menu-item-for-cloning {display:none;}
 form.menu .menu-item a.remove {display:inline-block;}
 ul.order {}
-ul.order li {color:#888;font-size:17px;font-style:italic;line-height:130%;margin:5px 0;}
+ul.order li {color:#888;font-size:17px;font-style:italic;line-height:130%;padding:2px 0;}
 ul.order li.selected {color:#333;}
 ul.order li.selected span.price, ul.order li.total span {color:#A51618;}
 ul.order li span.quantity {display:none;}
@@ -482,3 +483,4 @@ table.orders tfoot td.total-text {text-align:right;}
 table.orders tfoot td.price {font-weight:bold;}
 form.feedback {}
 form.feedback textarea {font-size:22px;padding:4px 10px;width:650px;margin:10px 0;height:300px;}
+li.admin-links a.block-menu {float:right;}
