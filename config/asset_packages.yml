@@ -1,0 +1,17 @@
+---
+javascripts:
+- base:
+  - jquery.min
+  - rails
+  - jquery.placeholder
+  - jquery-ui.min
+  - jquery.multiselect
+  - jquery.elastic
+  - application
+stylesheets:
+- base:
+  - reset
+  - jquery-ui
+  - jquery.multiselect
+  - styles
+
