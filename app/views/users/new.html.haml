@@ -1,6 +1,7 @@
 %h1 Регистрация
 
 = form_for @user, :url => do_registration_path, :html => { :id => 'registration' } do |f|
+  = f.hidden_field :invitation_token
   = render_errors_for @user
   = render :partial => "fields", :locals => { :f => f }
   = f.submit 'Зарегистрироваться'
