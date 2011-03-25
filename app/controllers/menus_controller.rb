@@ -4,6 +4,7 @@ class MenusController < ApplicationController
 
   def show
     @orders = @menu.orders.includes(:user, :order_items => :dish)
+    @orders.sort!{ |a, b| a.user.screen_name <=> b.user.screen_name }
     @total_price = @orders.inject(0) { |sum, order| sum + order.price }
   end
 

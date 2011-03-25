@@ -5,14 +5,14 @@
       %th Имя
       %th Заказ
       %th Итого
-  %tfoot
-    %tr
-      %td.total-text{:colspan => 2} Итого:
-      %td.price= number_with_delimiter @total_price
   %tbody
     - @orders.each do |order|
       %tr
         %td= order.user
         %td= order.order_items.map{ |oi| "#{oi.dish.name} (#{oi.dish.total_price}#{"*#{oi.quantity}" if oi.quantity > 1})" }.join(', ')
         %td.price= number_with_delimiter order.price
+  %tfoot
+    %tr
+      %td.total-text{:colspan => 2} Итого:
+      %td.price= number_with_delimiter @total_price
 

@@ -47,5 +47,6 @@ class User < ActiveRecord::Base
   def to_s
     self.name.present? ? name : (email || '').split('@').first
   end
+  alias_method :screen_name, :to_s
 end
 

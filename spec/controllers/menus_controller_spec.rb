@@ -103,7 +103,14 @@ describe MenusController do
         menu = Menu.make!(:administrator => admin)
         3.times { Order.make! :menu => menu }
         get :show, :id => menu.to_param
-        assigns(:total_price).should eq menu.orders.sum(:price)
+        assigns(:total_price).should_not be_nil
+      end
+
+      it 'assgins orders ordered by user name' do
+        menu = Menu.make!(:administrator => admin)
+        3.times { |i| Order.make! :menu => menu, :user => User.make!(:name => 3-i) }
+        get :show, :id => menu.to_param
+        assigns(:orders).map { |order| order.user.name }.should eq %w{1 2 3}
       end
     end
   end
