@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MenusController do
+describe Admin::MenusController do
   render_views
   setup :activate_authlogic
 
@@ -52,9 +52,9 @@ describe MenusController do
         expect { post :create, :menu => post_attrs }.to change(Dish, :count).by(2)
       end
 
-      it "redirects to \"show\" action" do
+      it "redirects to \"order\" path" do
         post :create, :menu => Menu.make.attributes
-        response.should be_redirect
+        response.should redirect_to order_path(Menu.last)
       end
 
       it "renders a \"new\" template if menu not valid" do
@@ -160,8 +160,8 @@ describe MenusController do
           assigns[:menu].date.should eql(Time.parse('1999-10-01').to_date)
         end
 
-        it "redirects to \"show\" action" do
-          response.should be_redirect
+        it "redirects to \"order\" path" do
+          response.should redirect_to order_path(menu.reload)
         end
 
         it "set the success flash message" do

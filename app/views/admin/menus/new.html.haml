@@ -1,6 +1,6 @@
 %h1= @menu.new_record? ? 'Создание меню' : 'Редактирование меню'
 
-= form_for @menu, :html => {:class => 'menu'} do |f|
+= form_for [:admin, @menu], :html => {:class => 'menu'} do |f|
   = render_errors_for @menu
 
   .field

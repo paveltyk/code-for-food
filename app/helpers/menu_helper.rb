@@ -16,7 +16,7 @@ module MenuHelper
         end
         dom_classes << item.status if is_admin?
       else
-        path = new_menu_path(:date => item.date.to_param) if is_admin?
+        path = new_admin_menu_path(:date => item.date.to_param) if is_admin?
       end
 
       dom_classes << 'today' if item.date == Time.now.to_date
@@ -32,13 +32,13 @@ module MenuHelper
     menu ||= @menu
     return unless menu
     links = []
-    links << link_to('Редактировать меню', edit_menu_path(menu), :class => 'button')
-    links << link_to('Отчет по заказам', menu, :class => 'button')
-    links << link_to('Отчет по позициям', provider_report_for_menu_path(menu), :class => 'button')
+    links << link_to('Редактировать меню', edit_admin_menu_path(menu), :class => 'button')
+    links << link_to('Отчет по заказам', [:admin, menu], :class => 'button')
+    links << link_to('Отчет по позициям', provider_report_for_admin_menu_path(menu), :class => 'button')
     if menu.published?
-      links << link_to('Заблокировать меню', lock_menu_path(menu), :class => 'button block-menu', :method => :put, :confirm => 'Вы уверены?') unless menu.locked?
+      links << link_to('Заблокировать меню', lock_admin_menu_path(menu), :class => 'button block-menu', :method => :put, :confirm => 'Вы уверены?') unless menu.locked?
     else
-      links << link_to('Опубликовать меню', publish_menu_path(menu), :class => 'button', :method => :put)
+      links << link_to('Опубликовать меню', publish_admin_menu_path(menu), :class => 'button', :method => :put)
     end
     links.join(' ').html_safe
   end

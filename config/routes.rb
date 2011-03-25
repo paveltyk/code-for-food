@@ -6,22 +6,24 @@ CodeForFood::Application.routes.draw do
     end
   end
 
-  resources :menus do
-    member do
-      put :lock
-      put :publish
-      match "/reports/provider" => "reports#provider", :as => :provider_report_for, :via => :get
-    end
-  end
   resources :tags, :as => :dish_tags
   resources :feedbacks, :only => [:new, :create]
 
   namespace :admin do
     root :to => "users#index"
+    resources :orders
+
+    resources :menus do
+      member do
+        put :lock
+        put :publish
+        match "/reports/provider" => "reports#provider", :as => :provider_report_for, :via => :get
+      end
+    end
+
     resources :users do
       resources :payment_transactions, :except => :show
     end
-    resources :orders
   end
 
   match "/login" => "sessions#new", :as => :login, :via => :get

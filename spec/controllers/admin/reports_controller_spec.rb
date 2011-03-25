@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ReportsController do
+describe Admin::ReportsController do
   render_views
 
   describe 'GET #provider' do

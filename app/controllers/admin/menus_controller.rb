@@ -1,5 +1,4 @@
-class MenusController < ApplicationController
-  before_filter :require_admin
+class Admin::MenusController < Admin::BaseController
   before_filter :assign_menu, :only => [:show, :edit, :update, :lock, :publish]
 
   def show

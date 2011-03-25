@@ -90,7 +90,7 @@ describe MenuHelper do
       end
 
       it "returns 12 links to create new menu" do
-        helper.render_menu_calendar.scan(new_menu_path).should have(12).items
+        helper.render_menu_calendar.scan(new_admin_menu_path).should have(12).items
       end
     end
   end
@@ -104,32 +104,32 @@ describe MenuHelper do
     end
 
     it 'has edit menu link' do
-      helper_str.should match edit_menu_path(menu)
+      helper_str.should match edit_admin_menu_path(menu)
     end
 
     it 'has menu orders report link' do
-      helper_str.should match menu_path(menu)
+      helper_str.should match admin_menu_path(menu)
     end
 
     it 'has menu provider report link' do
-      helper_str.should match provider_report_for_menu_path(menu)
+      helper_str.should match provider_report_for_admin_menu_path(menu)
     end
 
     context 'when menu locked' do
       before(:each) { menu.update_attribute :locked, true }
 
       it 'does not have lock menu link' do
-        helper_str.should_not match lock_menu_path(menu)
+        helper_str.should_not match lock_admin_menu_path(menu)
       end
     end
 
     context 'when menu not published' do
       it 'does not have lock menu link' do
-        helper_str.should_not match lock_menu_path(menu)
+        helper_str.should_not match lock_admin_menu_path(menu)
       end
 
       it 'has publish menu link' do
-        helper_str.should match publish_menu_path(menu)
+        helper_str.should match publish_admin_menu_path(menu)
       end
     end
 
@@ -137,11 +137,11 @@ describe MenuHelper do
       before(:each) { menu.publish! }
 
       it 'has lock menu link' do
-        helper_str.should match lock_menu_path(menu)
+        helper_str.should match lock_admin_menu_path(menu)
       end
 
       it 'does not have publish menu link' do
-        helper_str.should_not match publish_menu_path(menu)
+        helper_str.should_not match publish_admin_menu_path(menu)
       end
     end
   end
