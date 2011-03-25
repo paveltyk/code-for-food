@@ -8,7 +8,7 @@
   %tfoot
     %tr
       %td.total-text{:colspan => 2} Итого:
-      %td.price= number_with_delimiter @orders.sum(:price)
+      %td.price= number_with_delimiter @total_price
   %tbody
     - @orders.each do |order|
       %tr

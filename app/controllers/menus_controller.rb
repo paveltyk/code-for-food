@@ -3,7 +3,8 @@ class MenusController < ApplicationController
   before_filter :assign_menu, :only => [:show, :edit, :update, :lock, :publish]
 
   def show
-    @orders = @menu.orders
+    @orders = @menu.orders.includes(:user, :order_items => :dish)
+    @total_price = @orders.inject(0) { |sum, order| sum + order.price }
   end
 
   def new

@@ -89,8 +89,21 @@ describe MenusController do
         menu = Menu.make!(:administrator => admin)
         2.times { Dish.make! :menu => menu }
         get :show, :id => menu.to_param
-        assigns[:menu].should eql(menu)
+        assigns(:menu).should eql(menu)
         response.should render_template('show')
+      end
+
+      it 'assigns @orders' do
+        menu = Menu.make!(:administrator => admin)
+        get :show, :id => menu.to_param
+        assigns(:orders).should be_an_instance_of(ActiveRecord::Relation)
+      end
+
+      it 'assigns @total_price' do
+        menu = Menu.make!(:administrator => admin)
+        3.times { Order.make! :menu => menu }
+        get :show, :id => menu.to_param
+        assigns(:total_price).should eq menu.orders.sum(:price)
       end
     end
   end
