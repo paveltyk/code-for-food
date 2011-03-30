@@ -3,7 +3,7 @@ class Admin::MenusController < Admin::BaseController
 
   def show
     @orders = @menu.orders.includes(:user, :order_items => :dish)
-    @orders.sort!{ |b, a| a.user.screen_name <=> b.user.screen_name }
+    @orders.sort!{ |a, b| a.user.screen_name.downcase <=> b.user.screen_name.downcase }
     @total_price = @orders.inject(0) { |sum, order| sum + order.price }
   end
 
