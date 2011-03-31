@@ -4,5 +4,8 @@
   = render_errors_for @user_session
   .field= f.text_field :email, :placeholder => 'Почта'
   .field= f.password_field :password, :placeholder => 'Пароль', :id => nil
+  .field
+    = f.check_box :remember_me
+    = f.label :remember_me, 'Запомнить меня'
   .field= f.submit "Войти"
 
