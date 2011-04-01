@@ -5,7 +5,7 @@ class DishTag < ActiveRecord::Base
   attr_accessible :name, :value, :description, :operational
 
   validates_presence_of :name
-  validates_numericality_of :value, :only_integer => true
+  validates_numericality_of :value, :only_integer => true, :greater_than_or_equal_to => -100_000, :less_than_or_equal_to => 100_000
 
   scope :operational, where(:operational => true)
 

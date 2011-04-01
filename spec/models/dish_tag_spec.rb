@@ -18,6 +18,11 @@ describe DishTag do
     DishTag.make(:value => 10.6).should_not be_valid
   end
 
+  it "not valid if value out of range" do
+    DishTag.make(:value => 100_001).should_not be_valid
+    DishTag.make(:value => -100_001).should_not be_valid
+  end
+
   describe "many-to-many relation with Dish" do
     let(:dish) { Dish.make! }
     let(:tag) { DishTag.make! }
