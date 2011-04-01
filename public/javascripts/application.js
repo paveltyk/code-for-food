@@ -23,10 +23,10 @@ function render_menu_items_from_string(text) {
 }
 
 function build_menu_item_from_array(arr) {
-  name = arr[0].replace(/\([^\)]+\)/g,'').trim();
-  price = arr[2].replace(/\D/g, '');
-  weight = arr[1].trim();
-  description = arr[0].match(/\(([^\)]+)\)/g);
+  var name = arr[0].replace(/\([^\)]+\)/g,'').trim();
+  var price = arr[2].replace(/\D/g, '');
+  var weight = arr[1].trim();
+  var description = arr[0].match(/\(([^\)]+)\)/g);
   if ($.type(description) !== 'null') {
     description = description[0];
     description = description.substr(1,description.length-2);
@@ -49,13 +49,13 @@ function add_new_menu_item(attrs){
 }
 
 function calculate_total_price() {
-  _total = 0;
+  var _total = 0;
   $('ul.order input[type="checkbox"]').each(function(index, item){
-    checkbox = $(item);
-    li = checkbox.closest('li');
+    var checkbox = $(item);
+    var li = checkbox.closest('li');
     if (checkbox.is(':checked')) {
-      _price = li.find('span.price').text().replace(/\D/,'') / 1;
-      _qtt = li.find('span.quantity input').val() / 1;
+      var _price = li.find('span.price').text().replace(/\D/,'') / 1;
+      var _qtt = li.find('span.quantity input').val() / 1;
       _total += _price * _qtt;
     }
   });
@@ -71,7 +71,7 @@ function bootstrap_dish_order() {
     }
   });
   $('ul.order input[type="checkbox"]').click(function(){
-    checkbox = $(this);
+    var checkbox = $(this);
     li = checkbox.closest('li');
     if (checkbox.is(':checked')) {
       li.addClass('selected');
