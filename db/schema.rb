@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110325173426) do
+ActiveRecord::Schema.define(:version => 20110401152701) do
 
   create_table "dish_tags", :force => true do |t|
     t.string   "name"
@@ -119,8 +119,10 @@ ActiveRecord::Schema.define(:version => 20110325173426) do
     t.integer  "invitation_id"
     t.string   "type"
     t.boolean  "receive_notifications", :default => true
+    t.string   "perishable_token",      :default => "",   :null => false
   end
 
   add_index "users", ["invitation_id"], :name => "index_users_on_invitation_id"
+  add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
 
 end

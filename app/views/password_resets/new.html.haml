@@ -1,0 +1,6 @@
+%h1 Восстановление пароля
+
+= form_tag password_resets_path do
+  .field= text_field_tag :email, @email, :placeholder => 'e-Mail'
+  = submit_tag 'Восстановить пароль'
+
