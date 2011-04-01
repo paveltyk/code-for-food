@@ -14,6 +14,10 @@ describe Mailer do
     it 'renders registration link in the body' do
       mail.body.encoded.should match(register_url(:invitation_token => invitation.token))
     end
+
+    it 'renders sendgrid category' do
+      mail.to_s.should include('invitation-test')
+    end
   end
 
   describe '#menu_published' do
@@ -45,6 +49,10 @@ describe Mailer do
         mail
         mail.to_s.should_not include(user.email)
       end
+
+      it 'renders sendgrid category' do
+        mail.to_s.should include('menu-published-test')
+      end
     end
   end
 
@@ -61,6 +69,10 @@ describe Mailer do
     it 'renders the message in the body' do
       feedback.body = 'Hello, Man!'
       mail.body.encoded.should =~ /Hello, Man!/i
+    end
+
+    it 'renders sendgrid category' do
+      mail.to_s.should include('feedback-test')
     end
   end
 
