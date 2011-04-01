@@ -75,6 +75,7 @@ function bootstrap_dish_order() {
     li = checkbox.closest('li');
     if (checkbox.is(':checked')) {
       li.addClass('selected');
+      li.find('input[type="text"]').focus();
     } else {
       li.removeClass('selected');
     }
