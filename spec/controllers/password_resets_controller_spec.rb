@@ -36,6 +36,12 @@ describe PasswordResetsController do
         user.should_receive(:reset_perishable_token!).once
         post :create
       end
+
+      it 'sends an email' do
+        expect {
+          post :create
+        }.to change(ActionMailer::Base.deliveries, :count).by(1)
+      end
     end
 
     describe 'fail story' do

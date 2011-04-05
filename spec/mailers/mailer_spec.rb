@@ -76,5 +76,20 @@ describe Mailer do
     end
   end
 
+  describe '#password_reset_instruction' do
+    let(:user) { User.make!.tap(&:reset_perishable_token!) }
+    let(:mail) { Mailer.password_reset_instruction(user) }
+
+    it 'renders the headers' do
+      mail.subject.should =~ /\[Code-for-Food\] Инструкция по восстановлению пароля/i
+      mail.to.should eq [user.email]
+      mail.from.should eq ['no-reply@code-for-food.info']
+    end
+
+    it 'renders the password restore link in the body' do
+      mail.body.encoded.should include edit_password_reset_url(user.perishable_token)
+    end
+  end
+
 end
 

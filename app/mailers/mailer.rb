@@ -28,5 +28,14 @@ class Mailer < ActionMailer::Base
          :subject => "[Code-for-Food] Feedback from #{feedback.sender}",
          :body => feedback.body
   end
+
+  def password_reset_instruction(user)
+    category "password-reset-#{Rails.env}"
+
+    @user = user
+    mail :to => @user.email,
+         :from => 'no-reply@code-for-food.info',
+         :subject => "[Code-for-Food] Инструкция по восстановлению пароля."
+  end
 end
 

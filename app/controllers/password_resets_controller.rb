@@ -11,9 +11,7 @@ class PasswordResetsController < ApplicationController
 
     if @user
       @user.reset_perishable_token!
-      #TODO: https://github.com/rejeep/authlogic-password-reset-tutorial
-      #Send email here
-
+      Mailer.password_reset_instruction(@user).deliver
       flash[:notice] = "Инструкции по восстановлению пароля успешно отправлена на почтовый ящик #{@email}"
       redirect_to :action => :new
     else
