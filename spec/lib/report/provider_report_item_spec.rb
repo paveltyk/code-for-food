@@ -20,6 +20,11 @@ describe Report::ProviderReport::Item do
     item.dish_id.should eql order_item.dish_id
   end
 
+  it 'returns dish grade' do
+    order_item.dish.update_attribute(:grade, 1)
+    item.dish.grade.should eql 1
+  end
+
   it 'return total price' do
     item.total_price.should eql order_item.dish.total_price * order_item.qtt
   end

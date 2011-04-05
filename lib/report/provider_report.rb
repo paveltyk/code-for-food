@@ -22,13 +22,15 @@ class Report::ProviderReport
     OrderItem.where(:order_id => orders).each do |oi|
       add_item(oi)
     end
+    @items.sort! { |a, b| (a.dish.grade || '') <=> (b.dish.grade || '') }
   end
   private :load_items
 
   class Item
-    attr_accessor :dish_id, :dish_total_price, :name, :qtt
+    attr_accessor :dish, :dish_id, :dish_total_price, :name, :qtt
 
     def initialize(order_item)
+      @dish = order_item.dish
       @dish_id = order_item.dish_id
       @dish_total_price = order_item.dish.total_price
       @name = order_item.dish.name
