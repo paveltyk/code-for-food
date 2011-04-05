@@ -1,0 +1,8 @@
+%h1 Изменение пароля
+
+= form_tag password_reset_path, :method => :put, :id => 'login' do
+  = render_errors_for @user
+  .field= password_field_tag :password, nil, :placeholder => 'Пароль'
+  .field= password_field_tag :password_confirmation, nil, :placeholder => 'Подтверждение пароля'
+  = submit_tag 'Сохранить пароль'
+
