@@ -12,7 +12,7 @@ class PasswordResetsController < ApplicationController
     if @user
       @user.reset_perishable_token!
       Mailer.password_reset_instruction(@user).deliver
-      flash[:notice] = "Инструкции по восстановлению пароля успешно отправлена на почтовый ящик #{@email}"
+      flash[:notice] = "Инструкция по восстановлению пароля успешно отправлена на почтовый ящик #{@email}"
       redirect_to :action => :new
     else
       flash[:error] = "Не удалось найти пользователя с адресом электронной почты #{@email}"

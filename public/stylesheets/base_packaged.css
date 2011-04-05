@@ -431,6 +431,7 @@ form#login input[type="text"], form#login input[type="password"] {display:block;
 form#login #user_session_email {}
 form#login #user_session_password {}
 form#login #user_session_submit {margin-top:15px;}
+a.forgot-password {margin-left:10px;}
 form.menu .menu-item {border-bottom:1px dotted #aaa;padding:5px 0;margin:5px 0;}
 form.menu textarea {font-size:12px;margin:0;}
 form.menu input[type='text'] {padding:2px 4px;margin:0 1px;font-size:12px;}
