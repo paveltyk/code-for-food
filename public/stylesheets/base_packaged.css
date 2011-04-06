@@ -436,11 +436,11 @@ form.menu .menu-item {border-bottom:1px dotted #aaa;padding:5px 0;margin:5px 0;}
 form.menu textarea {font-size:12px;margin:0;}
 form.menu input[type='text'] {padding:2px 4px;margin:0 1px;font-size:12px;}
 form.menu input[type='submit'] {display:block;margin:25px 0 15px;}
-form.menu input.grade {width:18px;text-align:center;}
+form.menu input.grade {width:15px;text-align:center;}
 form.menu input.name {width:250px;}
-form.menu input.price {width:50px;text-align:center;}
-form.menu input.weight {width:90px;text-align:center;}
-form.menu input.description {width:200px;}
+form.menu input.price {width:35px;text-align:center;}
+form.menu input.weight {width:70px;text-align:center;}
+form.menu input.description {width:180px;}
 form.menu #bulk_menu_creation {position:relative;padding:15px 0;}
 form.menu #bulk_menu_creation textarea {height:100px;width:968px;padding:5px;}
 form.menu #bulk_menu_creation input[type="button"] {position:absolute;right:8px;bottom:25px;}

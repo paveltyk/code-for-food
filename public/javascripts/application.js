@@ -86,10 +86,10 @@ function bootstrap_dish_order() {
 
 function bootstrap_menu_multiselects() {
   $('#current-menu-items select.jquery-multiselect').multiselect({
-    minWidth:270,
+    minWidth:335,
     header:false,
-    selectedText:'Выбрано меток: #',
-    noneSelectedText:'Нет выбранных меток'
+    noneSelectedText:'Нет выбранных меток',
+    selectedList: 5
   });
 }
 
