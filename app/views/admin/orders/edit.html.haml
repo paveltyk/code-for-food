@@ -3,6 +3,11 @@
 %ul.order
   = form_for [:admin, @order] do |f|
     = render_errors_for @order
+
+    .field
+      = f.label :user, 'Пользователь:'
+      = f.collection_select :user_id, User.all, :id, :screen_name
+    %hr
     = f.fields_for :menu_items do |oi|
       %li
         = oi.hidden_field :dish_id

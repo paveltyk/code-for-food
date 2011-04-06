@@ -8,6 +8,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def update
+    @order.user = User.find_by_id(params[:order][:user_id]) if params[:order].try(:'[]', :user_id)
     if @order.update_attributes(params[:order])
       flash[:notice] = "Заказ пользователя #{@order.user} на \"#{@order.menu}\" обновлен успешно."
       redirect_to [:admin, @order]

@@ -71,4 +71,4 @@ function bootstrap_dish_order(){$('ul.order li').each(function(i,li){li=$(li);if
 calculate_total_price();});$('ul.order span.quantity input').keyup(calculate_total_price);}
 function bootstrap_menu_multiselects(){$('#current-menu-items select.jquery-multiselect').multiselect({minWidth:270,header:false,selectedText:'Выбрано меток: #',noneSelectedText:'Нет выбранных меток'});}
 $(function(){$('input[placeholder], textarea[placeholder]').placeholder();$('.menu a.remove').live('click',function(){if(confirm('Вы уверены?')){remove_menu_item($(this).closest('.menu-item'));}
-return false;});$('.menu a.add-menu-item').live('click',function(){add_new_menu_item();$('input[placeholder]').placeholder();return false;});$('textarea#bulk').elastic();bootstrap_dish_order();bootstrap_menu_multiselects();});
+return false;});$('.menu a.add-menu-item').live('click',function(){add_new_menu_item();$('input[placeholder]').placeholder();return false;});$('textarea#bulk').elastic();bootstrap_dish_order();bootstrap_menu_multiselects();$('#order_user_id').multiselect({multiple:false,header:false,selectedList:1});});

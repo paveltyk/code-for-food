@@ -24,6 +24,14 @@ describe Admin::OrdersController do
   end
 
   describe 'PUT #update' do
+
+    it 'change order owner' do
+      order = Order.make!
+      new_owner = User.make!
+      put :update, :id => order.to_param, :order => { :user_id => new_owner.id }
+      order.reload.user.should eq new_owner
+    end
+
     describe 'success story' do
       let(:order) { mock_order :update_attributes => true }
       before(:each) do

@@ -110,5 +110,11 @@ $(function(){
   $('textarea#bulk').elastic();
   bootstrap_dish_order();
   bootstrap_menu_multiselects();
+
+  $('#order_user_id').multiselect({
+    multiple: false,
+    header:false,
+    selectedList: 1
+  });
 });
 
