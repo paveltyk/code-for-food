@@ -119,6 +119,8 @@ table.orders tfoot td {border:none;font-size:14px;}
 table.orders tfoot td.total-text {text-align:right;}
 table.orders tfoot td.price {font-weight:bold;}
 
+a.destroy-order {float:right;}
+
 form.feedback textarea {width:650px;height:150px;}
 
 li.admin-links a.block-menu {float:right;}

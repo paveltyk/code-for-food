@@ -52,5 +52,21 @@ describe Admin::OrdersController do
       end
     end
   end
+
+  describe 'delete #destroy' do
+    it 'destroys the order' do
+      order = Order.make!
+      expect {
+        delete :destroy, :id => order.to_param
+      }.to change(Order, :count).by(-1)
+    end
+
+    it 'redirects to UsersController#show' do
+      Order.stub :find => mock_order( :destroy => true, :user => User.make! )
+      delete :destroy, :id => '1'
+      response.should redirect_to admin_user_path(mock_order.user)
+    end
+
+  end
 end
 

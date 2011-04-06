@@ -13,6 +13,10 @@ describe Admin::OrdersController do
     it 'recognizes and generates #update' do
       { :put => "/admin/orders/1"}.should route_to(:controller => "admin/orders", :action => "update", :id => "1")
     end
+
+    it 'recognizes and generates #destroy' do
+      { :delete => "/admin/orders/1"}.should route_to(:controller => "admin/orders", :action => "destroy", :id => "1")
+    end
   end
 end
 

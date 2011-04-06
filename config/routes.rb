@@ -12,7 +12,7 @@ CodeForFood::Application.routes.draw do
 
   namespace :admin do
     root :to => "users#index"
-    resources :orders
+    resources :orders, :only => [:show, :edit, :update, :destroy]
     resources :tags, :as => :dish_tags
 
     resources :menus do
