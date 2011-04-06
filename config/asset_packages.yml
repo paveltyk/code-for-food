@@ -7,6 +7,8 @@ javascripts:
   - jquery-ui.min
   - jquery.multiselect
   - jquery.elastic
+  - jquery.qtip.min
+  - jquery.qtip.styles
   - application
 stylesheets:
 - base:
