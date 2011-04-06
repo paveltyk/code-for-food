@@ -45,7 +45,7 @@ function add_new_menu_item(attrs){
     $(html).children('input.description').val(attrs.description);
   }
   $('#current-menu-items').append(html);
-  bootstrap_menu_multiselects();
+  bootstrap_multiselects();
 }
 
 function calculate_total_price() {
