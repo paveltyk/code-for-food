@@ -1,6 +1,6 @@
 %h1
   = "Транзакции пользователя #{@user}"
-  = raw "(итого <span>#{number_with_delimiter @user.payment_transactions.total}</span>)"
+  = raw "(баланс <span>#{number_with_delimiter @user.balance}</span>)"
 
 %table.defaults
   %thead
