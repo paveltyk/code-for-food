@@ -46,6 +46,13 @@ describe Dish do
       dish.reload.total_price.should eql(dish.price + 300)
     end
 
+    it 'does not raise error if dish price is nil' do
+      dish.price = nil
+      expect {
+        dish.update_total_price
+      }.to_not raise_error(NoMethodError)
+    end
+
     it "doesn't use same tag twice" do
       tag = DishTag.make! :value => 300
       2.times { dish.tags << tag }

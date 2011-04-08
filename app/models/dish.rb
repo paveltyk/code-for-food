@@ -11,7 +11,7 @@ class Dish < ActiveRecord::Base
   before_save :update_total_price, :if => "price_changed?"
 
   def update_total_price
-    self.total_price = price + tags.all.sum(&:value)
+    self.total_price = (price || 0) + tags.all.sum(&:value)
   end
 
   def update_total_price!
