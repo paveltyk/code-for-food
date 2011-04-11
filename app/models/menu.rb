@@ -2,7 +2,7 @@ class Menu < ActiveRecord::Base
   attr_accessible :date, :dishes_attributes
 
   belongs_to :administrator
-  has_many :dishes, :dependent => :destroy, :inverse_of => :menu
+  has_many :dishes, :dependent => :destroy, :inverse_of => :menu, :order => 'grade ASC'
   has_many :orders, :dependent => :destroy, :inverse_of => :menu
   validates_presence_of :date, :administrator
   validates_uniqueness_of :date
