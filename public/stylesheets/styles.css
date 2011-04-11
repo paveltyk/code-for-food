@@ -124,4 +124,5 @@ a.destroy-order {float:right;}
 form.feedback textarea {width:650px;height:150px;}
 
 li.admin-links a.block-menu {float:right;}
+ul.order .ui-multiselect-checkboxes li {font-size:12px;}
 
