@@ -22,6 +22,10 @@ describe UsersHelper do
       it "renders edit profile link" do
         helper.user_nav.should match(edit_profile_path)
       end
+
+      it "renders balance link" do
+        helper.user_nav.should match(balance_path)
+      end
     end
 
     context "when logged in as Administrator" do

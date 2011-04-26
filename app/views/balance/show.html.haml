@@ -1,0 +1,11 @@
+%h1
+  Ваш баланс
+  %span= number_with_delimiter @balance
+%p.balance-calculator
+  = number_with_delimiter @transactions_total
+  &ndash;
+  = number_with_delimiter @orders_total
+  \=
+  %span{:class => ('red' if @balance < 0)}= number_with_delimiter @balance
+  %br
+

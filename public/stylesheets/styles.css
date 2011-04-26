@@ -126,3 +126,7 @@ form.feedback textarea {width:650px;height:150px;}
 li.admin-links a.block-menu {float:right;}
 ul.order .ui-multiselect-checkboxes li {font-size:12px;}
 
+.balance-calculator {font-size:56px;text-align:center;margin:150px 0;}
+.balance-calculator span {white-space:nowrap;}
+.balance-calculator span.red {color:#A51618}
+

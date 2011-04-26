@@ -41,6 +41,8 @@ CodeForFood::Application.routes.draw do
     resource :order, :only => [:show, :create, :update, :destroy]
   end
 
+  resource :balance, :controller => 'balance', :only => :show
+
   root :to => "orders#show", :date => "today"
 
   # The priority is based upon order of creation:
