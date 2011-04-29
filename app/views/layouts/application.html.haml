@@ -24,27 +24,3 @@
       = link_to '', new_feedback_path, :class => 'feedback', :title => "Как бы Вы улучшили приложение?"
     =raw javascript_include_merged :base
 
-    - if current_user
-      #panda-box
-        .content
-          %p
-            Тадам: Теперь можно смотреть баланс! Пункт меню "Мой баланс" в правом верхнем углу страницы.
-            = link_to_function 'Спасибо!', 'closePandaBox()', :class => 'close'
-
-      = javascript_include_tag 'jquery.cookie'
-      :javascript
-        function showPandaBox(){
-          $('#panda-box').slideDown(4000);
-        };
-        function closePandaBox(){
-          $.cookie('panda-box-closed', true);
-          $('#panda-box').slideUp(4000);
-        };
-        $(window).load(function(){
-          left_margin = $(window).width()/2 - $('#panda-box').width()/2;
-          $('#panda-box').css('left', left_margin + 'px');
-          if ($.cookie('panda-box-closed') === null) {
-            setTimeout(showPandaBox, 3000);
-            }
-        });
-
