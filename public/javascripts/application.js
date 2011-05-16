@@ -106,6 +106,15 @@ function bootstrap_qtips() {
   });
 }
 
+function separate_menu_items() {
+  $('ul.order form li.order-item').each(function(){
+    var prev_rel = $(this).prev('li.order-item').attr('rel');
+    if ($(this).attr('rel') != prev_rel && prev_rel != undefined) {
+      $(this).before('<li class="menu-items-separator"></li>');
+    }
+  });
+}
+
 $(function(){
   $('input[placeholder], textarea[placeholder]').placeholder();
   $('.menu a.remove').live('click', function(){
@@ -125,5 +134,6 @@ $(function(){
   bootstrap_dish_order();
   bootstrap_multiselects();
   bootstrap_qtips();
+  separate_menu_items();
 });
 

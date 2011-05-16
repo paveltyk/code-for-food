@@ -3,7 +3,7 @@
   = form_for @order, :url => order_path(:date => @menu.date.to_s(:db)) do |f|
     = render_errors_for @order
     = f.fields_for :menu_items do |oi|
-      %li
+      %li.order-item{:rel => oi.object.dish.grade}
         = oi.hidden_field :dish_id
         = render_errors_for oi.object
         = oi.check_box :is_ordered, :class => 'order-item-select'
