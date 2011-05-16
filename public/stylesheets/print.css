@@ -1,0 +1,6 @@
+#header, #top-bar, #left-static-bar {display:none;}
+
+h1 {font-size:20px;margin-bottom:15px;}
+table th, table td {border:1px solid #aaa;padding:5px 7px;}
+table td.price {white-space:nowrap;}
+

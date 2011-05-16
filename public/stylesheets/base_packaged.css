@@ -485,3 +485,5 @@ ul.order .ui-multiselect-checkboxes li {font-size:12px;}
 .balance-calculator {font-size:56px;text-align:center;margin:150px 0;}
 .balance-calculator span {white-space:nowrap;}
 .balance-calculator span.red {color:#A51618}
+@media only screen and (max-width: 1060px) {#left-static-bar {display:none;}
+}
