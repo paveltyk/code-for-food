@@ -2,7 +2,9 @@
 %ul.order.show
   - @order.order_items.each do |oi|
     %li.selected
-      = "#{oi.dish.name} - <span class=\"price\">#{number_with_delimiter oi.dish.total_price}</span>".html_safe
+      = content_tag :span, oi.dish.name, :class => 'name', :title => [oi.dish.description, oi.dish.weight].delete_if{ |t| t.blank? }.join(' ')
+      \-
+      %span.price= number_with_delimiter oi.dish.total_price
       %span.quantity
         x&nbsp;
         = oi.quantity

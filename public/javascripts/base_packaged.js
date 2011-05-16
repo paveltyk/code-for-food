@@ -70,6 +70,6 @@ function calculate_total_price(){var _total=0;$('ul.order input[type="checkbox"]
 function bootstrap_dish_order(){$('ul.order li').each(function(i,li){li=$(li);if(li.children('input.order-item-select:checked').length>0){li.addClass('selected');}});$('ul.order input[type="checkbox"]').click(function(){var checkbox=$(this);li=checkbox.closest('li');if(checkbox.is(':checked')){li.addClass('selected');li.find('input[type="text"]').focus();}else{li.removeClass('selected');}
 calculate_total_price();});$('ul.order span.quantity input').keyup(calculate_total_price);}
 function bootstrap_multiselects(){$('#current-menu-items select.jquery-multiselect').multiselect({minWidth:335,header:false,noneSelectedText:'Нет выбранных меток',selectedList:5});$('#order_user_id').multiselect({multiple:false,header:false,selectedList:1});}
-function bootstrap_qtips(){$('.order label[title]').qtip({position:{corner:{target:'topleft',tooltip:'bottomLeft'}},style:'mystyle'});}
+function bootstrap_qtips(){$('.order label[title], .order.show span.name[title]').qtip({position:{corner:{target:'topleft',tooltip:'bottomLeft'}},style:'mystyle'});}
 $(function(){$('input[placeholder], textarea[placeholder]').placeholder();$('.menu a.remove').live('click',function(){if(confirm('Вы уверены?')){remove_menu_item($(this).closest('.menu-item'));}
 return false;});$('.menu a.add-menu-item').live('click',function(){add_new_menu_item();$('input[placeholder]').placeholder();return false;});$('textarea#bulk').elastic();bootstrap_dish_order();bootstrap_multiselects();bootstrap_qtips();});

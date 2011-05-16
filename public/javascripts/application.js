@@ -100,7 +100,7 @@ function bootstrap_multiselects() {
 }
 
 function bootstrap_qtips() {
-  $('.order label[title]').qtip({
+  $('.order label[title], .order.show span.name[title]').qtip({
     position: {corner: {target:'topleft', tooltip: 'bottomLeft'}},
     style: 'mystyle'
   });
