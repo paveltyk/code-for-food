@@ -100,9 +100,15 @@ function bootstrap_multiselects() {
 }
 
 function bootstrap_qtips() {
+  $('input[placeholder], textarea[placeholder]').qtip({
+    content: {attr: 'placeholder'},
+    position: {my:'left center', at: 'right center'},
+    style: {classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded '}
+  });
+
   $('.order label[title], .order.show span.name[title]').qtip({
-    position: {corner: {target:'topleft', tooltip: 'bottomLeft'}},
-    style: 'mystyle'
+    position: {my:'bottom left', at: 'top left'},
+    style: {classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded '}
   });
 }
 

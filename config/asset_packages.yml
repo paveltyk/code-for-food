@@ -7,13 +7,13 @@ javascripts:
   - jquery-ui.min
   - jquery.multiselect
   - jquery.elastic
-  - jquery.qtip.min
-  - jquery.qtip.styles
+  - jquery.qtip
   - application
 stylesheets:
 - base:
   - reset
   - jquery-ui
   - jquery.multiselect
+  - jquery.qtip
   - styles
 
