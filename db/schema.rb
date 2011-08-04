@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110401152701) do
+ActiveRecord::Schema.define(:version => 20110804080149) do
 
   create_table "dish_tags", :force => true do |t|
     t.string   "name"
@@ -89,6 +89,15 @@ ActiveRecord::Schema.define(:version => 20110401152701) do
   end
 
   add_index "payment_transactions", ["user_id"], :name => "index_payment_transactions_on_user_id"
+
+  create_table "posts", :force => true do |t|
+    t.string   "type"
+    t.integer  "user_id"
+    t.text     "body"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false

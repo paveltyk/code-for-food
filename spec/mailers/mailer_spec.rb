@@ -90,6 +90,5 @@ describe Mailer do
       mail.body.encoded.should include edit_password_reset_url(user.perishable_token)
     end
   end
-
 end
 

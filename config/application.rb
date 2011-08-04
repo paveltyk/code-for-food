@@ -21,7 +21,8 @@ module CodeForFood
 
     config.active_record.observers =
       :invitation_observer, :tagging_observer, :dish_tag_observer,
-      :dish_observer, :order_item_observer, :menu_observer
+      :dish_observer, :order_item_observer, :menu_observer, :question_observer,
+      :answer_observer
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.

@@ -7,6 +7,7 @@ module UsersHelper
         links << link_to('Пользователи', admin_users_path)
         links << link_to('Метки', admin_dish_tags_path)
       end
+      links << link_to('Общение', questions_path)
       links << link_to('Мой баланс', balance_path)
       links << link_to('Изменить профиль', edit_profile_path)
       links << link_to('Выйти', logout_path)

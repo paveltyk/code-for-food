@@ -43,7 +43,6 @@ end
 Administrator.blueprint do
 end
 
-
 OrderItem.blueprint do
   order
   if object.order.present?
@@ -66,5 +65,16 @@ end
 Feedback.blueprint do
   sender { User.make }
   body { "This is a feedback #{sn}" }
+end
+
+Question.blueprint do
+  user
+  body { "Question body #{sn}" }
+end
+
+Answer.blueprint do
+  user
+  question
+  body { "Answer body #{sn}" }
 end
 

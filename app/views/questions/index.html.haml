@@ -1,0 +1,29 @@
+%h1 Надо же где-то общаться!!!
+.forum
+  .links
+    = link_to 'Написать что-нибудь', new_question_path
+  - if @questions.present?
+    %dl.forum
+      - @questions.each do |question|
+        %dt
+          = question.body
+          %span.author
+            &mdash;
+            = question.user
+        %dd
+          - if question.answers.present?
+            %ul{:style => "list-style:#{cycle *%w{katakana georgian hiragana armenian hebrew}};"}
+              - question.answers.reverse.each do |answer|
+                %li
+                  = answer.body
+                  %span.author
+                    &mdash;
+                    = answer.user
+              %li= link_to 'Ответить еще что-нибудь...', new_question_answer_path(question)
+          - else
+            Пока нет ответов.
+            = link_to 'Ответить что-нибудь...', new_question_answer_path(question)
+  - else
+    %dl.forum
+      %dt Пусто
+
