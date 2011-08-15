@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation, :invitation_token, :receive_notifications
 
   belongs_to :invitation, :dependent => :destroy
+  has_many :posts, :inverse_of => :user
 
   has_many :orders, :dependent => :destroy, :inverse_of => :user do
     def total

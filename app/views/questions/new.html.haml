@@ -1,0 +1,10 @@
+%h1 Что случилось?!
+
+= form_for @question, :html => {:class => 'question'} do |f|
+  = render_errors_for @question
+  .field= f.text_area :body, :placeholder => 'Текст'
+  .field.buttons
+    = f.submit 'Отправить'
+    = link_to 'Назад', questions_path
+    .clr
+

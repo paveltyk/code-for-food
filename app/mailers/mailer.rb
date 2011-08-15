@@ -37,5 +37,30 @@ class Mailer < ActionMailer::Base
          :from => 'no-reply@code-for-food.info',
          :subject => "[Code-for-Food] Инструкция по восстановлению пароля."
   end
+
+  def question_posted(question)
+    category "question-posted-#{Rails.env}"
+    @question = question
+    users = User.where(:receive_notifications => true).all
+
+    add_recipients users.map(&:email)
+    substitute '{user_name}', users.map(&:to_s)
+
+    mail :from => 'no-reply@code-for-food.info',
+         :subject => "[Code-for-Food] #{question.user} что-то спросил..."
+  end
+
+  def answer_posted(answer)
+    category "answer-posted-#{Rails.env}"
+    @answer = answer
+
+    users = User.where(:receive_notifications => true).all
+
+    add_recipients users.map(&:email)
+    substitute '{user_name}', users.map(&:to_s)
+
+    mail :from => 'no-reply@code-for-food.info',
+         :subject => "[Code-for-Food] #{answer.user} что-то ответил..."
+  end
 end
 

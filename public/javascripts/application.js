@@ -121,6 +121,13 @@ function separate_menu_items() {
   });
 }
 
+function bootstrap_user_nav() {
+  $('#user-nav a[title]').qtip({
+    position: {my:'top center', at: 'bottom center', adjust: {y:10}},
+    style: {classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded '}
+  });
+}
+
 $(function(){
   $('input[placeholder], textarea[placeholder]').placeholder();
   $('.menu a.remove').live('click', function(){
@@ -141,5 +148,7 @@ $(function(){
   bootstrap_multiselects();
   bootstrap_qtips();
   separate_menu_items();
+
+  bootstrap_user_nav();
 });
 

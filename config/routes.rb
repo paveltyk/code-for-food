@@ -9,6 +9,9 @@ CodeForFood::Application.routes.draw do
 
   resources :feedbacks, :only => [:new, :create]
   resources :password_resets, :except => [:index, :show, :destroy]
+  resources :questions, :only => [:index, :new, :create] do
+    resources :answers, :only => [:new, :create]
+  end
 
   namespace :admin do
     root :to => "users#index"
