@@ -41,7 +41,7 @@ class Mailer < ActionMailer::Base
   def question_posted(question)
     category "question-posted-#{Rails.env}"
     @question = question
-    users = User.where(:receive_notifications => true).all
+    users = User.where(:receive_forum_notifications => true).all
 
     add_recipients users.map(&:email)
     substitute '{user_name}', users.map(&:to_s)
@@ -54,7 +54,7 @@ class Mailer < ActionMailer::Base
     category "answer-posted-#{Rails.env}"
     @answer = answer
 
-    users = User.where(:receive_notifications => true).all
+    users = User.where(:receive_forum_notifications => true).all
 
     add_recipients users.map(&:email)
     substitute '{user_name}', users.map(&:to_s)

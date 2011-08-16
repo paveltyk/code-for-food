@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   acts_as_authentic
 
   attr_accessor :validate_invitation
-  attr_accessible :email, :name, :password, :password_confirmation, :invitation_token, :receive_notifications
+  attr_accessible :email, :name, :password, :password_confirmation, :invitation_token,
+                  :receive_notifications, :receive_forum_notifications
 
   belongs_to :invitation, :dependent => :destroy
   has_many :posts, :inverse_of => :user
