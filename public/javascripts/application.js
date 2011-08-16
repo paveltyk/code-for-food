@@ -128,6 +128,25 @@ function bootstrap_user_nav() {
   });
 }
 
+function bootstrap_forum() {
+  $('dl.forum dd ul').each(function(_, ul) {
+    var _size = $(ul).children('li').size() - 1,
+        _hide_index = _size-4;
+
+    if (_hide_index > 0) {
+      $(ul).children('li:lt('+_hide_index+')').hide();
+      $(ul).find('li:eq('+_hide_index+')').before('<li class="more"><a href="#">Показать все записи ('+_size+')</a></li>');
+    }
+  });
+  $('dl.forum dd ul li.more a').live('click', function(){
+    var _this_li = $(this).parent('li');
+
+    _this_li.parent('ul').children('li').show();
+    _this_li.remove();
+    return false;
+  });
+}
+
 $(function(){
   $('input[placeholder], textarea[placeholder]').placeholder();
   $('.menu a.remove').live('click', function(){
@@ -148,7 +167,7 @@ $(function(){
   bootstrap_multiselects();
   bootstrap_qtips();
   separate_menu_items();
-
   bootstrap_user_nav();
+  bootstrap_forum();
 });
 
