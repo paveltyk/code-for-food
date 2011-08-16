@@ -1,9 +1,12 @@
 .field= f.text_field :email, :placeholder => 'e-Mail'
 - unless f.object.new_record?
+  .field= f.text_field :name, :placeholder => 'Имя'
   .field
     = f.check_box :receive_notifications
     = f.label :receive_notifications
-  .field= f.text_field :name, :placeholder => 'Имя'
+  .field
+    = f.check_box :receive_forum_notifications
+    = f.label :receive_forum_notifications
 .field= f.password_field :password, :placeholder => 'Пароль'
 .field= f.password_field :password_confirmation, :placeholder => 'Подтверждение пароля'
 

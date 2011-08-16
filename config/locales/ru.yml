@@ -73,7 +73,8 @@ ru:
     attributes:
       user:
         email: "e-Mail"
-        receive_notifications: "Получать уведомления"
+        receive_notifications: "Получать уведомления об обедах"
+        receive_forum_notifications: "Получать спам с форума"
       dish:
         name: "Название"
         price: "Цена"
