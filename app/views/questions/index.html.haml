@@ -13,7 +13,7 @@
         %dd
           - if question.answers.present?
             %ul{:style => "list-style:#{cycle *%w{katakana georgian hiragana armenian hebrew}};"}
-              - question.answers.reverse.each do |answer|
+              - question.answers.each do |answer|
                 %li
                   = answer.body
                   %span.author
