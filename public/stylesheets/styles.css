@@ -146,11 +146,6 @@ dl.forum dd li {margin:7px 0;}
 dl.forum dd li:last-child {list-style:none !important;}
 dl.forum dd li.more {list-style:none !important;}
 
-#panda-box {position:absolute;z-index:15002;width:900px;height:675px;background:url(/images/something.png) 0 0 no-repeat;bottom:0;display:none;}
-#panda-box .content {margin-top:30px;font-size:24px;margin:430px 108px 0;color:#fff;}
-#panda-box .content a {color:#A51618;}
-#panda-box .content a.close {color:#A51618;}
-
 @media only screen and (max-width: 1060px) {
   #left-static-bar {display:none;}
 }

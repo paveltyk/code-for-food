@@ -25,31 +25,3 @@
       = link_to '', new_feedback_path, :class => 'feedback', :title => "Как бы Вы улучшили приложение?"
     =raw javascript_include_merged :base
 
-    - if current_user
-      #panda-box
-        .content
-          %p
-            Тадам: Теперь можно Общаться Туц туц туц! Ту-ду-дуц туц туц!
-            == Пункт меню #{link_to '"Общение"', questions_path} в правом верхнем углу страницы.
-            = link_to_function 'Спасибо! (закрыть белку)', 'closePandaBox()', :class => 'close'
-
-      = javascript_include_tag 'jquery.cookie'
-      :javascript
-        function showPandaBox(){
-          $('#panda-box').slideDown(4000);
-        };
-        function closePandaBox(){
-          $.cookie('panda-box-forum-closed', true);
-          $('#panda-box').slideUp(4000);
-        };
-        $(window).load(function(){
-          left_margin = $(window).width()/2 - $('#panda-box').width()/2;
-          $('#panda-box').css('left', left_margin + 'px');
-          if ($.cookie('panda-box-forum-closed') === null) {
-            setTimeout(showPandaBox, 2500);
-            $('#user-nav-forum').qtip('api').
-              set('prerendered', true).
-              set('style.classes', 'ui-tooltip-green ui-tooltup-shadow ui-tooltip-rounded').show();
-          }
-        });
-
