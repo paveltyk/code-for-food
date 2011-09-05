@@ -6,7 +6,7 @@ gem 'pg'
 gem 'haml-rails', '~> 0.3'
 gem 'jquery-rails', '~> 0.2.7'
 gem 'authlogic'
-gem 'russian'
+gem 'russian', :git => 'git://github.com/yaroslav/russian.git'
 gem 'hoptoad_notifier'
 gem 'sendgrid-rails', '>=1.0.0'
 

@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/yaroslav/russian.git
+  revision: 57af7fee22f9c324ac6313064c36e582d58ba8df
+  specs:
+    russian (0.2.7)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -147,7 +153,6 @@ GEM
       sexp_processor (~> 3.0)
     ruby_parser (2.0.6)
       sexp_processor (~> 3.0)
-    russian (0.2.7)
     sendgrid-rails (1.0.0)
       actionmailer (>= 3.0.0)
       activesupport (>= 2.1.0)
@@ -177,6 +182,6 @@ DEPENDENCIES
   rails (= 3.0.5)
   rcov (~> 0.9)
   rspec-rails (~> 2.5)
-  russian
+  russian!
   sendgrid-rails (>= 1.0.0)
   webrat
