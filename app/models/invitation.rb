@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Invitation < ActiveRecord::Base
 
   attr_accessible :recipient_email

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Admin::MenusController < Admin::BaseController
   before_filter :assign_menu, :only => [:show, :edit, :update, :lock, :publish]
 

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class FeedbacksController < ApplicationController
   before_filter :require_user
 

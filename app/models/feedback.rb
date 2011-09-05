@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Feedback
   extend ActiveModel::Naming
   include ActiveModel::Conversion

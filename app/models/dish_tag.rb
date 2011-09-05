@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class DishTag < ActiveRecord::Base
   has_many :taggings, :inverse_of => :dish_tag, :dependent => :destroy
   has_many :dishes, :through => :taggings, :uniq => true

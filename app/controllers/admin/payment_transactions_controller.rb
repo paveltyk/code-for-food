@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Admin::PaymentTransactionsController < Admin::BaseController
   before_filter :assign_user
 

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class OrderItem < ActiveRecord::Base
   attr_accessor :is_ordered
   alias_attribute :qtt, :quantity

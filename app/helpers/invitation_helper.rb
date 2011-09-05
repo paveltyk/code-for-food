@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module InvitationHelper
   def invitation_status_link(invitation)
     if invitation.discharged?

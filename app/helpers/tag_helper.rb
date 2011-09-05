@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module TagHelper
   def render_tags(tags)
     html = tags.map do |tag|

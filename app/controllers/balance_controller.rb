@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class BalanceController < ApplicationController
   before_filter :require_user
 

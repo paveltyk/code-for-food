@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Mailer < ActionMailer::Base
   def invitation(invitation)
     @invitation = invitation

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class PaymentTransaction < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :user

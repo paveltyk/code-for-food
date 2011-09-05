@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Admin::OrdersController < Admin::BaseController
   before_filter :assign_order
 

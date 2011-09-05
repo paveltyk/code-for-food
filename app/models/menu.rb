@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Menu < ActiveRecord::Base
   attr_accessible :date, :dishes_attributes
 

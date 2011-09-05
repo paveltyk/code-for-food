@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Question < Post
   has_many :answers, :inverse_of => :question
   validate :questionb_id_should_be_blank

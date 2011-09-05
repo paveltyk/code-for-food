@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class OrderItemObserver < ActiveRecord::Observer
   observe OrderItem
 

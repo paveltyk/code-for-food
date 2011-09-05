@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module ApplicationHelper
   def render_errors_for(model)
     html = ''

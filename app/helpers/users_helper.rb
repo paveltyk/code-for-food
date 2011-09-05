@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module UsersHelper
   def user_nav
     links = []

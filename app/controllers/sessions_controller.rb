@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class SessionsController < ApplicationController
   def new
     @user_session = UserSession.new

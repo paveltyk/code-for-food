@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Admin::TagsController < Admin::BaseController
   def index
     @tags = DishTag.all

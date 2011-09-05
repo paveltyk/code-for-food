@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Order < ActiveRecord::Base
   attr_accessible :menu_items_attributes
 

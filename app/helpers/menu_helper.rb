@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module MenuHelper
   def render_menu_calendar
     menu_calendar = MenuCalendar.new :dates => 3.days.ago.to_date..9.days.since.to_date

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Dish < ActiveRecord::Base
   belongs_to :menu
   has_many :taggings, :inverse_of => :dish, :dependent => :destroy
