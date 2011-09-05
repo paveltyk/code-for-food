@@ -5,7 +5,10 @@ class DishObserver < ActiveRecord::Observer
 
   def after_update(dish)
     return unless dish.total_price_changed?
-    dish.orders.each(&:update_price!)
+    dish.orders.each do |order|
+      order.update_price!
+      order.user.sweep_cached_totals
+    end
   end
 end
 

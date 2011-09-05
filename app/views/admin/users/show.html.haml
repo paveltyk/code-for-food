@@ -1,7 +1,7 @@
 %h1
   Заказы пользователя
   = @user
-  =raw "(итого <span>#{number_with_delimiter @user.orders.total}</span>)"
+  =raw "(итого <span>#{number_with_delimiter @user.orders_total}</span>)"
 %table.defaults
   %thead
     %tr

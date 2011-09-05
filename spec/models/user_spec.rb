@@ -44,7 +44,7 @@ describe User do
       it 'return sum of all order prices' do
         Order.destroy_all
         2.times { OrderItem.make! :order => Order.make(:user => user) }
-        user.orders.total.should eql Order.sum(:price)
+        user.orders_total.should eql Order.sum(:price)
       end
     end
   end
@@ -65,7 +65,7 @@ describe User do
 
   describe '#balance' do
     let(:user) { User.make! }
-    it 'returns #payment_transactions.total - #orders.total' do
+    it 'returns #payment_transactions_total - #orders_total' do
       order = Order.make! :user => user
       transaction = PaymentTransaction.make! :user => user
       user.balance.should eql(transaction.value - order.price)

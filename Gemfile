@@ -9,6 +9,7 @@ gem 'authlogic'
 gem 'russian', :git => 'git://github.com/yaroslav/russian.git'
 gem 'hoptoad_notifier'
 gem 'sendgrid-rails', '>=1.0.0'
+gem 'dalli'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.5'
