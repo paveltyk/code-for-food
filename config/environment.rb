@@ -5,11 +5,12 @@ require File.expand_path('../application', __FILE__)
 CodeForFood::Application.initialize!
 
 ActionMailer::Base.smtp_settings = {
-  :address => "smtp.sendgrid.net",
-  :port => '25',
-  :domain => "code-for-food.info",
+  :address => "smtp.gmail.com",
+  :port => '587',
+  :domain => "altoros.net",
   :authentication => :plain,
-  :user_name => ENV['SG_LOGIN'],
-  :password => ENV['SG_PASS']
+  :enable_starttls_auto => true,
+  :user_name => ENV['SMTP_LOGIN'],
+  :password => ENV['SMTP_PASSWORD']
 }
 

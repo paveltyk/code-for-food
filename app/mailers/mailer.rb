@@ -1,4 +1,6 @@
 class Mailer < ActionMailer::Base
+  default :from => ActionMailer::Base.smtp_settings[:user_name]
+
   def invitation(invitation)
     @invitation = invitation
     category "invitation-#{Rails.env}"
@@ -8,15 +10,12 @@ class Mailer < ActionMailer::Base
          :subject => 'Приглашение для регистрации на сайте code-for-food.info'
   end
 
-  def menu_published(menu)
+  def menu_published(menu, users)
     @menu = menu
-    @users = User.where(:receive_notifications => true).all
 
-    add_recipients @users.map(&:email)
-    substitute '{user_name}', @users.map(&:to_s)
     category "menu-published-#{Rails.env}"
 
-    mail :from => 'no-reply@code-for-food.info',
+    mail :bcc => users.map(&:email),
          :subject => "Опубликовано меню на \"#{@menu}\""
   end
 
@@ -34,33 +33,29 @@ class Mailer < ActionMailer::Base
 
     @user = user
     mail :to => @user.email,
-         :from => 'no-reply@code-for-food.info',
          :subject => "[Code-for-Food] Инструкция по восстановлению пароля."
   end
 
-  def question_posted(question)
+  def question_posted(question, users)
     category "question-posted-#{Rails.env}"
     @question = question
-    users = User.where(:receive_forum_notifications => true).all
 
-    add_recipients users.map(&:email)
-    substitute '{user_name}', users.map(&:to_s)
-
-    mail :from => 'no-reply@code-for-food.info',
+    mail :bcc => users.map(&:email),
          :subject => "[Code-for-Food] #{question.user} что-то спросил..."
   end
 
-  def answer_posted(answer)
+  def answer_posted(answer, users)
     category "answer-posted-#{Rails.env}"
     @answer = answer
 
-    users = User.where(:receive_forum_notifications => true).all
-
-    add_recipients users.map(&:email)
-    substitute '{user_name}', users.map(&:to_s)
-
-    mail :from => 'no-reply@code-for-food.info',
+    mail :bcc => users.map(&:email),
          :subject => "[Code-for-Food] #{answer.user} что-то ответил..."
+  end
+
+  protected
+
+  def category(value)
+    headers['X-Category'] = value
   end
 end
 
