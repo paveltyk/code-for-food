@@ -8,7 +8,6 @@ gem 'jquery-rails', '~> 0.2.7'
 gem 'authlogic'
 gem 'russian'
 gem 'hoptoad_notifier'
-gem 'sendgrid-rails', '>=1.0.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.5'

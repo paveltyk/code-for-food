@@ -157,9 +157,6 @@ GEM
     ruby_parser (2.0.6)
       sexp_processor (~> 3.0)
     russian (0.2.7)
-    sendgrid-rails (1.0.0)
-      actionmailer (>= 3.0.0)
-      activesupport (>= 2.1.0)
     sexp_processor (3.0.5)
     syntax (1.0.0)
     thor (0.14.6)
@@ -188,5 +185,4 @@ DEPENDENCIES
   rcov (~> 0.9)
   rspec-rails (~> 2.5)
   russian
-  sendgrid-rails (>= 1.0.0)
   webrat
