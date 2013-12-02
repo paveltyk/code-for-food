@@ -12,7 +12,7 @@
             = question.user
         %dd
           - if question.answers.present?
-            %ul{:style => "list-style:#{cycle *%w{katakana georgian hiragana armenian hebrew}};"}
+            %ul
               - question.answers.each do |answer|
                 %li
                   = answer.body

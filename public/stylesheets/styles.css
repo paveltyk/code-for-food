@@ -142,7 +142,7 @@ dl.forum dd {font-size:16px;margin-left:30px;margin-bottom:5px;}
 dl.forum dt:first-child {margin-top:0;padding-top:0;border-top:none;}
 dl.forum dt span.author, dl.forum dd span.author {opacity:.5;filter:alpha(opacity=50);}
 dl.forum dd ul { list-style-position: outside }
-dl.forum dd li {margin:7px 0;}
+dl.forum dd li {padding:4px 0; border-top:1px dotted #ddd;}
 dl.forum dd li:last-child {list-style:none !important;}
 dl.forum dd li.more {list-style:none !important;}
 
